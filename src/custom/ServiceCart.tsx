@@ -33,3 +33,4 @@ export const ServiceCard: FC<ServiceCardProps> = ({
     </div>
   </Area>
 );
+
