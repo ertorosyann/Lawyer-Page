@@ -14,9 +14,9 @@ export const ServiceCard: FC<ServiceCardProps> = ({
   title,
   content,
 }) => (
-  <Area className="gap-0.5">
-    <div className="group hover:bg-[#44424C] flex flex-col gap-10 px-[16px] py-[24px] ">
-      <div className="grid gap-4 ">
+  <Area className="">
+    <div className="h-full group hover:bg-[#44424C] flex justify-end flex-col gap-10 px-[16px] py-[24px] ">
+      <div className="grid gap-10">
         <div className="flex flex-col gap-[12px]">
           {icone}
           <h2 className="font-[500] text-[24px] leading-[100%]">{title}</h2>
@@ -33,4 +33,3 @@ export const ServiceCard: FC<ServiceCardProps> = ({
     </div>
   </Area>
 );
-
