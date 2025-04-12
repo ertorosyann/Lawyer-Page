@@ -246,6 +246,42 @@ export const arrowRight = (
   </svg>
 );
 
+export const arrowLeftDouble = (
+  <svg
+    width="25"
+    height="24"
+    viewBox="0 0 25 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M11.5 17L6.5 12L11.5 7M18.5 17L13.5 12L18.5 7"
+      stroke="#6A49A2"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const arrowRightDouble = (
+  <svg
+    width="25"
+    height="24"
+    viewBox="0 0 25 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M13.5 17L18.5 12L13.5 7M6.5 17L11.5 12L6.5 7"
+      stroke="#6A49A2"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 export const corporate = (
   <svg
     width="76"

@@ -8,11 +8,11 @@ import {
 export const Footer = () => {
   return (
     <footer className="max-w-[1280px] mx-auto ">
-      <div className="pt-[100px] pr-[14px] pb-[24px] pl-[14px]">
+      <div className="pr-[14px] ">
         <div className="flex justify-between pb-10 border-b-2 border-[#7B7B7B]">
           <div className="flex flex-col gap-4">
             {logo}
-            <h2 className="font-[700] text-[36px] text-[#D0D0D0] leading-[100%]">
+            <h2 className="font-[700] text-[28px] text-[#D0D0D0] leading-[100%]">
               Specialised Attorney With <br />
               Experiance
             </h2>
@@ -39,7 +39,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-10 flex justify-between">
+        <div className="pt-10 flex justify-between items-center">
           <ul className="flex space-x-[60px] text-[22px] text-[700]">
             <li>About</li>
             <li>Resources</li>

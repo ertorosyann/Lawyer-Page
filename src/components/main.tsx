@@ -184,9 +184,8 @@ export const Main = () => {
           <ul className=" flex justify-between gap-16 items-center">
             <li>
               <div
-                className="flex flex-col items-center gap-4 rounded-[4px] bg-[#191A1D] py-[24px] px-[16px]  transition-all
-                          hover:[border-image:linear-gradient(259.32deg,#5A566B_68.73%,#B0A8D1_98.76%)] 
-                          hover:[border-image-slice:1]"
+                className="flex flex-col items-center gap-4 rounded-[4px] bg-[#191A1D] py-[24px] px-[16px] border hover:border hover:border-amber-500
+                          "
               >
                 {experienced}
                 <p className="font-[700] text-[28px] text-[#D0D0D0]">
@@ -195,7 +194,10 @@ export const Main = () => {
               </div>
             </li>
             <li>
-              <div className="flex flex-col rounded-[4px] bg-[#191A1D] py-6 px-4 gap-4 items-center">
+              <div
+                className="flex flex-col items-center gap-4 rounded-[4px] bg-[#191A1D] py-[24px] px-[16px] border hover:border hover:border-amber-500
+                          "
+              >
                 {afforable}
                 <p className="font-[700] text-[28px] text-[#D0D0D0]">
                   Affordable
@@ -203,7 +205,10 @@ export const Main = () => {
               </div>
             </li>
             <li>
-              <div className="flex flex-col  rounded-[4px] bg-[#191A1D] py-6 px-4 gap-4 items-center">
+              <div
+                className="flex flex-col items-center gap-4 rounded-[4px] bg-[#191A1D] py-[24px] px-[16px] border hover:border hover:border-amber-500
+                          "
+              >
                 {flexible}
                 <p className="font-[700] text-[28px] text-[#D0D0D0]">
                   Flexible
@@ -211,7 +216,10 @@ export const Main = () => {
               </div>
             </li>
             <li>
-              <div className="flex flex-col rounded-[4px] bg-[#191A1D] py-6 px-4 gap-4 items-center">
+              <div
+                className="flex flex-col items-center gap-4 rounded-[4px] bg-[#191A1D] py-[24px] px-[16px] border hover:border hover:border-amber-500
+                          "
+              >
                 {approachable}
                 <p className="font-[700] text-[28px] text-[#D0D0D0]">
                   Approachable
@@ -234,8 +242,8 @@ export const Main = () => {
         </div>
       </section>
 
-      <section className="max-w-[1280px] mx-auto">
-        <div className="grid p-10 gap-[62px]">
+      <section className="max-w-[1280px] mx-auto ">
+        <div className="grid  gap-[62px]">
           <div className="grid gap-6 text-center">
             <h2 className="font-[700] text-[42px] text-[#D0D0D0] leading-[100%]">
               Our Attorneys
@@ -340,34 +348,14 @@ export const Main = () => {
         </div>
       </section>
 
-      {/* <section className="max-w-[720px] mx-auto ">
-        <div className="py-[100px] px-[62px] ">
-          <div className="relative h-[500px]">
-            <Area className="absolute z-80 left-[19%] top-[19%] -translate-x-[45%] -translate-y-[40%] flex flex-col text-center py-[16px] px-[24px]">
-              <h3 className="text-[32px] font-[600] text-center">
-                Years of <br></br>Experience
-              </h3>
-              <p className="text-[48px] font-[600]">+00</p>
-            </Area>
-
-            <Area className="absolute z-40 left-[33%] top-[48%] -translate-x-[70%] -translate-y-[0%] text-center  py-[16px] px-[24px]">
-              <h3 className="text-[32px] font-[600]">Client Satisfaction </h3>
-              <p className="text-[48px] font-[600]">000 %</p>
-            </Area>
-
-            <Area className="absolute z-20 left-[53%] top-[50%] -translate-x-[25%] -translate-y-[65%] text-center  py-[16px] px-[24px]">
-              <h3 className="text-[32px] font-[600]">Cases Won</h3>
-              <p className="text-[48px] font-[600]">+000</p>
-            </Area>
-          </div>
-        </div>
-      </section> */}
-
       <section className="max-w-[720px] mx-auto">
-        <div className=" py-[100px] px-[62px]">
+        <div className="px-15 py-35">
           <div className="relative h-[500px]">
             {/* Years of Experience */}
-            <Area className="absolute z-30 left-[19%] top-[19%] -translate-x-[45%] -translate-y-[40%] flex flex-col items-center justify-center text-center py-4 px-6">
+            <Area
+              variant="lower__shadow"
+              className="absolute  left-0 top-0 flex flex-col items-center justify-center text-center py-20 px-20"
+            >
               <h3 className="text-3xl font-semibold">
                 Years of <br />
                 Experience
@@ -375,16 +363,22 @@ export const Main = () => {
               <p className="text-5xl font-semibold mt-2">+00</p>
             </Area>
 
-            {/* Client Satisfaction */}
-            <Area className="absolute z-40 left-[33%] top-[48%] -translate-x-[70%] -translate-y-[0%] flex flex-col items-center justify-center text-center py-4 px-6">
-              <h3 className="text-3xl font-semibold">Client Satisfaction</h3>
-              <p className="text-5xl font-semibold mt-2">00%</p>
-            </Area>
-
             {/* Cases Won */}
-            <Area className="absolute z-20 left-[53%] top-[50%] -translate-x-[25%] -translate-y-[65%] flex flex-col items-center justify-center text-center py-4 px-6">
+            <Area
+              variant="lower__shadow"
+              className="absolute left-88 top-22 flex flex-col items-center justify-center text-center py-20 px-20"
+            >
               <h3 className="text-3xl font-semibold">Cases Won</h3>
               <p className="text-5xl font-semibold mt-2">+000</p>
+            </Area>
+
+            {/* Client Satisfaction */}
+            <Area
+              variant="lower__shadow"
+              className="absolute  left-25 top-80  flex flex-col items-center justify-center text-center py-15 px-7"
+            >
+              <h3 className="text-3xl font-semibold">Client Satisfaction</h3>
+              <p className="text-5xl font-semibold mt-2">00%</p>
             </Area>
           </div>
         </div>
@@ -392,7 +386,7 @@ export const Main = () => {
 
       <section className="bg-[url('/bck.jpeg')] bg-cover bg-bottom bg-no-repeat w-full h-[628px] relative ">
         {/* Darkening layer (overlay) */}
-        <div className="absolute inset-0 bg-[#00000080]"></div>
+        <div className="absolute inset-0 bg-[#00000080] "></div>
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1280px] ">
           <div className="w-full backdrop-blur-[50px] border-[2px] py-6 px-8 flex flex-col gap-[42px] rounded-[4px]">
             <div className="flex flex-col gap-1">
@@ -596,7 +590,7 @@ export const Main = () => {
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-15">
-            <Area className="flex gap-4">
+            <Area variant="lower__shadow" className="flex gap-4">
               <Image
                 src="/news.png"
                 alt="GIF"
@@ -619,7 +613,7 @@ export const Main = () => {
                 </div>
               </div>
             </Area>
-            <Area className="flex gap-4">
+            <Area variant="lower__shadow" className="flex gap-4">
               <Image
                 src="/news.png"
                 alt="GIF"
@@ -642,7 +636,7 @@ export const Main = () => {
                 </div>
               </div>
             </Area>
-            <Area className="flex gap-4">
+            <Area variant="lower__shadow" className="flex gap-4">
               <Image
                 src="/news.png"
                 alt="GIF"
@@ -665,7 +659,7 @@ export const Main = () => {
                 </div>
               </div>
             </Area>
-            <Area className="flex gap-4">
+            <Area variant="lower__shadow" className="flex gap-4">
               <Image
                 src="/news.png"
                 alt="GIF"

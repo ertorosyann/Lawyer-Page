@@ -26,7 +26,7 @@ export const ServiceCard: FC<ServiceCardProps> = ({
         </p>
       </div>
       <div className="flex justify-end">
-        <Button className="flex justify-between p-[12px] gap-[32px] bg-[#44424C]  group-hover:bg-[#44424C] group-hover:border group-hover:border-[#D0D0D0]">
+        <Button className="flex justify-between p-[12px] gap-[32px] bg-[#44424C]  group-hover:bg-[#44424C] group-hover:border-[#D0D0D0]">
           Learn More {arrowRight}
         </Button>
       </div>
