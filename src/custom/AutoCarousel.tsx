@@ -1,15 +1,15 @@
 "use client";
 
 import {
-  carousel1,
-  carousel2,
-  carousel3,
-  carousel4,
-  carousel5,
-  carousel6,
+  partner1,
+  partner2,
+  partner3,
+  partner4,
+  partner5,
+  partner6,
 } from "@/app/assets/svg";
 
-const icons = [carousel1, carousel2, carousel3, carousel4, carousel5, carousel6]; 
+const icons = [partner1, partner2, partner3, partner4, partner5, partner6]; 
 
 export default function AutoCarousel() {
   return (
