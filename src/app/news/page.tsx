@@ -1,15 +1,16 @@
 import {
   arrowRight,
   clock,
-  partner1_bg,
-  partner2_bg,
-  partner3_bg,
-  partner4_bg,
-  partner5_bg,
-  partner6_bg,
+  // partner1_bg,
+  // partner2_bg,
+  // partner3_bg,
+  // partner4_bg,
+  // partner5_bg,
+  // partner6_bg,
 } from "@/app/assets/svg";
 import { Area } from "@/custom/Area";
 import { Button } from "@/custom/Button";
+import { moscowNews } from "@/lib/moscowNews";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -118,220 +119,39 @@ export default function News() {
         <div className="grid gap-15">
           <h3 className="text-[24px] font-[500] text-[#6A49A2]">All Posts</h3>
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-15">
-            <Area variant="lower__shadow" className="grid gap-4">
-              <Image src="/news.png" alt="GIF" width={301} height={258} />
-              <div className="grid justify-between gap-10">
-                <div className="grid gap-2">
-                  <h3 className="font-[600] text-[20px] text-muted-light">
-                    Program in Colombia
-                  </h3>
-                  <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
-                    Exciting News: Facundo Banchero to Join LFN Secondment
-                    Program in Colombia
-                  </p>
-                </div>
-                <div className="flex justify-between">
-                  <div className="flex gap-3 items-center">
-                    {clock}
-                    <p className="font-[500] text-[16px] leading-[100%] text-[#717173]">
-                      February 24, 2025
+            {moscowNews.map((news, i) => (
+              <Area key={i} variant="lower__shadow" className="grid gap-4">
+                <Image
+                  src={news.image}
+                  alt={news.title}
+                  width={301}
+                  height={258}
+                />
+                <div className="grid justify-between gap-10">
+                  <div className="grid gap-2">
+                    <h3 className="font-[600] text-[20px] text-muted-light">
+                      {news.title}
+                    </h3>
+                    <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
+                      {news.subtitle}
                     </p>
                   </div>
-                  <div className="text-[#717173]">{arrowRight}</div>
-                </div>
-              </div>
-            </Area>
-            <Area variant="lower__shadow" className="grid gap-4">
-              <Image src="/news.png" alt="GIF" width={301} height={258} />
-              <div className="grid justify-between gap-10">
-                <div className="grid gap-2">
-                  <h3 className="font-[600] text-[20px] text-muted-light">
-                    Program in Colombia
-                  </h3>
-                  <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
-                    Exciting News: Facundo Banchero to Join LFN Secondment
-                    Program in Colombia
-                  </p>
-                </div>
-                <div className="flex justify-between">
-                  <div className="flex gap-3 items-center">
-                    {clock}
-                    <p className="font-[500] text-[16px] leading-[100%] text-[#717173]">
-                      February 24, 2025
-                    </p>
-                  </div>
-                  <div className="text-[#717173]">{arrowRight}</div>
-                </div>
-              </div>
-            </Area>
-            <Area variant="lower__shadow" className="grid gap-4">
-              <Image src="/news.png" alt="GIF" width={301} height={258} />
-              <div className="grid justify-between gap-10">
-                <div className="grid gap-2">
-                  <h3 className="font-[600] text-[20px] text-muted-light">
-                    Program in Colombia
-                  </h3>
-                  <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
-                    Exciting News: Facundo Banchero to Join LFN Secondment
-                    Program in Colombia
-                  </p>
-                </div>
-                <div className="flex justify-between">
-                  <div className="flex gap-3 items-center">
-                    {clock}
-                    <p className="font-[500] text-[16px] leading-[100%] text-[#717173]">
-                      February 24, 2025
-                    </p>
-                  </div>
-                  <div className="text-[#717173]">{arrowRight}</div>
-                </div>
-              </div>
-            </Area>
-            <Area variant="lower__shadow" className="grid gap-4">
-              <Image src="/news.png" alt="GIF" width={301} height={258} />
-              <div className="grid justify-between gap-10">
-                <div className="grid gap-2">
-                  <h3 className="font-[600] text-[20px] text-muted-light">
-                    Program in Colombia
-                  </h3>
-                  <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
-                    Exciting News: Facundo Banchero to Join LFN Secondment
-                    Program in Colombia
-                  </p>
-                </div>
-                <div className="flex justify-between">
-                  <div className="flex gap-3 items-center">
-                    {clock}
-                    <p className="font-[500] text-[16px] leading-[100%] text-[#717173]">
-                      February 24, 2025
-                    </p>
-                  </div>
-                  <div className="text-[#717173]">{arrowRight}</div>
-                </div>
-              </div>
-            </Area>
-            <Area variant="lower__shadow" className="grid gap-4">
-              <Image src="/news.png" alt="GIF" width={301} height={258} />
-              <div className="grid justify-between gap-10">
-                <div className="grid gap-2">
-                  <h3 className="font-[600] text-[20px] text-muted-light">
-                    Program in Colombia
-                  </h3>
-                  <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
-                    Exciting News: Facundo Banchero to Join LFN Secondment
-                    Program in Colombia
-                  </p>
-                </div>
-                <div className="flex justify-between">
-                  <div className="flex gap-3 items-center">
-                    {clock}
-                    <p className="font-[500] text-[16px] leading-[100%] text-[#717173]">
-                      February 24, 2025
-                    </p>
-                  </div>
-                  <div className="text-[#717173]">{arrowRight}</div>
-                </div>
-              </div>
-            </Area>
-            <Area variant="lower__shadow" className="grid gap-4">
-              <Image src="/news.png" alt="GIF" width={301} height={258} />
-              <div className="grid justify-between gap-10">
-                <div className="grid gap-2">
-                  <h3 className="font-[600] text-[20px] text-muted-light">
-                    Program in Colombia
-                  </h3>
-                  <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
-                    Exciting News: Facundo Banchero to Join LFN Secondment
-                    Program in Colombia
-                  </p>
-                </div>
-                <div className="flex justify-between">
-                  <div className="flex gap-3 items-center">
-                    {clock}
-                    <p className="font-[500] text-[16px] leading-[100%] text-[#717173]">
-                      February 24, 2025
-                    </p>
-                  </div>
-                  <div className="text-[#717173]">{arrowRight}</div>
-                </div>
-              </div>
-            </Area>
-            <Area variant="lower__shadow" className="grid gap-4">
-              <Image src="/news.png" alt="GIF" width={301} height={258} />
-              <div className="grid justify-between gap-10">
-                <div className="grid gap-2">
-                  <h3 className="font-[600] text-[20px] text-muted-light">
-                    Program in Colombia
-                  </h3>
-                  <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
-                    Exciting News: Facundo Banchero to Join LFN Secondment
-                    Program in Colombia
-                  </p>
-                </div>
-                <div className="flex justify-between">
-                  <div className="flex gap-3 items-center">
-                    {clock}
-                    <p className="font-[500] text-[16px] leading-[100%] text-[#717173]">
-                      February 24, 2025
-                    </p>
-                  </div>
-                  <div className="text-[#717173]">{arrowRight}</div>
-                </div>
-              </div>
-            </Area>
-            <Area variant="lower__shadow" className="grid gap-4">
-              <Image src="/news.png" alt="GIF" width={301} height={258} />
-              <div className="grid justify-between gap-10">
-                <div className="grid gap-2">
-                  <h3 className="font-[600] text-[20px] text-muted-light">
-                    Program in Colombia
-                  </h3>
-                  <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
-                    Exciting News: Facundo Banchero to Join LFN Secondment
-                    Program in Colombia
-                  </p>
-                </div>
-                <div className="flex justify-between">
-                  <div className="flex gap-3 items-center">
-                    {clock}
-                    <p className="font-[500] text-[16px] leading-[100%] text-[#717173]">
-                      February 24, 2025
-                    </p>
-                  </div>
-                  <div className="text-[#717173]">{arrowRight}</div>
-                </div>
-              </div>
-            </Area>
-            <Area variant="lower__shadow" className="grid gap-4">
-              <Image src="/news.png" alt="GIF" width={301} height={258} />
-              <div className="grid justify-between gap-10">
-                <div className="grid gap-2">
-                  <h3 className="font-[600] text-[20px] text-muted-light">
-                    Program in Colombia
-                  </h3>
-                  <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
-                    Exciting News: Facundo Banchero to Join LFN Secondment
-                    Program in Colombia
-                  </p>
-                </div>
-                <div className="flex justify-between">
-                  <div className="flex gap-3 items-center">
-                    {clock}
-                    <p className="font-[500] text-[16px] leading-[100%] text-[#717173]">
-                      February 24, 2025
-                    </p>
-                  </div>
-                  {/* ------------------------------------------- */}
-                  <Link href={`/news/detail`}>
-                    <div className="text-[#717173] cursor-pointer">
-                      {arrowRight}
+                  <div className="flex justify-between">
+                    <div className="flex gap-3 items-center">
+                      {clock}
+                      <p className="font-[500] text-[16px] leading-[100%] text-[#717173]">
+                        {news.date}
+                      </p>
                     </div>
-                  </Link>
-                  {/* <div className="text-[#717173]">{arrowRight}</div> */}
-                  {/* ------------------------------------------- */}
+                    <Link href={`/news/${news.slug}`}>
+                      <div className="text-[#717173] cursor-pointer">
+                        {arrowRight}
+                      </div>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </Area>
+              </Area>
+            ))}
           </div>
           <div className="grid justify-center">
             <Button className="font-600 text-[20px] text-muted-light leading-[100%] px-6 py-3">

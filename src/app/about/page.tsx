@@ -1,4 +1,3 @@
-
 import { mail, telephone } from "@/app/assets/svg";
 import { ArrowCarousel } from "@/custom/ArrowCarousel";
 import { Button } from "@/custom/Button";
@@ -10,7 +9,7 @@ export default function About() {
       <section className=" max-w-[1024px] mx-auto ">
         <div className="grid gap-55">
           <div className="relative">
-            <div className="grid gap-6 border bg-[#191A1D] text-center py-10 px-6 w-[55%]">
+            <div className="grid gap-6 border bg-[#191A1D] text-center py-10 px-6 w-[55%] gradient-border-about">
               <h1 className="font-[700] text-[42px] leading-[100%] text-[#D0D0D0]">
                 Legal Expertise with a<br /> Proven Track Record
               </h1>

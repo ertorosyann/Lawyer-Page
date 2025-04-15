@@ -1,9 +1,17 @@
-import { mail, telephone } from "@/app/assets/svg";
-import { ArrowCarousel } from "@/custom/ArrowCarousel";
-import { Button } from "@/custom/Button";
+"use client";
 import Image from "next/image";
+import { useRef } from "react";
 
 export default function Services() {
+  const civilRef = useRef<HTMLDivElement>(null!);
+  const corporateRef = useRef<HTMLDivElement>(null!);
+  const adminRef = useRef<HTMLDivElement>(null!);
+  const criminalRef = useRef<HTMLDivElement>(null!);
+
+  const scrollTo = (ref: React.RefObject<HTMLDivElement | null>) => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <>
       <section className=" max-w-[1024px] mx-auto ">
@@ -17,33 +25,40 @@ export default function Services() {
               your rights and achieving the best outcomes.
             </p>
           </div>
-          <ul className="flex justify-between text-[19px] font-500  text-muted bg-[#191A1D] py-3 px-4">
+          <ul className="flex justify-between text-[24px] font-500  text-muted bg-[#191A1D] py-3 px-4">
             <li className="hover:text-muted-light cursor-pointer">All</li>
-            <li className="hover:text-muted-light cursor-pointer">
+            <li
+              onClick={() => scrollTo(civilRef)}
+              className="hover:text-muted-light cursor-pointer"
+            >
               Civil right
             </li>
-            <li className="hover:text-muted-light cursor-pointer">
+            <li
+              onClick={() => scrollTo(corporateRef)}
+              className="hover:text-muted-light cursor-pointer"
+            >
               Corporate law
             </li>
-            <li className="hover:text-muted-light cursor-pointer">
+            <li
+              onClick={() => scrollTo(adminRef)}
+              className="hover:text-muted-light cursor-pointer"
+            >
               Administrative law
             </li>
-            <li className="hover:text-muted-light cursor-pointer">
+            <li
+              onClick={() => scrollTo(criminalRef)}
+              className="hover:text-muted-light cursor-pointer"
+            >
               Criminal Justice
             </li>
-            <li className="hover:text-muted-light cursor-pointer">
-              International judicial processes
-            </li>
-            <li className="hover:text-muted-light cursor-pointer">
-              Legal examination
-            </li>
+            
           </ul>
         </div>
       </section>
 
       <section className=" max-w-[1024px] mx-auto">
         <div className="flex flex-col items-center text-center gap-25 pt-25 pb-25">
-          <div className="grid gap-6">
+          <div ref={civilRef} className="grid gap-6">
             <h1 className=" text-muted-light font-[700] text-[30px] leading-[100%]">
               Civil Right
             </h1>
@@ -67,7 +82,7 @@ export default function Services() {
               tristique scelerisque enim vestibulum arcu consequat.{" "}
             </p>
           </div>
-          <div className="grid gap-6">
+          <div ref={corporateRef} className="grid gap-6">
             <h1 className=" text-muted-light font-[700] text-[30px] leading-[100%]">
               Corporate law
             </h1>
@@ -100,7 +115,7 @@ export default function Services() {
               className="rotate-[-133.81deg]"
             />
           </div>
-          <div className="grid gap-6">
+          <div ref={adminRef} className="grid gap-6">
             <h1 className=" text-muted-light font-[700] text-[30px] leading-[100%]">
               Administrative law
             </h1>
@@ -133,7 +148,7 @@ export default function Services() {
               className="rotate-[90deg]"
             />
           </div>
-          <div className="grid gap-6">
+          <div ref={criminalRef} className="grid gap-6">
             <h1 className=" text-muted-light font-[700] text-[30px] leading-[100%]">
               Criminal Justice
             </h1>
