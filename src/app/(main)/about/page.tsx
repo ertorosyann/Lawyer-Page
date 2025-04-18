@@ -40,6 +40,7 @@ export default function About() {
         <div className="flex justify-center">
           <Image
             src="/main.gif"
+            unoptimized
             alt="GIF"
             width={650}
             height={580}
@@ -93,6 +94,7 @@ export default function About() {
         <div className="flex justify-center">
           <Image
             src="/main.gif"
+            unoptimized
             alt="GIF"
             width={510}
             height={445}

@@ -14,7 +14,7 @@ export const Button = ({
   const baseStyles = "";
 
   const variantStyles = {
-    default: "bg-[#6A49A2] rounded-[4px]",
+    default: "bg-[#6A49A2] rounded-1 cursor-pointer",
   };
 
   return (

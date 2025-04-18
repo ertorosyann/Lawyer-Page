@@ -90,3 +90,12 @@ export const moscowNews: News[] = [
     image: "/news.png",
   },
 ];
+
+export const lawyerImages = [
+  "/lawyer-White.png",
+  "/lawyer-White.png",
+  "/lawyer-White.png",
+  "/lawyer-White.png",
+  "/lawyer-White.png",
+  "/lawyer-White.png",
+];

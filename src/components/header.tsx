@@ -19,7 +19,6 @@ export const Header = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -29,21 +28,18 @@ export const Header = () => {
         ${scroll ? "shadow-[0_3px_10px_rgba(255,255,255,0.1)]" : ""}
       `}
     >
-      <section className="max-w-full sm:max-w-[240px] md:max-w-[1024px] lg:max-w-[1280px] mx-auto">
+      <section className="mobile:max-w-full max-w-[1280px] mx-auto">
         <div className="flex justify-between py-4 sm:py-[14px] px-4 sm:px-[5px]">
           <div>
             <Link href="/">{logo}</Link>
           </div>
-          <div className="flex items-center gap-4 sm:gap-[62px] text-[#D0D0D0]">
-            {/* Десктопная навигация */}
-            <NavBar />
-            <div className="flex items-center gap-4 sm:gap-[24px] ">
-              {/* Кнопка для мобильной версии */}
-              <Button className="text-[18px] sm:text-[20px] leading-[100%] px-[12px] sm:px-[18px] py-[10px] sm:py-[13px]">
-                Contact Us
-              </Button>
-              <div className="flex items-center">{usa}</div>
-            </div>
+
+          <NavBar />
+          <div className="hidden md:flex items-center gap-4 sm:gap-[24px]">
+            <Button className="text-[18px] sm:text-[20px] leading-[100%] px-[12px] sm:px-[18px] py-[10px] sm:py-[13px]">
+              Contact Us
+            </Button>
+            <div className="flex items-center">{usa}</div>
           </div>
         </div>
       </section>

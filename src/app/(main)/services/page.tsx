@@ -51,7 +51,6 @@ export default function Services() {
             >
               Criminal Justice
             </li>
-            
           </ul>
         </div>
       </section>
@@ -109,6 +108,7 @@ export default function Services() {
           <div>
             <Image
               src="/main.gif"
+              unoptimized
               alt="GIF"
               width={650.27}
               height={568.44}
@@ -142,6 +142,7 @@ export default function Services() {
           <div>
             <Image
               src="/main.gif"
+              unoptimized
               alt="GIF"
               width={458.5}
               height={423.4}

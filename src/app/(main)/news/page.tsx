@@ -107,6 +107,7 @@ export default function News() {
         <div className="flex justify-center">
           <Image
             src="/main.gif"
+            unoptimized
             alt="GIF"
             width={650}
             height={580}

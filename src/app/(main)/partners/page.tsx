@@ -40,6 +40,7 @@ export default function Partner() {
         <div className="flex justify-center">
           <Image
             src="/main.gif"
+            unoptimized
             alt="GIF"
             width={650}
             height={580}

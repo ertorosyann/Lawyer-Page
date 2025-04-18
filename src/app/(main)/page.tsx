@@ -24,12 +24,13 @@ import {
 
 export default function Home() {
   return (
-    <main>
+    <>
       <section className="max-w-[1280px] mx-auto">
-        <div className="flex items-center">
+        <div className="flex items-center ">
           <div className="w-1/2">
             <Image
               src="/main.gif"
+              unoptimized
               alt="GIF"
               width={814.27}
               height={768.44}
@@ -230,6 +231,7 @@ export default function Home() {
         <div className="flex justify-center">
           <Image
             src="/main.gif"
+            unoptimized
             alt="GIF"
             width={814.27}
             height={568}
@@ -262,7 +264,7 @@ export default function Home() {
                 className="rounded-[4px] w-full h-auto"
               />
               <div
-                className="absolute bottom-0 left-[8px] right-[8px] h-1/3 bg-[#44424C] 
+                className="absolute bottom-0 left-[8px] right-[8px] h-1/3 bg-[#44424C]
                   translate-y-full group-hover:translate-y-[-8px] transition-transform duration-300 rounded-[4px] p-4 flex flex-col gap-3"
               >
                 <div className="grid gap-1">
@@ -291,7 +293,7 @@ export default function Home() {
                 className="rounded-[4px] w-full h-auto"
               />
               <div
-                className="absolute bottom-0 left-[8px] right-[8px] h-1/3 bg-[#44424C] 
+                className="absolute bottom-0 left-[8px] right-[8px] h-1/3 bg-[#44424C]
                   translate-y-full group-hover:translate-y-[-8px] transition-transform duration-300 rounded-[4px] p-4 flex flex-col gap-3"
               >
                 <div className="grid gap-1">
@@ -320,7 +322,7 @@ export default function Home() {
                 className="rounded-[4px] w-full h-auto"
               />
               <div
-                className="absolute bottom-0 left-[8px] right-[8px] h-1/3 bg-[#44424C] 
+                className="absolute bottom-0 left-[8px] right-[8px] h-1/3 bg-[#44424C]
                   translate-y-full group-hover:translate-y-[-8px] transition-transform duration-300 rounded-[4px] p-4 flex flex-col gap-3"
               >
                 <div className="grid gap-1">
@@ -564,6 +566,7 @@ export default function Home() {
         <div className="flex justify-end">
           <Image
             src="/main.gif"
+            unoptimized
             alt="GIF"
             width={637}
             height={556}
@@ -690,6 +693,7 @@ export default function Home() {
         <div className="flex justify-center p-10">
           <Image
             src="/main.gif"
+            unoptimized
             alt="GIF"
             width={403}
             height={352}
@@ -697,6 +701,48 @@ export default function Home() {
           />
         </div>
       </section>
-    </main>
+    </>
   );
 }
+
+// export default function Home() {
+//   return (
+//     <main>
+//       <section className="max-w-[1280px]  mx-auto ">
+//         <div className="flex items-center mobile:grid mobile:items-center ">
+//           <div className="w-1/2 mobile:w-full">
+//             <Image
+//               src="/main.gif"
+//               unoptimized
+//               alt="GIF"
+//               width={814.27}
+//               height={768.44}
+//               className="rotate-[-118.5deg]"
+//             />
+//           </div>
+
+//           <div className="w-1/2 flex flex-col justify-center p-[12px] gap-[32px] mobile:w-full   ">
+//             <div className="grid gap-4">
+//               <h1 className="font-[700] text-[42px] leading-[100%] text-[#D0D0D0] mobile:text-4xl ">
+//                 Specialised Attorney With Experiance
+//               </h1>
+//               <p className="font-[500] text-[24px] leading-[100%] text-[#717173] mobile:text-xl">
+//                 Volutpa sit&apos;eu o porttito dolor volutpa neque faucib, a
+//                 praese egesta quisqua ut consect vita neque vita&apos; aliqua,
+//                 mi et scelerisqu tempus a felis feugiat.
+//               </p>
+//             </div>
+//             <div className="flex gap-[62px]">
+//               <Button className="font-[500] text-[24px] leading-[120%] py-[12px] px-[24px]">
+//                 Consulation
+//               </Button>
+//               <Button className="flex justify-between p-[12px] gap-[32px] bg-[#121212] border border-[#6A49A2]">
+//                 Learn More {arrowRight}
+//               </Button>
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+//     </main>
+//   );
+// }
