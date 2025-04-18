@@ -3,10 +3,18 @@ import { handleLogin } from "@/app/api/_helpers/action";
 import { Area } from "@/custom/Area";
 import { Button } from "@/custom/Button";
 import Link from "next/link";
-import { useActionState } from "react";
+import { useRouter } from "next/navigation";
+import { useActionState, useEffect } from "react";
 
 export default function Login() {
   const [message, formAction] = useActionState(handleLogin, "");
+  const router = useRouter();
+
+  useEffect(() => {
+    if (message == "success") {
+      router.push("/admin");
+    }
+  }, [message, router]);
 
   return (
     <section className="absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] max-w-[1024px] w-full ">
@@ -18,7 +26,7 @@ export default function Login() {
         </div>
 
         <form action={formAction} className="w-full grid gap-10">
-          {message && (
+          {message && message !== "success" && (
             <p className="text-[#ff0000] font-[500] text-[24px] ">{message}</p>
           )}
           <div className="grid gap-4">
@@ -27,8 +35,8 @@ export default function Login() {
             </p>
             <input
               type="text"
-              name="username"
-              placeholder="username"
+              name="email"
+              placeholder="email"
               className="font-[600] bg-[#242028] text-[32px] px-4 py-3 rounded-lg  text-muted-light placeholder-muted focus:outline-none focus:ring-2 focus:ring-[#6A49A2] focus:shadow-none shadow-lg shadow-[#707070] transition"
             />
           </div>
