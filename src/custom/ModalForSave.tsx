@@ -1,22 +1,103 @@
 "use client";
+import axios from "axios";
 import { Button } from "./Button";
 
 type ModalForDeleteProps = {
   isOpen: boolean;
   onClose: () => void;
-  fields: string[] | { [key: string]: string }[];
+  addType: string;
+  image: File | null;
+  formData: { [key: string]: string };
 };
 
 export default function ModalForDelete({
   isOpen,
   onClose,
-  fields,
+  addType,
+  image,
+  formData,
 }: ModalForDeleteProps) {
   if (!isOpen) return null;
 
+  const uploadImage = async (image: File): Promise<string | null> => {
+    const formData = new FormData();
+    formData.append("file", image);
+
+    try {
+      const res = await axios.post("/api/uploadImage", formData);
+      return res.data.url;
+    } catch (error) {
+      console.error("Image upload failed", error);
+      return null;
+    }
+  };
+
+  const addLawyer = async () => {
+    let imageUrl: string | null = null;
+    if (image) {
+      imageUrl = await uploadImage(image);
+    }
+    try {
+      await axios.post("/api/lawyers", {
+        image: imageUrl,
+        name: formData.name,
+        surname: formData.surname,
+      });
+    } catch (error) {
+      console.error("Error fetching lawyers:", error);
+    }
+  };
+
+  const addPartner = async () => {
+    let imageUrl: string | null = null;
+    if (image) {
+      imageUrl = await uploadImage(image);
+    }
+    try {
+      await axios.post("/api/partners", {
+        image: imageUrl,
+        description: formData.description,
+        title: formData.title,
+      });
+    } catch (error) {
+      console.error("Error fetching lawyers:", error);
+    }
+  };
+
+  const addBlog = async () => {
+    console.log(formData, image);
+
+    let imageUrl: string | null = null;
+    if (image) {
+      imageUrl = await uploadImage(image);
+    }
+    try {
+      await axios.post("/api/blogs", {
+        image: imageUrl,
+        description: formData.description,
+      });
+    } catch (error) {
+      console.error("Error fetching lawyers:", error);
+    }
+  };
+
   const handleSave = () => {
-    console.log(fields);
-  }; //before adding
+    switch (addType) {
+      case "lawyer":
+        addLawyer();
+        break;
+      case "partner":
+        addPartner();
+        break;
+      case "blog":
+        addBlog();
+        break;
+
+      default:
+        break;
+    }
+    onClose();
+  };
 
   return (
     <div className="fixed inset-0 z-50 bg-black/20  flex items-center justify-center ">
@@ -27,7 +108,6 @@ export default function ModalForDelete({
         >
           ✕
         </button>
-
         <h2 className="text-[28px] font-[700] text-[#1D1D1F] pt-15">
           Are you sure you want to save these changes?
         </h2>
@@ -42,7 +122,6 @@ export default function ModalForDelete({
           <Button
             className="px-6 py-3 bg-[#4040CDCC] text-white rounded-lg hover:bg-[#4040cd]"
             onClick={() => {
-              onClose();
               handleSave();
             }}
           >

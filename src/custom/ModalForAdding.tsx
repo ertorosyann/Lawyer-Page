@@ -10,6 +10,7 @@ type ModalForAddingProps = {
   title: string;
   fields: string[];
   imageRequired?: boolean;
+  addType: string;
 };
 
 export default function ModalForAdding({
@@ -18,11 +19,11 @@ export default function ModalForAdding({
   title,
   fields,
   imageRequired = false,
+  addType,
 }: ModalForAddingProps) {
   const [image, setImage] = useState<File | null>(null);
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
-
-  // const [formData, setFormData] = useState<{ [key: string]: string }>({});
+  const [formData, setFormData] = useState<{ [key: string]: string }>({});
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -35,12 +36,15 @@ export default function ModalForAdding({
     setImage(null);
   };
 
-  // const handleInputChange = (
-  //   e: React.ChangeEvent<HTMLInputElement>,
-  //   field: string
-  // ) => {
-  //   setFormData({ ...formData, [field]: e.target.value });
-  // };
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: string
+  ) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: e.target.value,
+    }));
+  };
 
   if (!isOpen) return null;
 
@@ -65,40 +69,44 @@ export default function ModalForAdding({
                 type="text"
                 placeholder={field}
                 className="w-full px-4 py-5 bg-[#F3F4F6] rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
-                // value={formData[field] || ""}
-                // onChange={(e) => handleInputChange(e, field)}
+                value={formData[field] || ""}
+                onChange={(e) => handleInputChange(e, field)}
               />
             </div>
           ))}
 
           {/* Image Upload Section */}
           {imageRequired && (
-            <div className="grid gap-4">
+            <div className="grid gap-2">
               <p className="text-[16px] font-medium">Upload an Image</p>
 
-              <input
-                id="file-upload"
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={handleFileUpload}
-              />
-
-              <label
-                htmlFor="file-upload"
-                className="w-full flex items-center justify-center px-4 py-6 bg-[#F3F4F6] text-gray-500 border-2 border-dashed border-gray-400 rounded-lg cursor-pointer hover:border-gray-600 hover:text-black transition"
-              >
-                <span className="text-sm">
-                  Click to upload or drag file here
-                </span>
-              </label>
+              {!image && (
+                <>
+                  <input
+                    id="file-upload"
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleFileUpload}
+                  />
+                  <label
+                    htmlFor="file-upload"
+                    className="w-full flex items-center justify-center px-4 py-6 bg-[#F3F4F6] text-gray-500 border-2 border-dashed border-gray-400 rounded-lg cursor-pointer hover:border-gray-600 hover:text-black transition"
+                  >
+                    <span className="text-sm">
+                      Click to upload or drag file here
+                    </span>
+                  </label>
+                </>
+              )}
 
               {image && (
-                <div className="mt-4 grid gap-4">
-                  <div className="relative w-full max-w-[200px] h-[200px]">
+                <div className="mt-2 grid gap-4">
+                  <div className="relative w-full max-w-[150px] h-[150px]">
                     <Image
                       src={URL.createObjectURL(image)}
                       alt="Preview"
+                      priority
                       fill
                       className="object-contain rounded-lg"
                     />
@@ -123,8 +131,10 @@ export default function ModalForAdding({
               Save Changes
             </Button>
             <ModalForSave
-              fields={fields}
               isOpen={isSaveModalOpen}
+              formData={formData}
+              addType={addType}
+              image={image}
               onClose={() => {
                 setIsSaveModalOpen(false);
                 onClose();

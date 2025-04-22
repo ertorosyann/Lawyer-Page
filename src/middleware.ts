@@ -5,13 +5,17 @@ import { NextRequest, NextResponse } from "next/server";
 //   return NextResponse.next();
 // }
 
-export function middleware(request: NextRequest) {
-  if (request.nextUrl.pathname.startsWith("/admin")) {
-    return NextResponse.redirect(new URL("/admin/blog", request.url)); // url  changING
+export async function middleware(request: NextRequest) {
+  const adminToken = request.cookies.get("_token");
+  const isLogin = Boolean(adminToken);
+
+  if (request.nextUrl.pathname.startsWith("/admin") && !isLogin) {
+    return NextResponse.redirect(new URL("/login", request.url)); // url  changING
   }
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/admin"],
+  matcher: ["/admin/:path*"],
 };

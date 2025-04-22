@@ -4,48 +4,11 @@ import { more } from "@/app/assets/svg";
 import { Area } from "@/custom/Area";
 import { Button } from "@/custom/Button";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalForEdit from "@/custom/ModalForEdit";
 import ModalForDelete from "@/custom/ModalForDelete";
-
-const partners = [
-  {
-    id: 1,
-    title: "Partner 1",
-    image: "/Partners1.png",
-    description: "PartnersPartnersPartnersPartnersPartnersPartnersPartners",
-  },
-  {
-    id: 2,
-    title: "Partner 1",
-    image: "/Partners1.png",
-    description: "PartnersPartnersPartnersPartnersPartnersPartnersPartners",
-  },
-  {
-    id: 3,
-    title: "Partner 1",
-    image: "/Partners1.png",
-    description: "PartnersPartnersPartnersPartnersPartnersPartnersPartners",
-  },
-  {
-    id: 4,
-    title: "Partner 1",
-    image: "/Partners1.png",
-    description: "PartnersPartnersPartnersPartnersPartnersPartnersPartners",
-  },
-  {
-    id: 5,
-    title: "Partner 1",
-    image: "/Partners1.png",
-    description: "PartnersPartnersPartnersPartnersPartnersPartnersPartners",
-  },
-  {
-    id: 6,
-    title: "Partner 1",
-    image: "/Partners1.png",
-    description: "PartnersPartnersPartnersPartnersPartnersPartnersPartners",
-  },
-];
+import { Partner } from "@/types/items";
+import axios from "axios";
 
 export default function Partners() {
   const [addPartnerIsOpen, setAddPartnerIsOpen] = useState(false);
@@ -54,6 +17,19 @@ export default function Partners() {
   );
   const [partnersEdit, setPartnersEdit] = useState<number | null>(null);
   const [partnersDelet, setPartnersDelet] = useState<number | null>(null);
+  const [partners, setPartners] = useState<Partner[]>([]);
+
+  useEffect(() => {
+    const fetchPartners = async () => {
+      try {
+        const response = await axios.get("/api/partners");
+        setPartners(response.data);
+      } catch (error) {
+        console.error("Error fetching partners:", error);
+      }
+    };
+    fetchPartners();
+  }, []);
 
   function handleDeletPartner() {} // befor adding;
 
@@ -71,7 +47,7 @@ export default function Partners() {
         </div>
         <div className="p-10 grid grid-cols-5 gap-20 items-center">
           {partners.map((partner, index) => (
-            <div key={partner.id}>
+            <div key={index}>
               <Area className="rounded-[4px] flex flex-col gap-5 bg-white p-8">
                 <div className="relative flex justify-end">
                   <button
@@ -112,6 +88,7 @@ export default function Partners() {
                 <h3 className="font-600 text-[26px]"> {partner.title}</h3>
                 <Image
                   src={partner.image}
+                  priority
                   alt={`Lawyer Image ${index + 1}`}
                   width={257}
                   height={78}
@@ -129,8 +106,9 @@ export default function Partners() {
         isOpen={addPartnerIsOpen}
         onClose={() => setAddPartnerIsOpen(false)}
         title="Add Partner"
-        fields={[]}
+        fields={["title", "description"]}
         imageRequired={true}
+        addType="partner"
       />
 
       {partnersEdit !== null && (

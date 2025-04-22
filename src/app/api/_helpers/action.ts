@@ -3,6 +3,8 @@
 import { connectDB } from "@/lib/mongodb";
 import Admin from "@/models/admin";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import { cookies } from "next/headers";
 
 export const handleLogin = async (message: string, formData: FormData) => {
   const email = formData.get("email") as string;
@@ -16,16 +18,31 @@ export const handleLogin = async (message: string, formData: FormData) => {
     const admin = await Admin.findOne({ email });
 
     if (!admin) {
-      return "Admin not found";
+      return "Wron user credentials";
     }
 
     const correctPassword = await bcrypt.compare(password, admin.password);
     if (!correctPassword) {
-      return "Incorrect password";
+      return "Wron user credentials";
     }
+
+    //add Token
+    const token: string = jwt.sign(
+      {
+        id: admin._id,
+        email: admin.email,
+      },
+      String(process.env.JWT_SECRET)
+    );
+
+    (await cookies()).set("_token", token);
 
     return "success";
   } catch (error) {
     return "Login failed. Please try again.";
   }
+};
+
+export const removeToken = async () => {
+  (await cookies()).delete("_token");
 };

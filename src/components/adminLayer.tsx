@@ -1,5 +1,6 @@
 "use client";
 
+import { removeToken } from "@/app/api/_helpers/action";
 import { edit, logo, logOuth } from "@/app/assets/svg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -35,10 +36,12 @@ export default function AdminLayer() {
             ))}
           </ul>
         </div>
-        <div className="flex justify-between p-5 font-[600] text-[28px]">
-          <Link href="/login">Log Out</Link>
-          {logOuth}
-        </div>
+        <Link onClick={removeToken} href="/login">
+          <div className="flex justify-between p-5 font-[600] text-[28px] hover:bg-amber-50 curs">
+            <p>Log Out</p>
+            {logOuth}
+          </div>
+        </Link>
       </div>
     </section>
   );

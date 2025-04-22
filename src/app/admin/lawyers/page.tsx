@@ -5,17 +5,10 @@ import { Button } from "@/custom/Button";
 import ModalForAdding from "@/custom/ModalForAdding";
 import ModalForDelete from "@/custom/ModalForDelete";
 import ModalForEdit from "@/custom/ModalForEdit";
+import { Lawyer } from "@/types/items";
+import axios from "axios";
 import Image from "next/image";
-import { useState } from "react";
-
-export const lawyerImages = [
-  { image: "/lawyer-White.png", titile: "Casey Arbenz" },
-  { image: "/lawyer-White.png", titile: "Casey Arbenz" },
-  { image: "/lawyer-White.png", titile: "Casey Arbenz" },
-  { image: "/lawyer-White.png", titile: "Casey Arbenz" },
-  { image: "/lawyer-White.png", titile: "Casey Arbenz" },
-  { image: "/lawyer-White.png", titile: "Casey Arbenz" },
-];
+import { useEffect, useState } from "react";
 
 export default function Laywers() {
   const [addLawyerIsOpen, setAddLawyerIsOpen] = useState(false);
@@ -24,6 +17,19 @@ export default function Laywers() {
   );
   const [lawyerEdit, setLawyerEdit] = useState<number | null>(null);
   const [lawyerDelet, setLawyerDelet] = useState<number | null>(null);
+  const [lawyers, setLawyers] = useState<Lawyer[]>([]);
+
+  useEffect(() => {
+    const fetchLawyers = async () => {
+      try {
+        const response = await axios.get("/api/lawyers");
+        setLawyers(response.data);
+      } catch (error) {
+        console.error("Error fetching lawyers:", error);
+      }
+    };
+    fetchLawyers();
+  }, []);
 
   function handleDeletLawyer() {} // befor adding;
 
@@ -40,7 +46,7 @@ export default function Laywers() {
           </Button>
         </div>
         <div className="p-10 grid grid-cols-5 gap-20">
-          {lawyerImages.map((src, index) => (
+          {lawyers.map((src, index) => (
             <div key={index}>
               <Area className="relative rounded-[4px] grid gap-6 bg-white">
                 <div className="absolute top-4 right-4 z-40">
@@ -82,13 +88,15 @@ export default function Laywers() {
                 <Image
                   src={src.image}
                   alt={`Lawyer Image ${index + 1}`}
+                  priority
                   width={1257}
                   height={354}
                   className="rounded-[4px]"
                 />
 
+                <h3 className="text-center font-500 text-[20px]">{src.name}</h3>
                 <h3 className="text-center font-500 text-[20px]">
-                  {src.titile}
+                  {src.surname}
                 </h3>
               </Area>
             </div>
@@ -100,16 +108,22 @@ export default function Laywers() {
         isOpen={addLawyerIsOpen}
         onClose={() => setAddLawyerIsOpen(false)}
         title="Add Laywer"
-        fields={["Name", "Surname"]}
+        fields={["name", "surname"]}
         imageRequired={true}
+        addType="lawyer"
       />
 
       {lawyerEdit !== null && (
         <ModalForEdit
-          title={lawyerImages[lawyerEdit].titile}
+          title="Lawyer Update"
           isOpen={lawyerEdit !== null}
           onClose={() => setLawyerEdit(null)}
-          fields={[{ title: lawyerImages[lawyerEdit].titile }]}
+          fields={[
+            {
+              name: lawyers[lawyerEdit].name,
+              surname: lawyers[lawyerEdit].surname,
+            },
+          ]}
           imageRequired={true}
         />
       )}

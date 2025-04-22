@@ -2,39 +2,13 @@
 import { Button } from "@/custom/Button";
 import { more } from "@/app/assets/svg";
 import { Area } from "@/custom/Area";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import ModalForAdding from "@/custom/ModalForAdding";
 import ModalForEdit from "@/custom/ModalForEdit";
 import ModalForDelete from "@/custom/ModalForDelete";
-
-export const blogImages = [
-  {
-    image: "/news.png",
-    titile: "Exciting News: Facundo  to Join LFN Secondment ",
-    description: "Business",
-  },
-  {
-    image: "/news.png",
-    titile: "Exciting News: Facundo  to Join LFN Secondment ",
-    description: "Business",
-  },
-  {
-    image: "/news.png",
-    titile: "Exciting News: Facundo  to Join LFN Secondment ",
-    description: "Business",
-  },
-  {
-    image: "/news.png",
-    titile: "Exciting News: Facundo  to Join LFN Secondment ",
-    description: "Business",
-  },
-  {
-    image: "/news.png",
-    titile: "Exciting News: Facundo  to Join LFN Secondment ",
-    description: "Business",
-  },
-];
+import axios from "axios";
+import { Blogs } from "@/types/items";
 
 export default function Blog() {
   const [addBlogIsOpen, setAddBlogIsOpen] = useState(false);
@@ -43,6 +17,19 @@ export default function Blog() {
   );
   const [blogEdit, setBlogEdit] = useState<number | null>(null);
   const [blogDelet, setBlogDelet] = useState<number | null>(null);
+  const [blogs, setBlogs] = useState<Blogs[]>([]);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await axios.get("/api/blogs");
+        setBlogs(response.data);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      }
+    };
+    fetchBlogs();
+  }, []);
 
   function handleDeletBlog() {} // befor adding;
 
@@ -59,7 +46,7 @@ export default function Blog() {
           </Button>
         </div>
         <div className="p-10 grid grid-cols-5 gap-20">
-          {blogImages.map((src, index) => (
+          {blogs.map((src, index) => (
             <div key={index}>
               <Area className="rounded-[4px] grid gap-6 bg-white">
                 <div className="relative flex justify-end">
@@ -101,11 +88,12 @@ export default function Blog() {
                 <Image
                   src={src.image}
                   alt={`Lawyer Image ${index + 1}`}
+                  priority
                   width={300}
                   height={354}
                   className="rounded-[4px]"
                 />
-                <h2 className="font-500 text-[20px]">{src.titile}</h2>
+                <h2 className="font-500 text-[20px]">{src.title}</h2>
                 <p className="font-[600] text-[16px]">{src.description}</p>
               </Area>
             </div>
@@ -118,20 +106,21 @@ export default function Blog() {
         isOpen={addBlogIsOpen}
         onClose={() => setAddBlogIsOpen(false)}
         title="Add Blog"
-        fields={["Practice Area", "Headline", "Full Introduction"]}
+        fields={["description"]}
         imageRequired={true}
+        addType="blog"
       />
 
       {/* Edit Modal — только 1 */}
       {blogEdit !== null && (
         <ModalForEdit
-          title={blogImages[blogEdit].titile}
+          title="Blog Edit"
           isOpen={blogEdit !== null}
           onClose={() => setBlogEdit(null)}
           fields={[
             {
-              title: blogImages[blogEdit].titile,
-              description: blogImages[blogEdit].description,
+              title: blogs[blogEdit].title,
+              description: blogs[blogEdit].description,
             },
           ]}
           imageRequired={true}

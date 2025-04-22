@@ -5,8 +5,14 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(request: NextRequest) {
   try {
     await connectDB();
-    const { image, title } = await request.json();
-    const newLawyer = new Lawyer({ image, title });
+    const { image, name, surname } = await request.json();
+
+    const newLawyer = new Lawyer({
+      image: image,
+      name: name,
+      surname: surname,
+    });
+
     await newLawyer.save();
     return NextResponse.json(newLawyer, { status: 201 });
   } catch (error) {

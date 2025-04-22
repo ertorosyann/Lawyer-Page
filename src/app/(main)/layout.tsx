@@ -9,7 +9,7 @@ export default function MainLayout({
   return (
     <>
       <Header />
-      <main className="pt-[10rem]">{children}</main>
+      <main className="pt-[10rem] bg-[#121212]">{children}</main>
       <Footer />
     </>
   );
