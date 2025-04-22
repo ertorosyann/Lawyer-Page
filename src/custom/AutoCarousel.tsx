@@ -1,31 +1,39 @@
 "use client";
 
-import {
-  partner1,
-  partner2,
-  partner3,
-  partner4,
-  partner5,
-  partner6,
-} from "@/app/assets/svg";
-
-const icons = [partner1, partner2, partner3, partner4, partner5, partner6]; 
+import { fetchPartners } from "@/lib/actions";
+import { Partner } from "@/types/items";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function AutoCarousel() {
+  const [partners, setPartners] = useState<Partner[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      setPartners(await fetchPartners());
+    })();
+  }, []);
+
   return (
     <div className="overflow-hidden w-full bg-black py-4">
       <div
-        className="flex whitespace-nowrap gap-4"
+        className="flex gap-40"
         style={{
-          animation: "scroll-left 20s linear infinite",
+          animation: "scroll-left 2s linear infinite",
         }}
       >
-        {[...icons, ...icons].map((Icon, i) => (
+        {partners.map((partner) => (
           <div
-            key={i}
-            className="w-[200px] h-[100px] flex-shrink-0 flex items-center justify-center"
+            key={partner._id}
+            className="w-[200px] h-[100px] flex items-center justify-between"
           >
-            {Icon}
+            <Image
+              src={partner.image}
+              width={190}
+              height={47}
+              alt="Lawyer Image"
+              className=""
+            />
           </div>
         ))}
       </div>

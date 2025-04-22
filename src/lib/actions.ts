@@ -1,29 +1,29 @@
 import { Blogs, Lawyer, Partner } from "@/types/items";
 import axios from "axios";
 
-export const fetchLawyers = async (): Promise<Lawyer[] | undefined> => {
+export const fetchLawyers = async (): Promise<Lawyer[]> => {
   try {
     const response = await axios.get("/api/lawyers");
     return response.data;
   } catch (error) {
-    console.error("Error fetching lawyers:", error);
+    throw new Error("Error fetching lawyers:");
   }
 };
 
-export const fetchPartners = async (): Promise<Partner[] | undefined> => {
+export const fetchPartners = async (): Promise<Partner[]> => {
   try {
     const response = await axios.get("/api/partners");
     return response.data;
   } catch (error) {
-    console.error("Error fetching lawyers:", error);
+    throw new Error("Error fetching Partners:");
   }
 };
 
-export const fetchBlogs = async (): Promise<Blogs[] | undefined> => {
+export const fetchBlogs = async (): Promise<Blogs[]> => {
   try {
     const response = await axios.get("/api/blogs");
     return response.data;
   } catch (error) {
-    console.error("Error fetching lawyers:", error);
+    throw new Error("Error fetching Blogs:");
   }
 };

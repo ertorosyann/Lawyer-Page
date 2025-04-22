@@ -1,15 +1,20 @@
-import {
-  partner1_bg,
-  partner2_bg,
-  partner3_bg,
-  partner4_bg,
-  partner5_bg,
-  partner6_bg,
-} from "@/app/assets/svg";
+"use client";
+import { partner1_bg, partner2_bg } from "@/app/assets/svg";
 import { Area } from "@/custom/Area";
+import { fetchPartners } from "@/lib/actions";
+import { Partner } from "@/types/items";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
-export default function Partner() {
+export default function PartnerPage() {
+  const [partners, setPartners] = useState<Partner[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      setPartners(await fetchPartners());
+    })();
+  }, []);
+
   return (
     <>
       <section className=" max-w-[1024px] mx-auto ">
@@ -26,12 +31,15 @@ export default function Partner() {
             </p>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-15 px-10">
-            {partner1_bg}
-            {partner2_bg}
-            {partner3_bg}
-            {partner4_bg}
-            {partner5_bg}
-            {partner6_bg}
+            {partners.map((partner) => (
+              <Image
+                key={partner._id}
+                src={partner.image}
+                alt="Partner"
+                width={250}
+                height={79}
+              />
+            ))}
           </div>
         </div>
       </section>

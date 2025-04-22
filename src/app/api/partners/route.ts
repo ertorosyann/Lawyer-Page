@@ -1,5 +1,8 @@
 import { connectDB } from "@/lib/mongodb";
 import Partner from "@/models/partner";
+import { unlink } from "fs/promises";
+import path from "path";
+
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
@@ -72,6 +75,20 @@ export async function DELETE(request: NextRequest) {
 
     if (!deletedPartner) {
       return NextResponse.json({ error: "Partner not found" }, { status: 404 });
+    }
+
+    if (deletedPartner.image) {
+      const imagePath = path.join(
+        process.cwd(),
+        "public",
+        deletedPartner.image
+      );
+      try {
+        await unlink(imagePath);
+        console.log("Image file deleted:", imagePath);
+      } catch (fileError) {
+        console.error("Failed to delete image file:", fileError);
+      }
     }
 
     return NextResponse.json(

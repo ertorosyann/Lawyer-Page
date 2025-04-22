@@ -1,3 +1,4 @@
+"use client";
 import { ServiceCard } from "@/custom/ServiceCart";
 import AutoCarousel from "@/custom/AutoCarousel";
 import { Button } from "@/custom/Button";
@@ -21,8 +22,20 @@ import {
   star,
   telephone,
 } from "@/app/assets/svg";
+import { useEffect, useState } from "react";
+import { Lawyer } from "@/types/items";
+import { fetchLawyers } from "@/lib/actions";
 
 export default function Home() {
+  const [lawyers, setLawyers] = useState<Lawyer[] | undefined>([]);
+
+  useEffect(() => {
+    (async () => {
+      setLawyers(await fetchLawyers());
+    })();
+  }, []);
+  console.log(lawyers);
+
   return (
     <>
       <section className="max-w-[1280px] mx-auto">
@@ -255,93 +268,38 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-[62px]">
-            <Area className="relative group overflow-hidden rounded-[4px]">
-              <Image
-                src="/lawyer.png"
-                alt="Lawyer Image"
-                width={301}
-                height={448}
-                className="rounded-[4px] w-full h-auto"
-              />
-              <div
-                className="absolute bottom-0 left-[8px] right-[8px] h-1/3 bg-[#44424C]
-                  translate-y-full group-hover:translate-y-[-8px] transition-transform duration-300 rounded-[4px] p-4 flex flex-col gap-3"
+            {lawyers?.map((lawyer) => (
+              <Area
+                className="relative group overflow-hidden rounded-[4px]"
+                key={lawyer._id}
               >
-                <div className="grid gap-1">
-                  <div className="flex justify-between gap-[6px]">
-                    <h3 className="text-[20px] font-[600] text-[#D0D0D0]">
-                      Casey Arbenz
-                    </h3>
-                    {arrowUp}
-                  </div>
-                  <h4 className="text-[#AEAEAE] text-[16px]">Civil right</h4>
-                </div>
-
-                <p className="text-[12px] text-[#AEAEAE] font-[500]">
-                  Casey Arbenz is an associate attorney. He is licensed in
-                  Montana and will focus her practice on general estate planning
-                  matters and insurance defense litigation.
-                </p>
-              </div>
-            </Area>
-            <Area className="relative group overflow-hidden rounded-[4px]">
-              <Image
-                src="/lawyer.png"
-                alt="Lawyer Image"
-                width={301}
-                height={448}
-                className="rounded-[4px] w-full h-auto"
-              />
-              <div
-                className="absolute bottom-0 left-[8px] right-[8px] h-1/3 bg-[#44424C]
+                <Image
+                  src={lawyer.image}
+                  alt="Lawyer Image"
+                  width={301}
+                  height={448}
+                  className="rounded-[4px] w-full h-auto"
+                />
+                <div
+                  className="absolute bottom-0 left-[8px] right-[8px] h-1/3 bg-[#44424C]
                   translate-y-full group-hover:translate-y-[-8px] transition-transform duration-300 rounded-[4px] p-4 flex flex-col gap-3"
-              >
-                <div className="grid gap-1">
-                  <div className="flex justify-between gap-[6px]">
-                    <h3 className="text-[20px] font-[600] text-[#D0D0D0] ">
-                      Casey Arbenz
-                    </h3>
-                    {arrowUp}
+                >
+                  <div className="grid gap-1">
+                    <div className="flex justify-between gap-[6px]">
+                      <h3 className="text-[20px] font-[600] text-[#D0D0D0]">
+                        {lawyer.name} {lawyer.surname}
+                      </h3>
+                      {arrowUp}
+                    </div>
+                    <h4 className="text-[#AEAEAE] text-[16px]">Civil right</h4>
                   </div>
-                  <h4 className="text-[#AEAEAE] text-[16px]">Civil right</h4>
-                </div>
 
-                <p className="text-[12px] text-[#AEAEAE] font-[500]">
-                  Casey Arbenz is an associate attorney. He is licensed in
-                  Montana and will focus her practice on general estate planning
-                  matters and insurance defense litigation.
-                </p>
-              </div>
-            </Area>
-            <Area className="relative group overflow-hidden rounded-[4px]">
-              <Image
-                src="/lawyer.png"
-                alt="Lawyer Image"
-                width={301}
-                height={448}
-                className="rounded-[4px] w-full h-auto"
-              />
-              <div
-                className="absolute bottom-0 left-[8px] right-[8px] h-1/3 bg-[#44424C]
-                  translate-y-full group-hover:translate-y-[-8px] transition-transform duration-300 rounded-[4px] p-4 flex flex-col gap-3"
-              >
-                <div className="grid gap-1">
-                  <div className="flex justify-between gap-[6px]">
-                    <h3 className="text-[20px] font-[600]  text-[#D0D0D0]">
-                      Casey Arbenz
-                    </h3>
-                    {arrowUp}
-                  </div>
-                  <h4 className="text-[#AEAEAE] text-[16px]">Civil right</h4>
+                  <p className="text-[12px] text-[#AEAEAE] font-[500]">
+                    {lawyer.description}
+                  </p>
                 </div>
-
-                <p className="text-[12px] text-[#AEAEAE] font-[500]">
-                  Casey Arbenz is an associate attorney. He is licensed in
-                  Montana and will focus her practice on general estate planning
-                  matters and insurance defense litigation.
-                </p>
-              </div>
-            </Area>
+              </Area>
+            ))}
           </div>
         </div>
       </section>
@@ -430,8 +388,8 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="flex flex-col gap-4 bg-[#0505] py-9 px-6 ">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 ">
+            <div className="bg-[#191A1D] hover:bg-[#0505] transition py-9 px-6 ">
               <div className="flex flex-col gap-3">
                 <div className="flex gap-3">
                   <Image
@@ -452,71 +410,51 @@ export default function Home() {
                   {star}
                   {star}
                 </div>
-              </div>
-
-              <p className="text-[#717173] font-[500] text-[16px]">
-                Great experience. Very communicative,
-                <br />
-                pleasant, and knowledgeable all the way
-                <br />
-                from the legal secretary to the paralegal
-                <br />
-                to the attorney. Everyone was on the
-                <br />
-                same page at the same time, very
-                <br />
-                refreshing. Everything was done online
-                <br />
-                as I was in NY and my transactions were
-                <br />
-                for the state of AZ. TYVM
-              </p>
-            </div>
-
-            <div className="bg-[#191A1D] py-9 px-6">
-              <div className="flex flex-col gap-3">
-                <div className="flex gap-3">
-                  <Image
-                    src="/client1.png"
-                    alt="client1"
-                    width={48}
-                    height={48}
-                    className="rounded-4xl"
-                  />
-                  <div className="flex flex-col">
-                    <h3>William Doyle</h3>
-                    <p>27.07.2024</p>
-                  </div>
-                </div>
-                <div className="flex">
-                  {star}
-                  {star}
-                  {star}
-                  {star}
-                </div>
-              </div>
-              <div>
                 <p className="text-[#717173] font-[500] text-[16px]">
-                  Great experience. Very communicative,
-                  <br />
-                  pleasant, and knowledgeable all the way
-                  <br />
-                  from the legal secretary to the paralegal
-                  <br />
-                  to the attorney. Everyone was on the
-                  <br />
-                  same page at the same time, very
-                  <br />
-                  refreshing. Everything was done online
-                  <br />
-                  as I was in NY and my transactions were
-                  <br />
-                  for the state of AZ. TYVM
+                  Great experience. Very communicative, pleasant, and
+                  knowledgeable all the way from the legal secretary to the
+                  paralegal to the attorney. Everyone was on the same page at
+                  the same time, very refreshing. Everything was done online as
+                  I was in NY and my transactions were for the state of AZ. TYVM
                 </p>
               </div>
             </div>
 
-            <div className="bg-[#191A1D] py-9 px-6">
+            <div className="bg-[#191A1D] hover:bg-[#0505] transition py-9 px-6">
+              <div className="flex flex-col gap-3">
+                <div className="flex gap-3">
+                  <Image
+                    src="/client1.png"
+                    alt="client1"
+                    width={48}
+                    height={48}
+                    className="rounded-4xl"
+                  />
+                  <div className="flex flex-col">
+                    <h3>William Doyle</h3>
+                    <p>27.07.2024</p>
+                  </div>
+                </div>
+                <div className="flex">
+                  {star}
+                  {star}
+                  {star}
+                  {star}
+                </div>
+                <div>
+                  <p className="text-[#717173] font-[500] text-[16px]">
+                    Great experience. Very communicative, pleasant, and
+                    knowledgeable all the way from the legal secretary to the
+                    paralegal to the attorney. Everyone was on the same page at
+                    the same time, very refreshing. Everything was done online
+                    as I was in NY and my transactions were for the state of AZ.
+                    TYVM
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-[#191A1D] hover:bg-[#0505] transition py-9 px-6">
               <div className="flex flex-col gap-3">
                 <div className="flex gap-3">
                   <Image
@@ -540,21 +478,11 @@ export default function Home() {
               </div>
               <div>
                 <p className="text-[#717173] font-[500] text-[16px]">
-                  Great experience. Very communicative,
-                  <br />
-                  pleasant, and knowledgeable all the way
-                  <br />
-                  from the legal secretary to the paralegal
-                  <br />
-                  to the attorney. Everyone was on the
-                  <br />
-                  same page at the same time, very
-                  <br />
-                  refreshing. Everything was done online
-                  <br />
-                  as I was in NY and my transactions were
-                  <br />
-                  for the state of AZ. TYVM
+                  Great experience. Very communicative, pleasant, and
+                  knowledgeable all the way from the legal secretary to the
+                  paralegal to the attorney. Everyone was on the same page at
+                  the same time, very refreshing. Everything was done online as
+                  I was in NY and my transactions were for the state of AZ. TYVM
                 </p>
               </div>
             </div>
