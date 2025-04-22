@@ -5,33 +5,31 @@ import { Button } from "@/custom/Button";
 import ModalForAdding from "@/custom/ModalForAdding";
 import ModalForDelete from "@/custom/ModalForDelete";
 import ModalForEdit from "@/custom/ModalForEdit";
+import { fetchLawyers } from "@/lib/actions";
 import { Lawyer } from "@/types/items";
-import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Laywers() {
   const [addLawyerIsOpen, setAddLawyerIsOpen] = useState(false);
-  const [selectedPopupIndex, setSelectedPopupIndex] = useState<number | null>(
-    null
-  );
   const [lawyerEdit, setLawyerEdit] = useState<number | null>(null);
   const [lawyerDelet, setLawyerDelet] = useState<number | null>(null);
   const [lawyers, setLawyers] = useState<Lawyer[]>([]);
+  const [lawyerId, setLawyerId] = useState<string>("");
+  const [selectedPopupIndex, setSelectedPopupIndex] = useState<number | null>(
+    null
+  );
+
+  const fetchLawyersAndSet = async () => {
+    const data = await fetchLawyers();
+    if (data) {
+      setLawyers(data);
+    }
+  };
 
   useEffect(() => {
-    const fetchLawyers = async () => {
-      try {
-        const response = await axios.get("/api/lawyers");
-        setLawyers(response.data);
-      } catch (error) {
-        console.error("Error fetching lawyers:", error);
-      }
-    };
-    fetchLawyers();
+    fetchLawyersAndSet();
   }, []);
-
-  function handleDeletLawyer() {} // befor adding;
 
   return (
     <section>
@@ -46,7 +44,7 @@ export default function Laywers() {
           </Button>
         </div>
         <div className="p-10 grid grid-cols-5 gap-20">
-          {lawyers.map((src, index) => (
+          {lawyers.map((lawyer, index) => (
             <div key={index}>
               <Area className="relative rounded-[4px] grid gap-6 bg-white">
                 <div className="absolute top-4 right-4 z-40">
@@ -67,6 +65,7 @@ export default function Laywers() {
                         onClick={() => {
                           setLawyerEdit(index);
                           setSelectedPopupIndex(null);
+                          setLawyerId(lawyer._id);
                         }}
                         className="px-4 py-2 text-left text-[26px] hover:bg-gray-100"
                       >
@@ -76,6 +75,7 @@ export default function Laywers() {
                         onClick={() => {
                           setLawyerDelet(index);
                           setSelectedPopupIndex(null);
+                          setLawyerId(lawyer._id);
                         }}
                         className="px-4 py-2 text-left text-[26px] text-red-600 hover:bg-gray-100"
                       >
@@ -86,7 +86,7 @@ export default function Laywers() {
                 </div>
 
                 <Image
-                  src={src.image}
+                  src={lawyer.image}
                   alt={`Lawyer Image ${index + 1}`}
                   priority
                   width={1257}
@@ -94,9 +94,11 @@ export default function Laywers() {
                   className="rounded-[4px]"
                 />
 
-                <h3 className="text-center font-500 text-[20px]">{src.name}</h3>
                 <h3 className="text-center font-500 text-[20px]">
-                  {src.surname}
+                  {lawyer.name}
+                </h3>
+                <h3 className="text-center font-500 text-[20px]">
+                  {lawyer.surname}
                 </h3>
               </Area>
             </div>
@@ -111,6 +113,7 @@ export default function Laywers() {
         fields={["name", "surname"]}
         imageRequired={true}
         addType="lawyer"
+        fetchAndUpdate={fetchLawyersAndSet}
       />
 
       {lawyerEdit !== null && (
@@ -118,23 +121,25 @@ export default function Laywers() {
           title="Lawyer Update"
           isOpen={lawyerEdit !== null}
           onClose={() => setLawyerEdit(null)}
+          imageRequired={true}
+          editType="editLawyer"
+          editIndex={lawyerId}
+          fetchAndUpdate={fetchLawyersAndSet}
           fields={[
             {
               name: lawyers[lawyerEdit].name,
               surname: lawyers[lawyerEdit].surname,
             },
           ]}
-          imageRequired={true}
         />
       )}
       {lawyerDelet !== null && (
         <ModalForDelete
+          id={lawyerId}
           isOpen={lawyerDelet !== null}
           onClose={() => setLawyerDelet(null)}
-          onSave={() => {
-            handleDeletLawyer();
-            setLawyerDelet(null);
-          }}
+          deleteType="lawyer"
+          fetchAndUpdate={fetchLawyersAndSet}
         />
       )}
     </section>

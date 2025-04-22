@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "./Button";
 import ModalForSave from "./ModalForSave";
@@ -10,6 +10,9 @@ type ModalForAddingProps = {
   title: string;
   fields: { [key: string]: string }[];
   imageRequired?: boolean;
+  editType: string;
+  editIndex: string;
+  fetchAndUpdate: () => Promise<void>;
 };
 
 export default function ModalForEdit({
@@ -18,16 +21,29 @@ export default function ModalForEdit({
   title,
   fields,
   imageRequired = false,
+  editType,
+  editIndex,
+  fetchAndUpdate,
 }: ModalForAddingProps) {
   const [image, setImage] = useState<File | null>(null);
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
+  const [formData, setFormData] = useState<{ [key: string]: string }>({});
 
-  // const [formData, setFormData] = useState<{ [key: string]: string }>({});
+  useEffect(() => {
+    if (isOpen) {
+      const initialData: { [key: string]: string } = {};
+      fields.forEach((fieldObj) => {
+        Object.entries(fieldObj).forEach(([key, value]) => {
+          initialData[key] = value;
+        });
+      });
+      setFormData(initialData);
+    }
+  }, [isOpen, fields]);
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!");
       setImage(file);
     }
   };
@@ -36,12 +52,12 @@ export default function ModalForEdit({
     setImage(null);
   };
 
-  // const handleInputChange = (
-  //   e: React.ChangeEvent<HTMLInputElement>,
-  //   field: string
-  // ) => {
-  //   setFormData({ ...formData, [field]: e.target.value });
-  // };
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: string
+  ) => {
+    setFormData({ ...formData, [field]: e.target.value });
+  };
 
   if (!isOpen) return null;
 
@@ -60,15 +76,15 @@ export default function ModalForEdit({
           <h2 className="text-[30px] font-[500] text-center">{title}</h2>
 
           {fields.map((fieldObj, i) =>
-            Object.entries(fieldObj).map(([key, value]) => (
+            Object.entries(fieldObj).map(([key]) => (
               <div key={`${key}-${i}`} className="grid gap-4">
                 <p className="capitalize">{key}</p>
                 <input
                   type="text"
                   placeholder={key}
-                  defaultValue={value}
+                  value={formData[key] || ""}
                   className="w-full px-4 py-5 bg-[#F3F4F6] rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
-                  // onChange={...}
+                  onChange={(e) => handleInputChange(e, key)}
                 />
               </div>
             ))
@@ -77,6 +93,14 @@ export default function ModalForEdit({
           {/* Image Upload Section */}
           {imageRequired && (
             <div className="grid gap-4">
+              <p className="text-[26px] font-[500]">Image Now</p>
+              <Image
+                src={fields[0].image}
+                width={100}
+                height={100}
+                alt="Preview"
+                className="object-contain rounded-lg"
+              />
               <p className="text-[26px] font-[500]">Upload an Image</p>
               <input
                 id="file-upload"
@@ -124,8 +148,11 @@ export default function ModalForEdit({
               Save Changes
             </Button>
             <ModalForSave
-              fields={fields}
               isOpen={isSaveModalOpen}
+              addType={editType}
+              image={image}
+              formData={{ ...formData, id: editIndex }}
+              fetchAndUpdate={fetchAndUpdate}
               onClose={() => {
                 setIsSaveModalOpen(false);
                 onClose();

@@ -38,3 +38,50 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+export async function PUT(request: NextRequest) {
+  try {
+    await connectDB();
+    const { id, image, description, title } = await request.json();
+
+    const updatePartner = await Partner.findByIdAndUpdate(id, {
+      image,
+      description,
+      title,
+    });
+
+    if (!updatePartner) {
+      return NextResponse.json({ error: "Partner not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(updatePartner, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to update partner" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  try {
+    await connectDB();
+    const { id } = await request.json();
+
+    const deletedPartner = await Partner.findByIdAndDelete(id);
+
+    if (!deletedPartner) {
+      return NextResponse.json({ error: "Partner not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(
+      { message: "Partner deleted successfully", deletedPartner },
+      { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to delete partner" },
+      { status: 500 }
+    );
+  }
+}

@@ -1,37 +1,35 @@
 "use client";
+import ModalForAdding from "@/custom/ModalForAdding";
+import ModalForDelete from "@/custom/ModalForDelete";
+import ModalForEdit from "@/custom/ModalForEdit";
+import { useEffect, useState } from "react";
+import { fetchBlogs } from "@/lib/actions";
 import { Button } from "@/custom/Button";
 import { more } from "@/app/assets/svg";
 import { Area } from "@/custom/Area";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import ModalForAdding from "@/custom/ModalForAdding";
-import ModalForEdit from "@/custom/ModalForEdit";
-import ModalForDelete from "@/custom/ModalForDelete";
-import axios from "axios";
 import { Blogs } from "@/types/items";
+import Image from "next/image";
 
 export default function Blog() {
   const [addBlogIsOpen, setAddBlogIsOpen] = useState(false);
-  const [selectedPopupIndex, setSelectedPopupIndex] = useState<number | null>(
-    null
-  );
   const [blogEdit, setBlogEdit] = useState<number | null>(null);
   const [blogDelet, setBlogDelet] = useState<number | null>(null);
   const [blogs, setBlogs] = useState<Blogs[]>([]);
+  const [blogId, setBlogId] = useState<string>("");
+  const [selectedPopupIndex, setSelectedPopupIndex] = useState<number | null>(
+    null
+  );
+
+  const fetchBlogsAndSet = async () => {
+    const data = await fetchBlogs();
+    if (data) {
+      setBlogs(data);
+    }
+  };
 
   useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const response = await axios.get("/api/blogs");
-        setBlogs(response.data);
-      } catch (error) {
-        console.error("Error fetching blogs:", error);
-      }
-    };
-    fetchBlogs();
+    fetchBlogsAndSet();
   }, []);
-
-  function handleDeletBlog() {} // befor adding;
 
   return (
     <section>
@@ -46,7 +44,7 @@ export default function Blog() {
           </Button>
         </div>
         <div className="p-10 grid grid-cols-5 gap-20">
-          {blogs.map((src, index) => (
+          {blogs.map((blog, index) => (
             <div key={index}>
               <Area className="rounded-[4px] grid gap-6 bg-white">
                 <div className="relative flex justify-end">
@@ -68,6 +66,7 @@ export default function Blog() {
                         onClick={() => {
                           setBlogEdit(index);
                           setSelectedPopupIndex(null);
+                          setBlogId(blog._id);
                         }}
                         className="px-4 py-2 text-left text-[26px] hover:bg-gray-100"
                       >
@@ -77,6 +76,7 @@ export default function Blog() {
                         onClick={() => {
                           setBlogDelet(index);
                           setSelectedPopupIndex(null);
+                          setBlogId(blog._id);
                         }}
                         className="px-4 py-2 text-left text-[26px] text-red-600 hover:bg-gray-100"
                       >
@@ -86,15 +86,15 @@ export default function Blog() {
                   )}
                 </div>
                 <Image
-                  src={src.image}
+                  src={blog.image}
                   alt={`Lawyer Image ${index + 1}`}
                   priority
                   width={300}
                   height={354}
                   className="rounded-[4px]"
                 />
-                <h2 className="font-500 text-[20px]">{src.title}</h2>
-                <p className="font-[600] text-[16px]">{src.description}</p>
+                <h2 className="font-500 text-[20px]">{blog.title}</h2>
+                <p className="font-[600] text-[16px]">{blog.description}</p>
               </Area>
             </div>
           ))}
@@ -109,6 +109,7 @@ export default function Blog() {
         fields={["description"]}
         imageRequired={true}
         addType="blog"
+        fetchAndUpdate={fetchBlogsAndSet}
       />
 
       {/* Edit Modal — только 1 */}
@@ -117,23 +118,25 @@ export default function Blog() {
           title="Blog Edit"
           isOpen={blogEdit !== null}
           onClose={() => setBlogEdit(null)}
+          imageRequired={true}
+          editType="editBlog"
+          editIndex={blogId}
+          fetchAndUpdate={fetchBlogsAndSet}
           fields={[
             {
               title: blogs[blogEdit].title,
               description: blogs[blogEdit].description,
             },
           ]}
-          imageRequired={true}
         />
       )}
       {blogDelet !== null && (
         <ModalForDelete
+          id={blogId}
           isOpen={blogDelet !== null}
           onClose={() => setBlogDelet(null)}
-          onSave={() => {
-            handleDeletBlog();
-            setBlogDelet(null);
-          }}
+          deleteType="blog"
+          fetchAndUpdate={fetchBlogsAndSet}
         />
       )}
     </section>

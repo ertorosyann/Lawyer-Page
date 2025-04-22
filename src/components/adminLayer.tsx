@@ -1,6 +1,6 @@
 "use client";
 
-import { removeToken } from "@/app/api/_helpers/action";
+import { removeToken } from "@/app/api/_helpers/actionToken";
 import { edit, logo, logOuth } from "@/app/assets/svg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

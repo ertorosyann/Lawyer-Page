@@ -1,18 +1,72 @@
 "use client";
+import axios from "axios";
 import { Button } from "./Button";
 
 type ModalForDeleteProps = {
   isOpen: boolean;
   onClose: () => void;
-  onSave: () => void;
+  id: string;
+  deleteType: string;
+  fetchAndUpdate: () => Promise<void>;
 };
 
 export default function ModalForDelete({
   isOpen,
   onClose,
-  onSave,
+  id,
+  deleteType,
+  fetchAndUpdate,
 }: ModalForDeleteProps) {
   if (!isOpen) return null;
+
+  const deletePartner = async () => {
+    try {
+      await axios.delete("/api/partners", {
+        data: { id },
+      });
+    } catch (error) {
+      console.error("Error deleting partner:", error);
+    }
+  };
+
+  const deleteLawyer = async () => {
+    try {
+      await axios.delete("/api/lawyers", {
+        data: { id },
+      });
+    } catch (error) {
+      console.error("Error deleting partner:", error);
+    }
+  };
+
+  const deleteBlog = async () => {
+    try {
+      await axios.delete("/api/blogs", {
+        data: { id },
+      });
+    } catch (error) {
+      console.error("Error deleting partner:", error);
+    }
+  };
+
+  const handleDelete = async () => {
+    switch (deleteType) {
+      case "lawyer":
+        deleteLawyer();
+        break;
+      case "partner":
+        deletePartner();
+        break;
+      case "blog":
+        deleteBlog();
+        break;
+
+      default:
+        break;
+    }
+    onClose();
+    await fetchAndUpdate();
+  };
 
   return (
     <div className="fixed inset-0 z-50 bg-black/20  flex items-center justify-center text-">
@@ -37,7 +91,7 @@ export default function ModalForDelete({
           </Button>
           <Button
             className="px-6 py-3 bg-[#B21F1FCC] text-white rounded-lg hover:bg-red-700"
-            onClick={onSave}
+            onClick={handleDelete}
           >
             Yes, Delete
           </Button>

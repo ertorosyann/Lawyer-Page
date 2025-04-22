@@ -8,30 +8,28 @@ import { useEffect, useState } from "react";
 import ModalForEdit from "@/custom/ModalForEdit";
 import ModalForDelete from "@/custom/ModalForDelete";
 import { Partner } from "@/types/items";
-import axios from "axios";
+import { fetchPartners } from "@/lib/actions";
 
 export default function Partners() {
   const [addPartnerIsOpen, setAddPartnerIsOpen] = useState(false);
-  const [selectedPopupIndex, setSelectedPopupIndex] = useState<number | null>(
-    null
-  );
   const [partnersEdit, setPartnersEdit] = useState<number | null>(null);
   const [partnersDelet, setPartnersDelet] = useState<number | null>(null);
   const [partners, setPartners] = useState<Partner[]>([]);
+  const [partnerId, setPartnerId] = useState<string>("");
+  const [selectedPopupIndex, setSelectedPopupIndex] = useState<number | null>(
+    null
+  );
+
+  const fetchPartnersAndSet = async () => {
+    const data = await fetchPartners();
+    if (data) {
+      setPartners(data);
+    }
+  };
 
   useEffect(() => {
-    const fetchPartners = async () => {
-      try {
-        const response = await axios.get("/api/partners");
-        setPartners(response.data);
-      } catch (error) {
-        console.error("Error fetching partners:", error);
-      }
-    };
-    fetchPartners();
+    fetchPartnersAndSet();
   }, []);
-
-  function handleDeletPartner() {} // befor adding;
 
   return (
     <section>
@@ -67,6 +65,7 @@ export default function Partners() {
                         onClick={() => {
                           setPartnersEdit(index);
                           setSelectedPopupIndex(null);
+                          setPartnerId(partner._id);
                         }}
                         className="px-4 py-2 text-left text-[26px] hover:bg-gray-100"
                       >
@@ -76,6 +75,7 @@ export default function Partners() {
                         onClick={() => {
                           setPartnersDelet(index);
                           setSelectedPopupIndex(null);
+                          setPartnerId(partner._id);
                         }}
                         className="px-4 py-2 text-left text-[26px] text-red-600 hover:bg-gray-100"
                       >
@@ -109,30 +109,36 @@ export default function Partners() {
         fields={["title", "description"]}
         imageRequired={true}
         addType="partner"
+        fetchAndUpdate={fetchPartnersAndSet}
       />
 
       {partnersEdit !== null && (
         <ModalForEdit
-          title={partners[partnersEdit].title}
+          title="Partner Update"
           isOpen={partnersEdit !== null}
           onClose={() => setPartnersEdit(null)}
+          imageRequired={true}
+          editType="editPartner"
+          editIndex={partnerId}
+          fetchAndUpdate={fetchPartnersAndSet}
           fields={[
             {
+              image: partners[partnersEdit].image,
               description: partners[partnersEdit].description,
               title: partners[partnersEdit].title,
             },
           ]}
-          imageRequired={true}
         />
       )}
       {partnersDelet !== null && (
         <ModalForDelete
+          id={partnerId}
           isOpen={partnersDelet !== null}
-          onClose={() => setPartnersDelet(null)}
-          onSave={() => {
-            handleDeletPartner();
+          onClose={() => {
             setPartnersDelet(null);
           }}
+          deleteType="partner"
+          fetchAndUpdate={fetchPartnersAndSet}
         />
       )}
     </section>

@@ -2,6 +2,19 @@ import { connectDB } from "@/lib/mongodb";
 import Blog from "@/models/blog";
 import { NextRequest, NextResponse } from "next/server";
 
+export async function GET() {
+  try {
+    await connectDB();
+    const blogs = await Blog.find();
+    return NextResponse.json(blogs, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to fetch blogs" },
+      { status: 500 }
+    );
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     await connectDB();
@@ -23,14 +36,47 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function GET() {
+export async function PUT(request: NextRequest) {
   try {
     await connectDB();
-    const blogs = await Blog.find();
-    return NextResponse.json(blogs, { status: 200 });
+    const { id, image, description } = await request.json();
+
+    const updateBlog = await Blog.findByIdAndUpdate(id, {
+      image,
+      description,
+    });
+
+    if (!updateBlog) {
+      return NextResponse.json({ error: "Partner not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(updateBlog, { status: 200 });
   } catch (error) {
     return NextResponse.json(
-      { error: "Failed to fetch blogs" },
+      { error: "Failed to update partner" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  try {
+    await connectDB();
+    const { id } = await request.json();
+
+    const deleteBlog = await Blog.findByIdAndDelete(id);
+
+    if (!deleteBlog) {
+      return NextResponse.json({ error: "Partner not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(
+      { message: "Partner deleted successfully", deleteBlog },
+      { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to delete partner" },
       { status: 500 }
     );
   }

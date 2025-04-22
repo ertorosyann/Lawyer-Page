@@ -11,6 +11,7 @@ type ModalForAddingProps = {
   fields: string[];
   imageRequired?: boolean;
   addType: string;
+  fetchAndUpdate: () => Promise<void>;
 };
 
 export default function ModalForAdding({
@@ -20,6 +21,7 @@ export default function ModalForAdding({
   fields,
   imageRequired = false,
   addType,
+  fetchAndUpdate,
 }: ModalForAddingProps) {
   const [image, setImage] = useState<File | null>(null);
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
@@ -135,6 +137,7 @@ export default function ModalForAdding({
               formData={formData}
               addType={addType}
               image={image}
+              fetchAndUpdate={fetchAndUpdate}
               onClose={() => {
                 setIsSaveModalOpen(false);
                 onClose();

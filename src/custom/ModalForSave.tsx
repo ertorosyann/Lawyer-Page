@@ -8,6 +8,7 @@ type ModalForDeleteProps = {
   addType: string;
   image: File | null;
   formData: { [key: string]: string };
+  fetchAndUpdate: () => Promise<void>;
 };
 
 export default function ModalForDelete({
@@ -16,6 +17,7 @@ export default function ModalForDelete({
   addType,
   image,
   formData,
+  fetchAndUpdate,
 }: ModalForDeleteProps) {
   if (!isOpen) return null;
 
@@ -43,6 +45,7 @@ export default function ModalForDelete({
         name: formData.name,
         surname: formData.surname,
       });
+      await fetchAndUpdate();
     } catch (error) {
       console.error("Error fetching lawyers:", error);
     }
@@ -50,6 +53,7 @@ export default function ModalForDelete({
 
   const addPartner = async () => {
     let imageUrl: string | null = null;
+
     if (image) {
       imageUrl = await uploadImage(image);
     }
@@ -59,14 +63,13 @@ export default function ModalForDelete({
         description: formData.description,
         title: formData.title,
       });
+      await fetchAndUpdate();
     } catch (error) {
       console.error("Error fetching lawyers:", error);
     }
   };
 
   const addBlog = async () => {
-    console.log(formData, image);
-
     let imageUrl: string | null = null;
     if (image) {
       imageUrl = await uploadImage(image);
@@ -76,6 +79,66 @@ export default function ModalForDelete({
         image: imageUrl,
         description: formData.description,
       });
+      await fetchAndUpdate();
+    } catch (error) {
+      console.error("Error fetching lawyers:", error);
+    }
+  };
+
+  const editPartner = async () => {
+    let imageUrl: string | null = null;
+    if (image) {
+      imageUrl = await uploadImage(image);
+    }
+    try {
+      await axios.put("/api/partners", {
+        id: formData.id,
+        image: imageUrl,
+        description: formData.description,
+        title: formData.title,
+      });
+      await fetchAndUpdate();
+    } catch (error) {
+      console.error("Error fetching lawyers:", error);
+    }
+  };
+
+  const editLawyer = async () => {
+    let imageUrl: string | null = null;
+    console.log({
+      id: formData.id,
+      image: imageUrl,
+      description: formData.description,
+      title: formData.title,
+    });
+    if (image) {
+      imageUrl = await uploadImage(image);
+    }
+    try {
+      await axios.put("/api/lawyers", {
+        id: formData.id,
+        image: imageUrl,
+        name: formData.name,
+        surname: formData.surname,
+      });
+      await fetchAndUpdate();
+    } catch (error) {
+      console.error("Error fetching lawyers:", error);
+    }
+  };
+
+  const editBlog = async () => {
+    let imageUrl: string | null = null;
+    if (image) {
+      imageUrl = await uploadImage(image);
+    }
+    try {
+      await axios.put("/api/blogs", {
+        id: formData.id,
+        image: imageUrl,
+        description: formData.description,
+      });
+      await fetchAndUpdate();
     } catch (error) {
       console.error("Error fetching lawyers:", error);
     }
@@ -92,8 +155,14 @@ export default function ModalForDelete({
       case "blog":
         addBlog();
         break;
-
-      default:
+      case "editPartner":
+        editPartner();
+        break;
+      case "editLawyer":
+        editLawyer();
+        break;
+      case "editBlog":
+        editBlog();
         break;
     }
     onClose();
