@@ -18,12 +18,13 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     await connectDB();
-    const { image, name, surname } = await request.json();
+    const { image, name, surname, description } = await request.json();
 
     const newLawyer = new Lawyer({
       image: image,
       name: name,
       surname: surname,
+      description: description,
     });
 
     await newLawyer.save();
@@ -39,7 +40,7 @@ export async function POST(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     await connectDB();
-    const { id, image, name, surname } = await request.json();
+    const { id, image, name, surname, description } = await request.json();
 
     console.log("id = ", id);
 
@@ -47,6 +48,7 @@ export async function PUT(request: NextRequest) {
       image,
       name,
       surname,
+      description,
     });
 
     if (!updateLawyer) {

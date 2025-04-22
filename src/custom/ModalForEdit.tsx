@@ -25,6 +25,8 @@ export default function ModalForEdit({
   editIndex,
   fetchAndUpdate,
 }: ModalForAddingProps) {
+  console.log(fields);
+
   const [image, setImage] = useState<File | null>(null);
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
   const [formData, setFormData] = useState<{ [key: string]: string }>({});
@@ -76,18 +78,20 @@ export default function ModalForEdit({
           <h2 className="text-[30px] font-[500] text-center">{title}</h2>
 
           {fields.map((fieldObj, i) =>
-            Object.entries(fieldObj).map(([key]) => (
-              <div key={`${key}-${i}`} className="grid gap-4">
-                <p className="capitalize">{key}</p>
-                <input
-                  type="text"
-                  placeholder={key}
-                  value={formData[key] || ""}
-                  className="w-full px-4 py-5 bg-[#F3F4F6] rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
-                  onChange={(e) => handleInputChange(e, key)}
-                />
-              </div>
-            ))
+            Object.entries(fieldObj).map(([key]) =>
+              key == "image" ? null : (
+                <div key={`${key}-${i}`} className="grid gap-4">
+                  <p className="capitalize">{key}</p>
+                  <input
+                    type="text"
+                    placeholder={key}
+                    value={formData[key] || ""}
+                    className="w-full px-4 py-5 bg-[#F3F4F6] rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
+                    onChange={(e) => handleInputChange(e, key)}
+                  />
+                </div>
+              )
+            )
           )}
 
           {/* Image Upload Section */}

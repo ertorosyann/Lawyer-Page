@@ -32,7 +32,8 @@ export const handleLogin = async (message: string, formData: FormData) => {
         id: admin._id,
         email: admin.email,
       },
-      String(process.env.JWT_SECRET)
+      String(process.env.JWT_SECRET),
+      { expiresIn: "1h" }
     );
 
     (await cookies()).set("_token", token);

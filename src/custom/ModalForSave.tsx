@@ -43,6 +43,7 @@ export default function ModalForDelete({
       await axios.post("/api/lawyers", {
         image: imageUrl,
         name: formData.name,
+        description: formData.description,
         surname: formData.surname,
       });
       await fetchAndUpdate();

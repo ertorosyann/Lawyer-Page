@@ -126,6 +126,7 @@ export default function Blog() {
             {
               title: blogs[blogEdit].title,
               description: blogs[blogEdit].description,
+              image: blogs[blogEdit].image,
             },
           ]}
         />

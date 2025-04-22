@@ -3,6 +3,7 @@ export type Lawyer = {
   image: string;
   name: string;
   surname: string;
+  description: string
 };
 
 export type Partner = {

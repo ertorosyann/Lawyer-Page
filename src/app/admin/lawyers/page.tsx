@@ -94,12 +94,13 @@ export default function Laywers() {
                   className="rounded-[4px]"
                 />
 
-                <h3 className="text-center font-500 text-[20px]">
+                <p className="text-center font-500 text-[20px]">
                   {lawyer.name}
-                </h3>
-                <h3 className="text-center font-500 text-[20px]">
+                </p>
+                <p className="text-center font-500 text-[20px]">
                   {lawyer.surname}
-                </h3>
+                </p>
+                <p>{lawyer.description}</p>
               </Area>
             </div>
           ))}
@@ -110,7 +111,7 @@ export default function Laywers() {
         isOpen={addLawyerIsOpen}
         onClose={() => setAddLawyerIsOpen(false)}
         title="Add Laywer"
-        fields={["name", "surname"]}
+        fields={["name", "surname", "description"]}
         imageRequired={true}
         addType="lawyer"
         fetchAndUpdate={fetchLawyersAndSet}
@@ -129,6 +130,8 @@ export default function Laywers() {
             {
               name: lawyers[lawyerEdit].name,
               surname: lawyers[lawyerEdit].surname,
+              description: lawyers[lawyerEdit].description,
+              image: lawyers[lawyerEdit].image,
             },
           ]}
         />
