@@ -69,7 +69,7 @@ export default function PartnerPage() {
             />
             <div className="grid gap-2 pb-10 ">
               {partner1_bg}
-              <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
+              <p className="text-muted-light text-[20px] font-[600] leading-[120%]">
                 Lorem ipsum dolor sit amet consectetur. Tempor amet nunc netus
                 sed pellentesque elit tristique ornare ut. Ut cum massa lacus
                 fames nunc enim. Suscipit commodo in et sed venenatis. Duis sit
@@ -95,7 +95,7 @@ export default function PartnerPage() {
             />
             <div className="grid gap-2 pb-10">
               {partner2_bg}
-              <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
+              <p className="text-muted-light text-[20px] font-[600] leading-[120%]">
                 Lorem ipsum dolor sit amet consectetur. Tempor amet nunc netus
                 sed pellentesque elit tristique ornare ut. Ut cum massa lacus
                 fames nunc enim. Suscipit commodo in et sed venenatis. Duis sit
@@ -121,7 +121,7 @@ export default function PartnerPage() {
             />
             <div className="grid gap-2 pb-10">
               {partner1_bg}
-              <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
+              <p className="text-muted-light text-[20px] font-[600] leading-[120%]">
                 Lorem ipsum dolor sit amet consectetur. Tempor amet nunc netus
                 sed pellentesque elit tristique ornare ut. Ut cum massa lacus
                 fames nunc enim. Suscipit commodo in et sed venenatis. Duis sit
@@ -147,7 +147,7 @@ export default function PartnerPage() {
             />
             <div className="grid gap-2 pb-10">
               {partner1_bg}
-              <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
+              <p className="text-muted-light text-[20px] font-[600] leading-[120%]">
                 Lorem ipsum dolor sit amet consectetur. Tempor amet nunc netus
                 sed pellentesque elit tristique ornare ut. Ut cum massa lacus
                 fames nunc enim. Suscipit commodo in et sed venenatis. Duis sit

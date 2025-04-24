@@ -7,7 +7,7 @@ import {
 
 export const Footer = () => {
   return (
-    <footer className="px-4 md:px-10 pt-10 md:pt-35 pb-10">
+    <footer className="px-4 md:px-10 pt-10 md:pt-35 pb-10 bg-[#121212]">
       <section className="max-w-[1280px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between pb-10 border-b-2 border-[#7B7B7B] gap-10">
           {/* Mobile styles: center content and adjust text size */}

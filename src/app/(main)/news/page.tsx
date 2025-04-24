@@ -1,20 +1,36 @@
-import {
-  arrowRight,
-  clock,
-  // partner1_bg,
-  // partner2_bg,
-  // partner3_bg,
-  // partner4_bg,
-  // partner5_bg,
-  // partner6_bg,
-} from "@/app/assets/svg";
+"use client";
+import { arrowRight, clock } from "@/app/assets/svg";
 import { Area } from "@/custom/Area";
 import { Button } from "@/custom/Button";
-import { moscowNews } from "@/lib/moscowNews";
+import { fetchBlogs } from "@/lib/actions";
+import { Blogs } from "@/types/items";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { format } from "date-fns";
 
 export default function News() {
+  const [news, setNews] = useState<Blogs[]>([]);
+  const [visibleCount, setVisibleCount] = useState(6);
+
+  useEffect(() => {
+    (async () => {
+      const fetchedNews = await fetchBlogs();
+
+      const sortedNews = fetchedNews.slice().sort((a, b) => {
+        return (
+          new Date(b.createTime).getTime() - new Date(a.createTime).getTime()
+        );
+      });
+
+      setNews(sortedNews);
+    })();
+  }, []);
+
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => prev + 3);
+  };
+
   return (
     <>
       <section className="bg-news-gradient ">
@@ -36,66 +52,95 @@ export default function News() {
                 Recent News
               </h3>
               <div className="grid lg:grid-cols-2 gap-15">
-                <Area variant="lower__shadow" className="grid gap-4">
-                  <Image src="/news.png" alt="GIF" width={489} height={269} />
-                  <div className="grid justify-between gap-15">
-                    <div className="grid gap-6">
-                      <h3 className="font-[600] text-[20px] text-muted-light">
-                        Exciting News: Facundo Banchero to Join LFN Secondment
-                        Program in Colombia
-                      </h3>
-                      <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
-                        Lorem ipsum dolor sit amet consectetur. Sit dictum amet
-                        bibendum mauris. Iaculis eget diam scelerisque tortor
-                        elit sed eu tristique amet. Leo etiam consectetur mauris
-                        urna scelerisque lectus dui. Eu at et id euismod neque
-                        quam erat.
-                      </p>
-                    </div>
-                    <div className="flex justify-between">
-                      <div className="flex gap-3 items-center">
-                        {clock}
-                        <p className="font-[500] text-[16px] leading-[100%] text-[#717173]">
-                          February 24, 2025
+                {news[0] && (
+                  <Area variant="lower__shadow" className="grid gap-4">
+                    <Image
+                      src={news[0]?.image || "/uploads/news1.png"}
+                      alt="GIF"
+                      width={489}
+                      height={269}
+                    />
+                    <div className="grid gap-15">
+                      <div className="grid gap-6">
+                        <h3 className="font-[600] text-[20px] text-muted-light">
+                          {news[0]?.title}
+                        </h3>
+                        <p className="text-muted-light text-[20px] font-[600] leading-[120%]">
+                          {news[0]?.description}
                         </p>
                       </div>
-                      <div className="text-[#717173]">{arrowRight}</div>
+                      <div className="flex justify-between items-center">
+                        <div className="flex gap-3 items-center">
+                          {clock}
+                          <p className="font-[200] text-[16px] leading-[100%] text-muted">
+                            {news[0]?.createTime
+                              ? format(
+                                  new Date(news[0].createTime),
+                                  "MMMM d, yyyy"
+                                )
+                              : null}
+                          </p>
+                        </div>
+                        <div className="text-muted">{arrowRight}</div>
+                      </div>
                     </div>
-                  </div>
-                </Area>
+                  </Area>
+                )}
                 <div className="grid gap-15">
-                  <Area variant="lower__shadow" className="flex gap-4">
-                    <Image src="/news.png" alt="GIF" width={237} height={236} />
-                    <div className="flex flex-col justify-between w-1/2">
-                      <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
-                        Exciting News: Facundo Banchero to Join LFN Secondment
-                        Program in Colombia
-                      </p>
-                      <div className="flex justify-between">
-                        {clock}
-                        <p className="font-[500] text-[16px] leading-[100%] text-[#717173]">
-                          February 24, 2025
+                  {news[1] && (
+                    <Area variant="lower__shadow" className="flex gap-4">
+                      <Image
+                        src={news[1]?.image || "/uploads/news2.png"}
+                        alt="GIF"
+                        width={237}
+                        height={236}
+                      />
+                      <div className="flex flex-col justify-between w-1/2">
+                        <p className="text-muted-light text-[20px] font-[600] leading-[120%]">
+                          {news[1]?.description}
                         </p>
-                        <div className="text-[#717173]">{arrowRight}</div>
+                        <div className="flex justify-between">
+                          {clock}
+                          <p className="font-[500] text-[16px] leading-[100%] text-muted">
+                            {news[1]?.createTime
+                              ? format(
+                                  new Date(news[1].createTime),
+                                  "MMMM d, yyyy"
+                                )
+                              : null}
+                          </p>
+                          <div className="text-muted">{arrowRight}</div>
+                        </div>
                       </div>
-                    </div>
-                  </Area>
-                  <Area variant="lower__shadow" className="flex gap-4">
-                    <Image src="/news.png" alt="GIF" width={237} height={236} />
-                    <div className="flex flex-col justify-between w-1/2">
-                      <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
-                        Exciting News: Facundo Banchero to Join LFN Secondment
-                        Program in Colombia
-                      </p>
-                      <div className="flex justify-between">
-                        {clock}
-                        <p className="font-[500] text-[16px] leading-[100%] text-[#717173]">
-                          February 24, 2025
+                    </Area>
+                  )}
+                  {news[2] && (
+                    <Area variant="lower__shadow" className="flex gap-4">
+                      <Image
+                        src={news[2]?.image || "/uploads/news3.png"}
+                        alt="GIF"
+                        width={237}
+                        height={236}
+                      />
+                      <div className="flex flex-col justify-between w-1/2">
+                        <p className="text-muted-light text-[20px] font-[600] leading-[120%]">
+                          {news[2]?.description}
                         </p>
-                        <div className="text-[#717173]">{arrowRight}</div>
+                        <div className="flex justify-between">
+                          {clock}
+                          <p className="font-[500] text-[16px] leading-[100%] text-muted">
+                            {news[2]?.createTime
+                              ? format(
+                                  new Date(news[2].createTime),
+                                  "MMMM d, yyyy"
+                                )
+                              : null}
+                          </p>
+                          <div className="text-muted">{arrowRight}</div>
+                        </div>
                       </div>
-                    </div>
-                  </Area>
+                    </Area>
+                  )}
                 </div>
               </div>
             </div>
@@ -120,32 +165,38 @@ export default function News() {
         <div className="grid gap-15">
           <h3 className="text-[24px] font-[500] text-[#6A49A2]">All Posts</h3>
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-15">
-            {moscowNews.map((news, i) => (
-              <Area key={i} variant="lower__shadow" className="grid gap-4">
+            {news.slice(3, 3 + visibleCount).map((newss) => (
+              <Area
+                key={newss._id}
+                variant="lower__shadow"
+                className="grid gap-4"
+              >
                 <Image
-                  src={news.image}
-                  alt={news.title}
+                  src={newss.image}
+                  alt={`Image ${newss._id} is not find `}
                   width={301}
                   height={258}
                 />
-                <div className="grid justify-between gap-10">
+                <div className="grid  gap-10">
                   <div className="grid gap-2">
                     <h3 className="font-[600] text-[20px] text-muted-light">
-                      {news.title}
+                      {newss.title}
                     </h3>
-                    <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
-                      {news.subtitle}
+                    <p className="text-muted-light text-[20px] font-[600] leading-[120%]">
+                      {newss.description}
                     </p>
                   </div>
-                  <div className="flex justify-between">
-                    <div className="flex gap-3 items-center">
+                  <div className="flex justify-between items-center ">
+                    <div className="flex  gap-3  items-center">
                       {clock}
-                      <p className="font-[500] text-[16px] leading-[100%] text-[#717173]">
-                        {news.date}
+                      <p className="font-[500] text-[16px] leading-[100%] text-muted">
+                        {newss?.createTime
+                          ? format(new Date(newss.createTime), "MMMM d, yyyy")
+                          : null}
                       </p>
                     </div>
-                    <Link href={`/news/${news.slug}`}>
-                      <div className="text-[#717173] cursor-pointer">
+                    <Link href={`/news/${newss._id}`}>
+                      <div className="text-muted cursor-pointer">
                         {arrowRight}
                       </div>
                     </Link>
@@ -154,11 +205,16 @@ export default function News() {
               </Area>
             ))}
           </div>
-          <div className="grid justify-center">
-            <Button className="font-600 text-[20px] text-muted-light leading-[100%] px-6 py-3">
-              Upload More
-            </Button>
-          </div>
+          {visibleCount < news.length - 3 && (
+            <div className="grid justify-center">
+              <Button
+                onClick={handleLoadMore}
+                className="font-600 text-[20px] text-muted-light leading-[100%] px-6 py-3"
+              >
+                Upload More
+              </Button>
+            </div>
+          )}
         </div>
       </section>
     </>

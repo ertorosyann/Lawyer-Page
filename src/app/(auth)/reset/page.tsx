@@ -14,11 +14,11 @@ export default function Login() {
         <div className="w-full grid gap-10 ">
           <div className="grid gap-4">
             <p className="font-[600] text-[24px] leading-[20px] text-muted">
-              Username or Email
+              Email
             </p>
             <input
-              type="password"
-              placeholder="username"
+              type="text"
+              placeholder="email"
               className="font-[600] bg-[#242028] text-[32px] px-4 py-3 rounded-lg  text-muted-light placeholder-muted focus:outline-none focus:ring-2 focus:ring-purple-500 focus:shadow-none shadow-lg shadow-[#707070] transition"
             />
           </div>

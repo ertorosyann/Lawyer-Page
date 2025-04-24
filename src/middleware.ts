@@ -1,10 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// function adminMidleware(request: NextRequest) {
-//   console.log(request);
-//   return NextResponse.next();
-// }
-
 export async function middleware(request: NextRequest) {
   const adminToken = request.cookies.get("_token");
   const isLogin = Boolean(adminToken);

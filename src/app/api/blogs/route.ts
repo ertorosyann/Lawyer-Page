@@ -21,11 +21,11 @@ export async function POST(request: NextRequest) {
   try {
     await connectDB();
     const { image, description } = await request.json();
-    console.log(image, description);
 
     const newBlog = new Blog({
       image: image,
       description: description,
+      createTime: new Date(),
     });
 
     await newBlog.save();

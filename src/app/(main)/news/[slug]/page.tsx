@@ -1,57 +1,47 @@
 "use client";
-import { moscowNews, News } from "@/lib/moscowNews";
-import { notFound, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import Image from "next/image";
 import { Area } from "@/custom/Area";
 import Link from "next/link";
 import { arrowRight, clock } from "@/app/assets/svg";
+import { useEffect, useState } from "react";
+import { Blogs } from "@/types/items";
+import { fetchBlogs } from "@/lib/actions";
+import { format } from "date-fns";
 
 export default function NewsSlugPage() {
-  const params = useParams();
-  const slug = params?.slug;
+  const [news, setNews] = useState<Blogs[]>([]);
 
-  const post = moscowNews.find((item: News) => item.slug == slug);
+  useEffect(() => {
+    (async () => {
+      setNews(await fetchBlogs());
+    })();
+  }, []);
+
+  const { slug } = useParams();
+
+  const post = news.find((item: Blogs) => item._id == slug);
 
   if (!post) {
-    return notFound();
+    return <div className="text-center p-8">News post not found.</div>;
   }
 
   return (
     <section className="max-w-[1024px] mx-auto ">
       <div className=" flex gap-15">
         <Area variant="lower__shadow" className="grid gap-4 w-[75%]">
-          <Image src={post.image} alt={post.title} width={852} height={350} />
+          <Image
+            src={post.image}
+            alt={`Image ${post._id} not found`}
+            width={852}
+            height={350}
+          />
           <div className="grid gap-6">
             <h1 className="text-[28px] font-bold text-muted-light ">
               {post.title}
             </h1>
             <p className="text-[20px] leading-[100%] font-[600] text-muted ">
-              Lorem ipsum dolor sit amet consectetur. Sit dictum amet bibendum
-              mauris. Iaculis eget diam scelerisque tortor elit sed eu tristique
-              amet. Leo etiam consectetur mauris urna scelerisque lectus dui. Eu
-              at et id euismod neque quam erat. Lorem ipsum dolor sit amet
-              consectetur. Sit dictum amet bibendum mauris. Iaculis eget diam
-              scelerisque tortor elit sed eu tristique amet. Leo etiam
-              consectetur mauris urna scelerisque lectus dui. Eu at et id
-              euismod neque quam erat. Lorem ipsum dolor sit amet consectetur.
-              Sit dictum amet bibendum mauris. Iaculis eget diam scelerisque
-              tortor elit sed eu tristique amet. Leo etiam consectetur mauris
-              urna scelerisque lectus dui. Eu at et id euismod neque quam erat.
-              Lorem ipsum dolor sit amet consectetur. Sit dictum amet bibendum
-              mauris. Iaculis eget diam scelerisque tortor elit sed eu tristique
-              amet. Leo etiam consectetur mauris urna scelerisque lectus dui. Eu
-              at et id euismod neque quam erat. Lorem ipsum dolor sit amet
-              consectetur. Sit dictum amet bibendum mauris. Iaculis eget diam
-              scelerisque tortor elit sed eu tristique amet. Leo etiam
-              consectetur mauris urna scelerisque lectus dui. Eu at et id
-              euismod neque quam erat. Lorem ipsum dolor sit amet consectetur.
-              Sit dictum amet bibendum mauris. Iaculis eget diam scelerisque
-              tortor elit sed eu tristique amet. Leo etiam consectetur mauris
-              urna scelerisque lectus dui. Eu at et id euismod neque quam erat.
-              Lorem ipsum dolor sit amet consectetur. Sit dictum amet bibendum
-              mauris. Iaculis eget diam scelerisque tortor elit sed eu tristique
-              amet. Leo etiam consectetur mauris urna scelerisque lectus dui. Eu
-              at et id euismod neque quam erat.
+              {post.description}
             </p>
           </div>
         </Area>
@@ -60,45 +50,53 @@ export default function NewsSlugPage() {
           <h3 className="text-[20px] text-[#6A49A2] font-[500]">
             Recent Posts
           </h3>
-          <div className="grid gap-10">
-            {moscowNews
-              // .filter((news) => news.slug !== slug)
-              .slice(0, 7)
-              .map((news) => (
-                <Area
-                  key={+Date.now() + Math.random()}
-                  variant="lower__shadow"
-                  className="flex text-center justify-between"
-                >
-                  <Image
-                    src={news.image}
-                    alt={news.title}
-                    width={80}
-                    height={80}
-                    className="w-1/3"
-                  />
-                  <div className="grid justify-between items-center gap-10">
-                    <div className="grid gap-2">
-                      <h3 className="font-[600] text-[16px] text-muted-light ">
-                        {news.title}
-                      </h3>
-                    </div>
-                    <div className="flex justify-between">
-                      <div className="flex gap-3 items-center">
-                        {clock}
-                        <p className="font-[500] text-[10px] leading-[100%] text-[#717173]">
-                          {news.date}
-                        </p>
+          <div className="overflow-y-auto max-h-[600px]">
+            {/* add scrolling */}
+            <div className="grid gap-10">
+              {news
+                .filter((news) => news._id !== slug)
+                .map((news) => (
+                  <Area
+                    key={news._id}
+                    variant="lower__shadow"
+                    className="flex text-center justify-between"
+                  >
+                    <Image
+                      src={news.image}
+                      alt={`Image ${news._id} not found`}
+                      width={80}
+                      height={80}
+                      className="w-1/3"
+                    />
+                    <div className="grid justify-between items-center gap-10">
+                      <div className="grid gap-2">
+                        <h3 className="font-[600] text-[16px] text-muted-light ">
+                          {news.title}
+                        </h3>
+                        <p>{news.description}</p>
                       </div>
-                      <Link href={`/news/${news.slug}`}>
-                        <div className="text-[#717173] cursor-pointer">
-                          {arrowRight}
+                      <div className="flex justify-between">
+                        <div className="flex gap-3 items-center">
+                          {clock}
+                          <p className="font-[500] text-[10px] leading-[100%] text-muted">
+                            {news?.createTime
+                              ? format(
+                                  new Date(news.createTime),
+                                  "MMMM d, yyyy"
+                                )
+                              : null}
+                          </p>
                         </div>
-                      </Link>
+                        <Link href={`/news/${news._id}`}>
+                          <div className="text-muted cursor-pointer">
+                            {arrowRight}
+                          </div>
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                </Area>
-              ))}
+                  </Area>
+                ))}
+            </div>
           </div>
         </div>
       </div>

@@ -44,7 +44,6 @@ export async function PUT(request: NextRequest) {
     await connectDB();
     const { id, image, name, surname, description } = await request.json();
 
-    console.log("id = ", id);
 
     const updateLawyer = await Lawyer.findByIdAndUpdate(id, {
       image,

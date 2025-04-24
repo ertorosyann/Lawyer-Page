@@ -25,7 +25,7 @@ export default function Services() {
               your rights and achieving the best outcomes.
             </p>
           </div>
-          <ul className="flex justify-between text-[24px] font-500  text-muted bg-[#191A1D] py-3 px-4">
+          <ul className="flex justify-between text-[24px] font-500  text-muted bg-dark py-3 px-4">
             <li className="hover:text-muted-light cursor-pointer">All</li>
             <li
               onClick={() => scrollTo(civilRef)}

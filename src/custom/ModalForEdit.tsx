@@ -25,8 +25,6 @@ export default function ModalForEdit({
   editIndex,
   fetchAndUpdate,
 }: ModalForAddingProps) {
-  console.log(fields);
-
   const [image, setImage] = useState<File | null>(null);
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
   const [formData, setFormData] = useState<{ [key: string]: string }>({});

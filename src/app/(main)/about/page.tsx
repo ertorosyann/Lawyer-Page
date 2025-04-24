@@ -9,11 +9,11 @@ export default function About() {
       <section className=" max-w-[1024px] mx-auto ">
         <div className="grid gap-55">
           <div className="relative">
-            <div className="grid gap-6 border bg-[#191A1D] text-center py-10 px-6 w-[55%] gradient-border-about">
-              <h1 className="font-[700] text-[42px] leading-[100%] text-[#D0D0D0]">
+            <div className="grid gap-6 border cart-bg-grey text-center py-10 px-6 w-[55%] gradient-border-about">
+              <h1 className="font-[700] text-[42px] leading-[100%] text-muted-light">
                 Legal Expertise with a<br /> Proven Track Record
               </h1>
-              <p className="font-[500] text-[22px] text-[#717173] leading-[100%]">
+              <p className="font-[500] text-[22px] text-muted leading-[100%]">
                 Volutpa sit&apos;eu o porttito dolor volutpa neque faucib,
                 <br /> a praese egesta quisqua ut consect vita neque vita&apos;
                 <br /> aliqua, mi et scelerisqu tempus a felis feugiat.
@@ -24,7 +24,7 @@ export default function About() {
             </div>
           </div>
           <div className="">
-            <p className="text-center text-[28px] font-[500] text-[#717173] leading-[120%]">
+            <p className="text-center text-[28px] font-[500] text-muted leading-[120%]">
               At Tatoyan , we provide expert legal services with a commitment to
               excellence. Our team of experienced attorneys works tirelessly to
               ensure that your legal needs are met with professionalism,
@@ -51,11 +51,11 @@ export default function About() {
 
       <section className="max-w-[1280px] mx-auto">
         <div>
-          <div className="grid gap-6 text-center py-10 px-6  bg-[#191A1D] border border-[#1F0C6F] shadow-[0px_0px_4px_0px_#F5F5F51F]">
-            <h2 className="font-[700] text-[42px] leading-[100%] text-[#D0D0D0]">
+          <div className="grid gap-6 text-center py-10 px-6  cart-bg-grey border border-[#1F0C6F] shadow-[0px_0px_4px_0px_#F5F5F51F]">
+            <h2 className="font-[700] text-[42px] leading-[100%] text-muted-light">
               Our Mission...
             </h2>
-            <p className="font-[500] text-[24px] text-[#717173] leading-[100%]">
+            <p className="font-[500] text-[24px] text-muted leading-[100%]">
               Our mission is to uphold justice, advocate for our clients, and
               provide ethical, results-driven legal representation. With
               dedication and expertise, we protect your rights and guide you
@@ -72,18 +72,18 @@ export default function About() {
           <ArrowCarousel />
         </div>
         <div className="flex justify-center gap-[62px]">
-          <Button className="font-[500] text-[24px] leading-[120%] py-[12px] px-[24px] text-[#D0D0D0]">
+          <Button className="font-[500] text-[24px] leading-[120%] py-[12px] px-[24px] text-muted-light">
             Get In Toich
           </Button>
           <div className="flex gap-[16px] items-center">
             {telephone}
-            <h4 className="font-[500] text-[24px] leading-[100%] text-[#D0D0D0]">
+            <h4 className="font-[500] text-[24px] leading-[100%] text-muted-light">
               +374 12122112
             </h4>
           </div>
           <div className="flex gap-[16px] items-center">
             {mail}
-            <h4 className="font-[500] text-[24px] leading-[120%] text-[#D0D0D0]">
+            <h4 className="font-[500] text-[24px] leading-[120%] text-muted-light">
               Lawyerhelp@gmail.com
             </h4>
           </div>

@@ -1,21 +1,31 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { arrowLeftDouble, arrowRightDouble } from "@/app/assets/svg";
-
-const images = ["/image1.png", "/image2.jpg", "/image3.png"];
+import { Partner } from "@/types/items";
+import { fetchPartners } from "@/lib/actions";
 
 export const ArrowCarousel = () => {
   const [index, setIndex] = useState(0);
+  const [partners, setPartners] = useState<Partner[]>([]);
 
   const prevImage = () => {
-    setIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    setIndex((prev) => (prev === 0 ? partners.length - 1 : prev - 1));
   };
 
   const nextImage = () => {
-    setIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    setIndex((prev) => (prev === partners.length - 1 ? 0 : prev + 1));
   };
+
+  useEffect(() => {
+    (async () => {
+      const fetchedPartners = await fetchPartners();
+      setPartners(fetchedPartners);
+    })();
+  }, []);
+
+  if (partners.length === 0) return <div>Loading...</div>;
 
   return (
     <div className="flex justify-center gap-2">
@@ -24,11 +34,11 @@ export const ArrowCarousel = () => {
         {arrowLeftDouble}
       </button>
 
-      {/* Image */}
+      {/* Partner Image */}
       <div>
         <Image
-          src={images[index]}
-          alt={`carousel image ${index}`}
+          src={partners[index].image}
+          alt={`partner ${index}`}
           width={163}
           height={80}
         />

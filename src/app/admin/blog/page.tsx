@@ -95,6 +95,7 @@ export default function Blog() {
                 />
                 <h2 className="font-500 text-[20px]">{blog.title}</h2>
                 <p className="font-[600] text-[16px]">{blog.description}</p>
+                <p>{blog.createTime}</p>
               </Area>
             </div>
           ))}
@@ -106,7 +107,7 @@ export default function Blog() {
         isOpen={addBlogIsOpen}
         onClose={() => setAddBlogIsOpen(false)}
         title="Add Blog"
-        fields={["description"]}
+        fields={["title", "description"]}
         imageRequired={true}
         addType="blog"
         fetchAndUpdate={fetchBlogsAndSet}

@@ -24,6 +24,7 @@ export default function ModalForDelete({
       await axios.delete("/api/partners", {
         data: { id },
       });
+      await fetchAndUpdate();
     } catch (error) {
       console.error("Error deleting partner:", error);
     }
@@ -34,6 +35,7 @@ export default function ModalForDelete({
       await axios.delete("/api/lawyers", {
         data: { id },
       });
+      await fetchAndUpdate();
     } catch (error) {
       console.error("Error deleting partner:", error);
     }
@@ -44,6 +46,7 @@ export default function ModalForDelete({
       await axios.delete("/api/blogs", {
         data: { id },
       });
+      await fetchAndUpdate();
     } catch (error) {
       console.error("Error deleting partner:", error);
     }
@@ -65,7 +68,6 @@ export default function ModalForDelete({
         break;
     }
     onClose();
-    await fetchAndUpdate();
   };
 
   return (
@@ -100,4 +102,3 @@ export default function ModalForDelete({
     </div>
   );
 }
-

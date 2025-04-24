@@ -34,7 +34,6 @@ export default function Home() {
       setLawyers(await fetchLawyers());
     })();
   }, []);
-  console.log(lawyers);
 
   return (
     <>
@@ -53,10 +52,10 @@ export default function Home() {
 
           <div className="w-1/2 flex flex-col justify-center p-[12px] gap-[32px]">
             <div className="gap-3">
-              <h1 className="font-[700] text-[42px] text-[#D0D0D0] ">
+              <h1 className="font-[700] text-[42px] text-muted-light ">
                 Specialised Attorney With Experiance
               </h1>
-              <p className="font-[500] text-[24px] text-[#717173] ">
+              <p className="font-[500] text-[24px] text-muted ">
                 Volutpa sit&apos;eu o porttito dolor volutpa neque <br />
                 faucib, a praese egesta quisqua ut consect vita <br />
                 neque vita&apos; aliqua, mi et scelerisqu tempus a felis <br />
@@ -78,10 +77,10 @@ export default function Home() {
       <section className="max-w-[1280px] mx-auto ">
         <div className="flex flex-col gap-16 py-10">
           <div className="flex flex-col items-center gap-[24px]">
-            <h1 className="text-[42px] font-[700] text-[#D0D0D0]">
+            <h1 className="text-[42px] font-[700] text-muted-light">
               Services We Provide
             </h1>
-            <p className="text-[24px] tont-[500] text-[#717173] text-center ">
+            <p className="text-[24px] tont-[500] text-muted text-center ">
               We deliver expert legal solutions with a commitment to protecting
               <br></br>
               your rights and achieving the best outcomes.
@@ -190,48 +189,39 @@ export default function Home() {
 
       <section className="max-w-[1280px] mx-auto ">
         <div className="flex flex-col px-10 py-24  gap-16">
-          <h2 className="text-[#D0D0D0] text-[42px] font-[700] leading-[100%] text-center">
+          <h2 className="text-muted-light text-[42px] font-[700] leading-[100%] text-center">
             What makes us different?
           </h2>
 
-          <ul className=" flex justify-between gap-16 items-center">
+          <ul className=" flex justify-between gap-16 items-center text-center">
             <li>
-              <div className="flex flex-col items-center gap-4 rounded-[4px] bg-[#191A1D] py-[24px] px-[16px] border border-[#191A1D] hover:border hover-gradient-border-main">
+              <div className="grid gap-6 rounded-[4px] cart-bg-grey py-[24px] px-[16px] border border-custom  gradient-border-main">
                 {experienced}
-                <p className="font-[700] text-[28px] text-[#D0D0D0]">
+                <p className="font-[700] text-[28px] text-muted-light">
                   Experienced
                 </p>
               </div>
             </li>
             <li>
-              <div
-                className="flex flex-col items-center gap-4 rounded-[4px] bg-[#191A1D] py-[24px] px-[16px] border border-[#191A1D] hover:border hover-gradient-border-main
-                          "
-              >
+              <div className="grid  gap-6 rounded-[4px] cart-bg-grey py-[24px] px-[16px] border border-custom  gradient-border-main">
                 {afforable}
-                <p className="font-[700] text-[28px] text-[#D0D0D0]">
+                <p className="font-[700] text-[28px] text-muted-light">
                   Affordable
                 </p>
               </div>
             </li>
             <li>
-              <div
-                className="flex flex-col items-center gap-4 rounded-[4px] bg-[#191A1D] py-[24px] px-[16px] border border-[#191A1D] hover:border hover-gradient-border-main
-                          "
-              >
+              <div className="grid  gap-6 rounded-[4px] cart-bg-grey py-[24px] px-[16px] border border-custom  gradient-border-main">
                 {flexible}
-                <p className="font-[700] text-[28px] text-[#D0D0D0]">
+                <p className="font-[700] text-[28px] text-muted-light">
                   Flexible
                 </p>
               </div>
             </li>
             <li>
-              <div
-                className="flex flex-col items-center gap-4 rounded-[4px] bg-[#191A1D] py-[24px] px-[16px] border border-[#191A1D] hover:border hover-gradient-border-main
-                          "
-              >
+              <div className="grid  gap-6 rounded-[4px] cart-bg-grey py-[24px] px-[16px] border border-custom  gradient-border-main">
                 {approachable}
-                <p className="font-[700] text-[28px] text-[#D0D0D0]">
+                <p className="font-[700] text-[28px] text-muted-light">
                   Approachable
                 </p>
               </div>
@@ -256,10 +246,10 @@ export default function Home() {
       <section className="max-w-[1280px] mx-auto ">
         <div className="grid  gap-[62px]">
           <div className="grid gap-6 text-center">
-            <h2 className="font-[700] text-[42px] text-[#D0D0D0] leading-[100%]">
+            <h2 className="font-[700] text-[42px] text-muted-light leading-[100%]">
               Our Attorneys
             </h2>
-            <p className="font-[500] text-[24px] text-[#717173]">
+            <p className="font-[500] text-[24px] text-muted">
               Our skilled attorneys are dedicated to delivering exceptional
               legal <br></br>services, utilizing the latest technology to offer
               efficient and cost-<br></br>effective solutions tailored to your
@@ -358,7 +348,7 @@ export default function Home() {
               </p>
             </div>
             <div className="flex justify-center gap-[62px]">
-              <Button className="font-[500] text-[24px] leading-[120%] py-[12px] px-[24px] text-[#D0D0D0]">
+              <Button className="font-[500] text-[24px] leading-[120%] py-[12px] px-[24px] text-muted-light">
                 Get In Toich
               </Button>
               <div className="flex gap-[16px] items-center">
@@ -377,10 +367,10 @@ export default function Home() {
       <section className="max-w-[1280px] mx-auto">
         <div className="grid p-10 gap-[62px]">
           <div className="flex flex-col gap-[24px] text-center">
-            <h2 className="text-[#D0D0D0] text-[42px] font-[700]">
+            <h2 className="text-muted-light text-[42px] font-[700]">
               Our Clients Say It Best
             </h2>
-            <p className="text-[#717173] text-[24px] font-[500]">
+            <p className="text-muted text-[24px] font-[500]">
               Our skilled attorneys are dedicated to delivering exceptional
               legal <br></br> services, utilizing the latest technology to offer
               efficient and cost-<br></br>effective solutions tailored to your
@@ -389,7 +379,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 ">
-            <div className="bg-[#191A1D] hover:bg-[#0505] transition py-9 px-6 ">
+            <div className="cart-bg-grey hover:bg-[#0505] transition py-9 px-6 ">
               <div className="flex flex-col gap-3">
                 <div className="flex gap-3">
                   <Image
@@ -410,7 +400,7 @@ export default function Home() {
                   {star}
                   {star}
                 </div>
-                <p className="text-[#717173] font-[500] text-[16px]">
+                <p className="text-muted font-[500] text-[16px]">
                   Great experience. Very communicative, pleasant, and
                   knowledgeable all the way from the legal secretary to the
                   paralegal to the attorney. Everyone was on the same page at
@@ -420,7 +410,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-[#191A1D] hover:bg-[#0505] transition py-9 px-6">
+            <div className="cart-bg-grey hover:bg-[#0505] transition py-9 px-6">
               <div className="flex flex-col gap-3">
                 <div className="flex gap-3">
                   <Image
@@ -442,7 +432,7 @@ export default function Home() {
                   {star}
                 </div>
                 <div>
-                  <p className="text-[#717173] font-[500] text-[16px]">
+                  <p className="text-muted font-[500] text-[16px]">
                     Great experience. Very communicative, pleasant, and
                     knowledgeable all the way from the legal secretary to the
                     paralegal to the attorney. Everyone was on the same page at
@@ -454,7 +444,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-[#191A1D] hover:bg-[#0505] transition py-9 px-6">
+            <div className="cart-bg-grey hover:bg-[#0505] transition py-9 px-6">
               <div className="flex flex-col gap-3">
                 <div className="flex gap-3">
                   <Image
@@ -477,7 +467,7 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <p className="text-[#717173] font-[500] text-[16px]">
+                <p className="text-muted font-[500] text-[16px]">
                   Great experience. Very communicative, pleasant, and
                   knowledgeable all the way from the legal secretary to the
                   paralegal to the attorney. Everyone was on the same page at
@@ -506,10 +496,10 @@ export default function Home() {
       <section className="max-w-[1280px] mx-auto">
         <div className=" py-[100px] px-[62px] flex flex-col gap-15">
           <div className="flex flex-col gap-6 text-center">
-            <h2 className="font-[700] text-[42px] text-[#D0D0D0] leading-[100%]">
+            <h2 className="font-[700] text-[42px] text-muted-light leading-[100%]">
               Stay Informed
             </h2>
-            <p className="font-[500] text-[24px] leading-[100%] text-[#717173]">
+            <p className="font-[500] text-[24px] leading-[100%] text-muted">
               Vel feugiat consectet cum fermentum ex consectetu exercitatio
               morbi occaecat, vestibulu nam congue <br /> exercitati ex minim
               vestibulu ubi quas-voluptate parturien voluptat ad saep tempor
@@ -526,17 +516,17 @@ export default function Home() {
                 className="w-1/2"
               />
               <div className="flex flex-col justify-between w-1/2">
-                <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
+                <p className="text-muted-light text-[20px] font-[600] leading-[120%]">
                   Exciting News: Facundo <br /> Banchero to Join LFN <br />
                   Secondment Program in <br />
                   Colombia
                 </p>
                 <div className="flex justify-between">
                   {clock}
-                  <p className="font-[500] text-[16px] leading-[100%] text-[#717173]">
+                  <p className="font-[500] text-[16px] leading-[100%] text-muted">
                     February 24, 2025
                   </p>
-                  <div className="text-[#717173]">{arrowRight}</div>
+                  <div className="text-muted">{arrowRight}</div>
                 </div>
               </div>
             </Area>
@@ -549,17 +539,17 @@ export default function Home() {
                 className="w-1/2"
               />
               <div className="flex flex-col justify-between w-1/2">
-                <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
+                <p className="text-muted-light text-[20px] font-[600] leading-[120%]">
                   Exciting News: Facundo <br /> Banchero to Join LFN <br />
                   Secondment Program in <br />
                   Colombia
                 </p>
                 <div className="flex justify-between">
                   {clock}
-                  <p className="font-[500] text-[16px] leading-[100%] text-[#717173]">
+                  <p className="font-[500] text-[16px] leading-[100%] text-muted">
                     February 24, 2025
                   </p>
-                  <div className="text-[#717173]">{arrowRight}</div>
+                  <div className="text-muted">{arrowRight}</div>
                 </div>
               </div>
             </Area>
@@ -572,17 +562,17 @@ export default function Home() {
                 className="w-1/2"
               />
               <div className="flex flex-col justify-between w-1/2">
-                <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
+                <p className="text-muted-light text-[20px] font-[600] leading-[120%]">
                   Exciting News: Facundo <br /> Banchero to Join LFN <br />
                   Secondment Program in <br />
                   Colombia
                 </p>
                 <div className="flex justify-between">
                   {clock}
-                  <p className="font-[500] text-[16px] leading-[100%] text-[#717173]">
+                  <p className="font-[500] text-[16px] leading-[100%] text-muted">
                     February 24, 2025
                   </p>
-                  <div className="text-[#717173]">{arrowRight}</div>
+                  <div className="text-muted">{arrowRight}</div>
                 </div>
               </div>
             </Area>
@@ -595,17 +585,17 @@ export default function Home() {
                 className="w-1/2"
               />
               <div className="flex flex-col justify-between w-1/2">
-                <p className="text-[#D0D0D099] text-[20px] font-[600] leading-[120%]">
+                <p className="text-muted-light text-[20px] font-[600] leading-[120%]">
                   Exciting News: Facundo <br /> Banchero to Join LFN <br />
                   Secondment Program in <br />
                   Colombia
                 </p>
                 <div className="flex justify-between">
                   {clock}
-                  <p className="font-[500] text-[16px] leading-[100%] text-[#717173]">
+                  <p className="font-[500] text-[16px] leading-[100%] text-muted">
                     February 24, 2025
                   </p>
-                  <div className="text-[#717173]">{arrowRight}</div>
+                  <div className="text-muted">{arrowRight}</div>
                 </div>
               </div>
             </Area>
@@ -632,45 +622,3 @@ export default function Home() {
     </>
   );
 }
-
-// export default function Home() {
-//   return (
-//     <main>
-//       <section className="max-w-[1280px]  mx-auto ">
-//         <div className="flex items-center mobile:grid mobile:items-center ">
-//           <div className="w-1/2 mobile:w-full">
-//             <Image
-//               src="/main.gif"
-//               unoptimized
-//               alt="GIF"
-//               width={814.27}
-//               height={768.44}
-//               className="rotate-[-118.5deg]"
-//             />
-//           </div>
-
-//           <div className="w-1/2 flex flex-col justify-center p-[12px] gap-[32px] mobile:w-full   ">
-//             <div className="grid gap-4">
-//               <h1 className="font-[700] text-[42px] leading-[100%] text-[#D0D0D0] mobile:text-4xl ">
-//                 Specialised Attorney With Experiance
-//               </h1>
-//               <p className="font-[500] text-[24px] leading-[100%] text-[#717173] mobile:text-xl">
-//                 Volutpa sit&apos;eu o porttito dolor volutpa neque faucib, a
-//                 praese egesta quisqua ut consect vita neque vita&apos; aliqua,
-//                 mi et scelerisqu tempus a felis feugiat.
-//               </p>
-//             </div>
-//             <div className="flex gap-[62px]">
-//               <Button className="font-[500] text-[24px] leading-[120%] py-[12px] px-[24px]">
-//                 Consulation
-//               </Button>
-//               <Button className="flex justify-between p-[12px] gap-[32px] bg-[#121212] border border-[#6A49A2]">
-//                 Learn More {arrowRight}
-//               </Button>
-//             </div>
-//           </div>
-//         </div>
-//       </section>
-//     </main>
-//   );
-// }

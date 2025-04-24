@@ -9,7 +9,6 @@ export async function GET() {
   try {
     await connectDB();
     const partners = await Partner.find();
-    console.log(partners);
 
     return NextResponse.json(partners, { status: 200 });
   } catch (error) {

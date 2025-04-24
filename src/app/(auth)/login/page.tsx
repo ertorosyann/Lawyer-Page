@@ -19,7 +19,7 @@ export default function Login() {
   }, [message, router]);
 
   return (
-    <section className="absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] max-w-[1024px] w-full">
+    <section className="absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] max-w-[720px] w-full">
       <Area className="p-15 grid gap-20 rounded-[20px]">
         <div className="flex justify-center">
           <h1 className="mx-auto font-[700] text-[30px] text-muted-light">
@@ -41,7 +41,7 @@ export default function Login() {
 
           <div className="grid gap-4">
             <p className="font-[600] text-[24px] leading-[20px] text-muted">
-              Username or Email
+              Email
             </p>
             <input
               type="text"

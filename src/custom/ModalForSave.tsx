@@ -106,12 +106,7 @@ export default function ModalForDelete({
 
   const editLawyer = async () => {
     let imageUrl: string | null = null;
-    console.log({
-      id: formData.id,
-      image: imageUrl,
-      description: formData.description,
-      title: formData.title,
-    });
+
     if (image) {
       imageUrl = await uploadImage(image);
     }

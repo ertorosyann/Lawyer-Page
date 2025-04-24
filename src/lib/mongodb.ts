@@ -34,7 +34,7 @@ export const connectDB = async (): Promise<typeof mongoose> => {
         bufferCommands: false,
       })
       .then((mongooseInstance) => {
-        console.log("✅ MongoDB connected");
+        console.log("------------- MongoDB connected------------");
         return mongooseInstance;
       });
   }
