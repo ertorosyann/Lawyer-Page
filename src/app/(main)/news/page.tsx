@@ -33,25 +33,26 @@ export default function News() {
 
   return (
     <>
-      <section className="bg-news-gradient ">
+      <section className="bg-news-gradient mobile:w-full">
         <div className="max-w-[1024px] mx-auto pb-25">
           <div className="grid justify-center  gap-2 ">
-            <div className="text-center px-20">
-              <h1 className="font-[700] text-[42px] text-muted-light">
+            <div className="text-center px-20 mobile:px-10">
+              <h1 className="font-[700] text-[42px] text-muted-light mobile:text-[20px]">
                 Legal Insights and Industry News
               </h1>
-              <p className="font-[500] text-[24px] text-muted">
+              <p className="font-[500] text-[24px] text-muted mobile:text-[16px]">
                 Stay up to date with the latest developments in law, legal
                 precedents, and industry news. Our team at Tatoyan regularly
                 shares insights and articles on relevant topics to keep our
                 clients informed about key changes in legal landscapes.
               </p>
             </div>
-            <div className="grid gap-2">
+
+            <div className="grid gap-2 mobile:m-5">
               <h3 className="text-[24px] font-[500] text-[#6A49A2]">
                 Recent News
               </h3>
-              <div className="grid lg:grid-cols-2 gap-15">
+              <div className="grid lg:grid-cols-2 gap-15 mobile:grid-cols-1">
                 {news[0] && (
                   <Area variant="lower__shadow" className="grid gap-4">
                     <Image
@@ -81,25 +82,33 @@ export default function News() {
                               : null}
                           </p>
                         </div>
-                        <div className="text-muted">{arrowRight}</div>
+                        <Link href={`/news/${news[0]._id}`}>
+                          <div className="text-muted cursor-pointer">
+                            {arrowRight}
+                          </div>
+                        </Link>
                       </div>
                     </div>
                   </Area>
                 )}
                 <div className="grid gap-15">
                   {news[1] && (
-                    <Area variant="lower__shadow" className="flex gap-4">
+                    <Area
+                      variant="lower__shadow"
+                      className="flex gap-4 mobile:grid mobile:gap-4"
+                    >
                       <Image
                         src={news[1]?.image || "/uploads/news2.png"}
                         alt="GIF"
                         width={237}
                         height={236}
+                        className="mobile:w-full"
                       />
-                      <div className="flex flex-col justify-between w-1/2">
+                      <div className="grid md:justify-between w-1/2 mobile:w-full mobile:gap-4">
                         <p className="text-muted-light text-[20px] font-[600] leading-[120%]">
                           {news[1]?.description}
                         </p>
-                        <div className="flex justify-between">
+                        <div className="flex justify-between mobile:px-0 mobile:py-0">
                           {clock}
                           <p className="font-[500] text-[16px] leading-[100%] text-muted">
                             {news[1]?.createTime
@@ -109,24 +118,32 @@ export default function News() {
                                 )
                               : null}
                           </p>
-                          <div className="text-muted">{arrowRight}</div>
+                          <Link href={`/news/${news[1]._id}`}>
+                            <div className="text-muted cursor-pointer">
+                              {arrowRight}
+                            </div>
+                          </Link>
                         </div>
                       </div>
                     </Area>
                   )}
                   {news[2] && (
-                    <Area variant="lower__shadow" className="flex gap-4">
+                    <Area
+                      variant="lower__shadow"
+                      className="flex gap-4 mobile:grid mobile:gap-4"
+                    >
                       <Image
                         src={news[2]?.image || "/uploads/news3.png"}
                         alt="GIF"
                         width={237}
                         height={236}
+                        className="mobile:w-full"
                       />
-                      <div className="flex flex-col justify-between w-1/2">
+                      <div className="grid md:justify-between w-1/2 mobile:w-full mobile:gap-4">
                         <p className="text-muted-light text-[20px] font-[600] leading-[120%]">
-                          {news[2]?.description}
+                          {news[1]?.description}
                         </p>
-                        <div className="flex justify-between">
+                        <div className="flex justify-between mobile:px-0 mobile:py-0">
                           {clock}
                           <p className="font-[500] text-[16px] leading-[100%] text-muted">
                             {news[2]?.createTime
@@ -136,7 +153,11 @@ export default function News() {
                                 )
                               : null}
                           </p>
-                          <div className="text-muted">{arrowRight}</div>
+                          <Link href={`/news/${news[2]._id}`}>
+                            <div className="text-muted cursor-pointer">
+                              {arrowRight}
+                            </div>
+                          </Link>
                         </div>
                       </div>
                     </Area>
@@ -148,7 +169,7 @@ export default function News() {
         </div>
       </section>
 
-      <section className="max-w-[1280px] mx-auto">
+      <section className="max-w-[1280px] mx-auto mobile:hidden">
         <div className="flex justify-center">
           <Image
             src="/main.gif"
@@ -161,10 +182,10 @@ export default function News() {
         </div>
       </section>
 
-      <section className="max-w-[1024px] mx-auto">
-        <div className="grid gap-15">
+      <section className="max-w-[1024px] mx-auto mobile:w-full">
+        <div className="grid gap-15 mobile:m-5">
           <h3 className="text-[24px] font-[500] text-[#6A49A2]">All Posts</h3>
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-15">
+          <div className="grid lg:grid-cols-3 gap-15 mobile:grid-cols-1">
             {news.slice(3, 3 + visibleCount).map((newss) => (
               <Area
                 key={newss._id}

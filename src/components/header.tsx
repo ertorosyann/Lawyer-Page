@@ -5,6 +5,7 @@ import { NavBar } from "./navbar";
 import { Button } from "@/custom/Button";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import React from "react";
 
 export const Header = () => {
   const [scroll, setScroll] = useState(false);
@@ -24,19 +25,23 @@ export const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-100 px-4 sm:px-10 bg-[#121212] transition-shadow duration-250
+      className={`fixed top-0 left-0 right-0 z-100 px-4 mobile:px-0  bg-[#121212] transition-shadow duration-250
         ${scroll ? "shadow-[0_3px_10px_rgba(255,255,255,0.1)]" : ""}
       `}
     >
-      <section className="mobile:max-w-full max-w-[1280px] mx-auto">
-        <div className="flex justify-between py-4 sm:py-[14px] px-4 sm:px-[5px]">
-          <div>
-            <Link href="/">{logo}</Link>
+      <section className="max-w-[1280px] mx-auto">
+        <div className="flex justify-between p-4 mobile:p-2 mobile:py-1">
+          <div className="mobile:my-auto">
+            <Link href="/">
+              {React.cloneElement(logo, {
+                className: "mobile:w-[150px] ",
+              })}
+            </Link>
           </div>
 
           <NavBar />
-          <div className="hidden md:flex items-center gap-4 sm:gap-[24px]">
-            <Button className="text-[18px] sm:text-[20px] leading-[100%] px-[12px] sm:px-[18px] py-[10px] sm:py-[13px]">
+          <div className="flex items-center gap-10 mobile:gap-[24px] mobile:hidden">
+            <Button className="text-[20px] leading-[100%] px-[12px] py-[10px]  text-muted-light">
               Contact Us
             </Button>
             <div className="flex items-center">{usa}</div>

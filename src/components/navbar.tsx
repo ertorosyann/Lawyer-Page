@@ -14,7 +14,7 @@ export const NavBar = () => {
   return (
     <nav className="p-4 border-muted flex items-center gap-4 text-[#D0D0D0]">
       {/* Desktop nav */}
-      <ul className="hidden md:flex flex-row gap-10 text-[18px] font-[500]">
+      <ul className="mobile:hidden flex flex-row gap-10 text-[18px] font-[500]">
         <li>
           <Link href="/about">About</Link>
         </li>
@@ -30,42 +30,47 @@ export const NavBar = () => {
       </ul>
 
       {/* Mobile hamburger */}
-      <div className="md:hidden">
-        <button onClick={toggleMenu} className="text-white">
+      <div className="md:hidden h-full relative">
+        <button onClick={toggleMenu} className="text-muted-light">
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {/* Mobile menu dropdown */}
       {isOpen && (
-        <div className="absolute top-[70px] left-0 right-0 bg-[#121212] p-4 flex flex-col gap-4 text-[18px] font-[500] md:hidden z-50 shadow-lg">
-          <ul className="flex flex-col gap-4">
-            <li>
-              <Link href="/about" onClick={toggleMenu}>
-                About
-              </Link>
-            </li>
-            <li>
-              <Link href="/services" onClick={toggleMenu}>
-                Services
-              </Link>
-            </li>
-            <li>
-              <Link href="/partners" onClick={toggleMenu}>
-                Partners
-              </Link>
-            </li>
-            <li>
-              <Link href="/news" onClick={toggleMenu}>
-                News
-              </Link>
-            </li>
-          </ul>
+        // <div className="absolute top-[70px] left-0 right-0 bg-darkk p-10 grid gap-10 text-[18px] font-[500] md:hidden z-50 shadow-[0_3px_10px_rgba(255,255,255,0.1)]">
+        <div className="md:hidden absolute top-[70px] left-0 w-full h-screen bg-darkk p-10 grid text-[18px] font-[500] z-50">
+          <div>
+            <ul className="grid gap-4">
+              <li>
+                <Link href="/about" onClick={toggleMenu}>
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" onClick={toggleMenu}>
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link href="/partners" onClick={toggleMenu}>
+                  Partners
+                </Link>
+              </li>
+              <li>
+                <Link href="/news" onClick={toggleMenu}>
+                  News
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-          <Button className="text-[18px] leading-[100%] px-[12px] py-[10px]">
-            Contact Us
-          </Button>
-          <div className="flex items-center">{usa}</div>
+          <div className="grid m-20 jus items-center">
+            <Button className="text-[18px] leading-[100%] py-[10px]">
+              Contact Us
+            </Button>
+            <div className="mx-auto">{usa}</div>
+          </div>
         </div>
       )}
     </nav>

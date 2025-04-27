@@ -15,9 +15,9 @@ export default function AutoCarousel() {
   }, []);
 
   return (
-    <div className="overflow-hidden w-full bg-black py-4">
+    <div className="overflow-hidden w-full bg-black py-4 mobile:py-0">
       <div
-        className="flex gap-40"
+        className="flex gap-40 mobile:gap-2"
         style={{
           animation: "scroll-left 2s linear infinite",
         }}
@@ -25,7 +25,7 @@ export default function AutoCarousel() {
         {partners.map((partner) => (
           <div
             key={partner._id}
-            className="w-[200px] h-[100px] flex items-center justify-between"
+            className=" h-[100px] flex items-center justify-between mobile:w-full mobile:h-[50px]"
           >
             <Image
               src={partner.image}

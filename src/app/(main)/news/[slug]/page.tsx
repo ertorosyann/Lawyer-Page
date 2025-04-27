@@ -27,9 +27,12 @@ export default function NewsSlugPage() {
   }
 
   return (
-    <section className="max-w-[1024px] mx-auto ">
-      <div className=" flex gap-15">
-        <Area variant="lower__shadow" className="grid gap-4 w-[75%]">
+    <section className="max-w-[1024px] mx-auto mobile:w-full">
+      <div className=" flex gap-15 mobile:grid mobile:m-5">
+        <Area
+          variant="lower__shadow"
+          className="grid gap-4 w-[75%] mobile:w-full mobile:mx-auto"
+        >
           <Image
             src={post.image}
             alt={`Image ${post._id} not found`}
@@ -46,7 +49,7 @@ export default function NewsSlugPage() {
           </div>
         </Area>
 
-        <div className="flex flex-col gap-4 w-[25%]">
+        <div className="grid gap-4 w-[25%] mobile:w-full mobile:mx-auto ">
           <h3 className="text-[20px] text-[#6A49A2] font-[500]">
             Recent Posts
           </h3>

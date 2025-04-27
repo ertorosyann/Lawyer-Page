@@ -7,7 +7,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="mobile:max-w-full bg-[#121212] ">{children}</body>
+      <body className="bg-darkk ">{children}</body>
     </html>
   );
 }

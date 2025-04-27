@@ -28,14 +28,14 @@ export const ArrowCarousel = () => {
   if (partners.length === 0) return <div>Loading...</div>;
 
   return (
-    <div className="flex justify-center gap-2">
+    <div className="flex justify-center gap-8 ">
       {/* Left Arrow */}
       <button onClick={prevImage} className=" hover:bg-white/20 cursor-pointer">
         {arrowLeftDouble}
       </button>
 
       {/* Partner Image */}
-      <div>
+      <div className="w-full flex justify-center">
         <Image
           src={partners[index].image}
           alt={`partner ${index}`}
