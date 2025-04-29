@@ -4,10 +4,12 @@ import {
   mail_black,
   telephone_black,
 } from "@/app/assets/svg";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import React from "react";
 
 export const Footer = () => {
+  const t = useTranslations("Footer");
   return (
     <footer className="px-10 pt-35 pb-10 bg-darkk mobile:px-4 mobile:pt-10">
       <section className="max-w-[1280px] mx-auto">
@@ -20,7 +22,7 @@ export const Footer = () => {
               })}
             </Link>
             <h2 className="font-[700] text-[28px] text-muted-light leading-[100%] mobile:text-[16px] ">
-              Specialised Attorney With Experiance
+              {t("specialised")}
             </h2>
           </div>
           {/* Mobile styles: smaller text and centered items */}
@@ -46,7 +48,7 @@ export const Footer = () => {
                 className: "mobile:w-[40px]",
               })}
               <p className="font-[500] text-[24px] leading-[100%]  mobile:text-[12px]">
-                Armenia, Erevan, St Abovyan 12/5
+                {t("address")}
               </p>
             </div>
           </div>
@@ -55,14 +57,14 @@ export const Footer = () => {
         <div className="pt-10 flex mobile:flex-col flex-row items-center mobile:items-baseline justify-between gap-6">
           {/* Mobile styles: vertical menu layout and smaller text */}
           <ul className="flex flex-row items-center gap-3 md:space-x-[60px] text-[22px] font-[700] text-center mobile:w-full mobile:justify-between mobile:text-[14px]">
-            <li>About</li>
-            <li>Resources</li>
-            <li>Support</li>
-            <li>Privacy</li>
+            <li> {t("about")}</li>
+            <li> {t("resources")}</li>
+            <li>{t("support")}</li>
+            <li>{t("privacy")}</li>
           </ul>
           {/* Mobile styles: smaller font and centered */}
           <p className="text-[16px] font-[400] text-[#717173] text-center mobile:text-left mobile:text-[14px]">
-            © Copyright 2025. All Rights Reserved
+            {t("serteficate")}
           </p>
         </div>
       </section>

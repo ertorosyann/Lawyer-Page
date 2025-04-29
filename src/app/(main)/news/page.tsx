@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
+import { useTranslations } from "next-intl";
 
 export default function News() {
   const [news, setNews] = useState<Blogs[]>([]);
@@ -30,7 +31,7 @@ export default function News() {
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + 3);
   };
-
+  const t = useTranslations("News");
   return (
     <>
       <section className="bg-news-gradient mobile:w-full">
@@ -38,13 +39,11 @@ export default function News() {
           <div className="grid justify-center  gap-2 ">
             <div className="text-center px-20 mobile:px-10">
               <h1 className="font-[700] text-[42px] text-muted-light mobile:text-[20px]">
-                Legal Insights and Industry News
+                {t("title")}
               </h1>
               <p className="font-[500] text-[24px] text-muted mobile:text-[16px]">
-                Stay up to date with the latest developments in law, legal
-                precedents, and industry news. Our team at Tatoyan regularly
-                shares insights and articles on relevant topics to keep our
-                clients informed about key changes in legal landscapes.
+              {t("title-description")}
+
               </p>
             </div>
 

@@ -1,10 +1,11 @@
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(request: NextRequest) {
-  const adminToken = request.cookies.get("_token");
-  const isLogin = Boolean(adminToken);
+  const { isAuthenticated } = getKindeServerSession();
+  const isAuthed = await isAuthenticated();
 
-  if (request.nextUrl.pathname.startsWith("/admin") && !isLogin) {
+  if (request.nextUrl.pathname.startsWith("/admin") && !isAuthed) {
     return NextResponse.redirect(new URL("/login", request.url)); // url  changING
   }
 

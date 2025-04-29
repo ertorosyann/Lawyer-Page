@@ -23,16 +23,20 @@ import {
   telephone,
 } from "@/app/assets/svg";
 import { useEffect, useState } from "react";
-import { Lawyer } from "@/types/items";
-import { fetchLawyers } from "@/lib/actions";
+import { Blogs, Lawyer } from "@/types/items";
+import { fetchBlogs, fetchLawyers } from "@/lib/actions";
 import React from "react";
+import { useTranslations } from "next-intl";
 
 export default function Home() {
   const [lawyers, setLawyers] = useState<Lawyer[] | undefined>([]);
+  const [news, setNews] = useState<Blogs[] | undefined>([]);
+  const t = useTranslations("Home");
 
   useEffect(() => {
     (async () => {
       setLawyers(await fetchLawyers());
+      setNews((await fetchBlogs()).slice(0, 4));
     })();
   }, []);
 
@@ -54,20 +58,18 @@ export default function Home() {
           <div className="w-1/2 flex flex-col justify-center p-[12px] gap-[32px] mobile:w-full mobile:px-10">
             <div className="grid gap-3">
               <h1 className="font-[700] text-[42px] text-muted-light mobile:text-[20px] text-center">
-                Specialised Attorney With Experiance
+                {t("experience")}
               </h1>
               <p className="font-[500] text-[24px] text-muted mobile:text-[16px]">
-                Volutpa sit&apos;eu o porttito dolor volutpa neque faucib, a
-                praese egesta quisqua ut consect vita neque vita&apos; aliqua,
-                mi et scelerisqu tempus a felis feugiat.
+                {t("description-experiance")}
               </p>
             </div>
             <div className="flex gap-[62px] mobile:justify-between mobile:gap-[20px]">
               <Button className="font-[500] text-[24px] leading-[120%] py-[12px] px-[24px] mobile:text-[16px] mobile:px-[10px]">
-                Consulation
+                {t("btn-consulation")}
               </Button>
-              <Button className="flex justify-between p-[12px] gap-[32px] bg-[#121212] border border-[#6A49A2] mobile:text-[16px] mobile:px-[10px]">
-                Learn More {arrowRight}
+              <Button className="flex justify-between text-[24px] p-[22px] gap-[32px] bg-[#121212] border border-[#6A49A2] mobile:text-[16px] mobile:px-[10px]">
+                {t("btn-learn")} {arrowRight}
               </Button>
             </div>
           </div>
@@ -78,90 +80,47 @@ export default function Home() {
         <div className="flex flex-col gap-16 py-10">
           <div className="flex flex-col items-center gap-[24px]">
             <h1 className="text-[42px] font-[700] text-muted-light mobile:text-[20px]">
-              Services We Provide
+              {t("services")}
             </h1>
             <p className="text-[24px] tont-[500] text-muted text-center mobile:text-[14px] mobile:px-[30px]">
-              We deliver expert legal solutions with a commitment to protecting
-              your rights and achieving the best outcomes.
+              {t("description-services")}
             </p>
           </div>
 
           <div className="px-10 grid grid-cols-3 gap-x-[62px] gap-y-[72px] items-stretch mobile:grid-cols-1 mobile:gap-0 mobile:px-0 mobile:gap-x-0 mobile:gap-y-0">
             <ServiceCard
-              title="Corporate law"
-              content={
-                <>
-                  Lorem ipsum dolor sit amet consectetur. Magna maecenas purus
-                  urna et augue sed fringilla faucibus lorem. Quis id vel in
-                  nibh tellus libero facilisis nisl. Elit aliquet ut enim
-                  dictumst nunc. At quam amet nunc in tempor eu pharetra.
-                </>
-              }
+              title={t("serviceCard.card1.title")}
+              content={t("serviceCard.card1.description")}
               icone={corporate}
             />
 
             <ServiceCard
-              title="Civil right"
-              content={
-                <>
-                  Lorem ipsum dolor sit amet consectetur. Magna maecenas purus
-                  urna et augue sed fringilla faucibus lorem. Quis id vel in
-                  nibh tellus libero facilisis nisl. Elit aliquet ut enim
-                  dictumst nunc. At quam amet nunc in tempor eu pharetra.
-                </>
-              }
+              title={t("serviceCard.card2.title")}
+              content={t("serviceCard.card2.description")}
               icone={civilRight}
             />
 
             <ServiceCard
-              title="Administrative law"
-              content={
-                <>
-                  Lorem ipsum dolor sit amet consectetur. Magna maecenas purus
-                  urna et augue sed fringilla faucibus lorem. Quis id vel in
-                  nibh tellus libero facilisis nisl. Elit aliquet ut enim
-                  dictumst nunc. At quam amet nunc in tempor eu pharetra.
-                </>
-              }
+              title={t("serviceCard.card3.title")}
+              content={t("serviceCard.card3.description")}
               icone={administrative}
             />
 
             <ServiceCard
-              title="International judicial processes"
-              content={
-                <>
-                  Lorem ipsum dolor sit amet consectetur. Magna maecenas purus
-                  urna et augue sed fringilla faucibus lorem. Quis id vel in
-                  nibh tellus libero facilisis nisl. Elit aliquet ut enim
-                  dictumst nunc. At quam amet nunc in tempor eu pharetra.
-                </>
-              }
+              title={t("serviceCard.card4.title")}
+              content={t("serviceCard.card4.description")}
               icone={international}
             />
 
             <ServiceCard
-              title="Legal examination"
-              content={
-                <>
-                  Lorem ipsum dolor sit amet consectetur. Magna maecenas purus
-                  urna et augue sed fringilla faucibus lorem. Quis id vel in
-                  nibh tellus libero facilisis nisl. Elit aliquet ut enim
-                  dictumst nunc. At quam amet nunc in tempor eu pharetra.
-                </>
-              }
+              title={t("serviceCard.card5.title")}
+              content={t("serviceCard.card5.description")}
               icone={legal}
             />
 
             <ServiceCard
-              title="Criminal Justice"
-              content={
-                <>
-                  Lorem ipsum dolor sit amet consectetur. Magna maecenas purus
-                  urna et augue sed fringilla faucibus lorem. Quis id vel in
-                  nibh tellus libero facilisis nisl. Elit aliquet ut enim
-                  dictumst nunc. At quam amet nunc in tempor eu pharetra.
-                </>
-              }
+              title={t("serviceCard.card6.title")}
+              content={t("serviceCard.card6.description")}
               icone={criminal}
             />
           </div>
@@ -171,7 +130,7 @@ export default function Home() {
       <section className="max-w-[1280px] mx-auto mobile:w-full">
         <div className="grid px-10 py-24 gap-16 ">
           <h2 className="text-muted-light text-[42px] font-[700] leading-[100%] text-center mobile:text-[20px]">
-            What makes us different?
+            {t("makes")}
           </h2>
 
           <ul className="grid grid-cols-4 justify-between gap-16 text-center mobile:grid-cols-1 mobile:gap-10 mobile:px-10">
@@ -182,7 +141,7 @@ export default function Home() {
                   className: "mobile:w-[177px] mobile:h-[110px]",
                 })}
                 <p className="font-[700] text-[28px] text-muted-light mobile:text-[16px]">
-                  Experienced
+                  {t("makes-item1")}
                 </p>
               </div>
             </li>
@@ -190,7 +149,7 @@ export default function Home() {
               <div className="grid justify-center gap-6 rounded-[4px] cart-bg-grey py-[24px] px-[16px] border border-custom  gradient-border-main">
                 {afforable}
                 <p className="font-[700] text-[28px] text-muted-light mobile:text-[16px]">
-                  Affordable
+                  {t("makes-item2")}
                 </p>
               </div>
             </li>
@@ -198,7 +157,7 @@ export default function Home() {
               <div className="grid justify-center gap-6 rounded-[4px] cart-bg-grey py-[24px] px-[16px] border border-custom  gradient-border-main">
                 {flexible}
                 <p className="font-[700] text-[28px] text-muted-light mobile:text-[16px]">
-                  Flexible
+                  {t("makes-item3")}
                 </p>
               </div>
             </li>
@@ -206,7 +165,7 @@ export default function Home() {
               <div className="grid justify-center gap-6 rounded-[4px] cart-bg-grey py-[24px] px-[16px] border border-custom  gradient-border-main">
                 {approachable}
                 <p className="font-[700] text-[28px] text-muted-light mobile:text-[16px]">
-                  Approachable
+                  {t("makes-item4")}
                 </p>
               </div>
             </li>
@@ -231,12 +190,10 @@ export default function Home() {
         <div className="grid gap-[62px]">
           <div className="grid gap-6 text-center">
             <h2 className="font-[700] text-[42px] text-muted-light leading-[100%] mobile:text-[20px]">
-              Our Attorneys
+              {t("attorneys")}
             </h2>
             <p className="font-[500] text-[24px] text-muted text-center px-50 mobile:px-[20px] mobile:text-[14px]">
-              Our skilled attorneys are dedicated to delivering exceptional
-              legal services, utilizing the latest technology to offer efficient
-              and costeffective solutions tailored to your unique needs.
+              {t("attorneys-description")}
             </p>
           </div>
 
@@ -287,8 +244,7 @@ export default function Home() {
               className="absolute  left-0 top-0 flex flex-col items-center justify-center text-center py-20 px-20 mobile:py-5 mobile:px-5 mobile:left-0"
             >
               <h3 className="text-3xl font-semibold mobile:text-[14px]">
-                Years of <br />
-                Experience
+                {t("experience")}
               </h3>
               <p className="text-5xl font-semibold mt-2 mobile:text-[14px]">
                 +00
@@ -301,7 +257,7 @@ export default function Home() {
               className="absolute left-88 top-22 flex flex-col items-center justify-center text-center py-20 px-20  mobile:py-5 mobile:px-5 mobile:left-33 mobile:top-11"
             >
               <h3 className="text-3xl font-semibold mobile:text-[14px]">
-                Cases Won
+                {t("case")}
               </h3>
               <p className="text-5xl font-semibold mt-2 mobile:text-[14px]">
                 +000
@@ -314,7 +270,7 @@ export default function Home() {
               className="absolute  left-25 top-80  flex flex-col items-center justify-center text-center py-15 px-7  mobile:py-5 mobile:px-2 mobile:left-4 mobile:top-25"
             >
               <h3 className="text-3xl font-semibold mobile:text-[14px]">
-                Client Satisfaction
+                {t("experience")}
               </h3>
               <p className="text-5xl font-semibold mt-2 mobile:text-[14px]">
                 00%
@@ -331,20 +287,16 @@ export default function Home() {
           <div className="w-full backdrop-blur-[50px] border-[2px] gradient-border-about  py-6 px-8 grid gap-[42px] rounded-[4px] mobile:px-5 mobile:py-3">
             <div className="grid gap-6 ">
               <h2 className="font-[700] text-[42px] text-center text-[#F5F5F5] mobile:text-[16px]">
-                Trusted by Many, Proven by Results
+                {t("background-title")}
               </h2>
               <p className="font-[400] text-[24px] text-[#F5F5F5CC] text-center mobile:text-[14px] ">
-                We understand that many people may be reluctant to contact a
-                lawyer because they’re worried they won’t be able to afford the
-                fees. They may be tempted to try to handle their legal matter
-                themselves, but that’s often a recipe for a less-than-desirable
-                outcome.
+                {t("background-description")}
               </p>
             </div>
             <div className="grid grid-cols-3 justify-center gap-[62px] mobile:grid-cols-1 mobile:gap-5 mobile:mx-auto">
               <div>
                 <Button className="font-[500] text-[24px] leading-[120%] py-[12px] px-[24px] text-muted-light mobile:text-[14px]">
-                  Get In Toich
+                  {t("background-btn")}
                 </Button>
               </div>
               <div className="flex gap-[16px] items-center">
@@ -372,12 +324,10 @@ export default function Home() {
         <div className="grid p-10 gap-[62px]">
           <div className="flex flex-col gap-[24px] text-center">
             <h2 className="text-muted-light text-[42px] font-[700] mobile:text-[20px]">
-              Our Clients Say It Best
+              {t("clients-say")}
             </h2>
             <p className="text-muted text-[24px] font-[500] px-50 mobile:text-[14px] mobile:px-0">
-              Our skilled attorneys are dedicated to delivering exceptional
-              legal services, utilizing the latest technology to offer efficient
-              and cost-effective solutions tailored to your unique needs.
+              {t("clients-description")}
             </p>
           </div>
 
@@ -393,7 +343,7 @@ export default function Home() {
                     className="rounded-4xl"
                   />
                   <div className="flex flex-col">
-                    <h3>William Doyle</h3>
+                    <h3> {t("clents-comments.client1.name")}</h3>
                     <p>27.07.2024</p>
                   </div>
                 </div>
@@ -404,11 +354,7 @@ export default function Home() {
                   {star}
                 </div>
                 <p className="text-muted font-[500] text-[16px] mobile:text-[14px]">
-                  Great experience. Very communicative, pleasant, and
-                  knowledgeable all the way from the legal secretary to the
-                  paralegal to the attorney. Everyone was on the same page at
-                  the same time, very refreshing. Everything was done online as
-                  I was in NY and my transactions were for the state of AZ. TYVM
+                  {t("clents-comments.client1.thinks")}
                 </p>
               </div>
             </div>
@@ -424,7 +370,7 @@ export default function Home() {
                     className="rounded-4xl"
                   />
                   <div className="flex flex-col">
-                    <h3>William Doyle</h3>
+                    <h3>{t("clents-comments.client1.name")}</h3>
                     <p>27.07.2024</p>
                   </div>
                 </div>
@@ -436,17 +382,11 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-muted font-[500] text-[16px] mobile:text-[14px]">
-                    Great experience. Very communicative, pleasant, and
-                    knowledgeable all the way from the legal secretary to the
-                    paralegal to the attorney. Everyone was on the same page at
-                    the same time, very refreshing. Everything was done online
-                    as I was in NY and my transactions were for the state of AZ.
-                    TYVM
+                    {t("clents-comments.client1.thinks")}
                   </p>
                 </div>
               </div>
             </div>
-
             <div className="cart-bg-grey hover:bg-[#0505] transition py-9 px-6">
               <div className="flex flex-col gap-3">
                 <div className="flex gap-3">
@@ -458,7 +398,7 @@ export default function Home() {
                     className="rounded-4xl"
                   />
                   <div className="flex flex-col">
-                    <h3>William Doyle</h3>
+                    <h3>{t("clents-comments.client1.name")}</h3>
                     <p>27.07.2024</p>
                   </div>
                 </div>
@@ -468,15 +408,11 @@ export default function Home() {
                   {star}
                   {star}
                 </div>
-              </div>
-              <div>
-                <p className="text-muted font-[500] text-[16px] mobile:text-[14px]">
-                  Great experience. Very communicative, pleasant, and
-                  knowledgeable all the way from the legal secretary to the
-                  paralegal to the attorney. Everyone was on the same page at
-                  the same time, very refreshing. Everything was done online as
-                  I was in NY and my transactions were for the state of AZ. TYVM
-                </p>
+                <div>
+                  <p className="text-muted font-[500] text-[16px] mobile:text-[14px]">
+                    {t("clents-comments.client1.thinks")}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -500,103 +436,40 @@ export default function Home() {
         <div className=" py-[100px] px-[62px] flex flex-col gap-15 mobile:px-5">
           <div className="flex flex-col gap-6 text-center">
             <h2 className="font-[700] text-[42px] text-muted-light leading-[100%] mobile:text-[20px]">
-              Stay Informed
+              {t("stay")}
             </h2>
             <p className="font-[500] text-[24px] leading-[100%] text-muted px-50 mobile:text-[14px] mobile:px-10">
-              Vel feugiat consectet cum fermentum ex consectetu exercitatio
-              morbi occaecat, vestibulu nam congue exercitati ex minim vestibulu
-              ubi quas-voluptate parturien voluptat ad saep tempor culpa.
+              {t("stay-description")}
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-15">
-            <Area variant="lower__shadow" className="flex gap-4">
-              <Image
-                src="/news.png"
-                alt="GIF"
-                width={237}
-                height={236}
-                className="w-1/2"
-              />
-              <div className="flex flex-col justify-between w-1/2 mobile:w-2/3 mobile:gap-20">
-                <p className="text-muted-light text-[20px] font-[600] leading-[120%] mobile:text-[14px] mobile:text-">
-                  Exciting News: Facundo Banchero to Join LFN Secondment Program
-                  in Colombia
-                </p>
-                <div className="flex justify-between">
-                  {clock}
-                  <p className="font-[500] text-[16px] leading-[100%] text-muted mobile:text-[14px]">
-                    February 24, 2025
+            {news?.map((news) => (
+              <Area
+                variant="lower__shadow"
+                className="flex gap-4"
+                key={news._id}
+              >
+                <Image
+                  src={news.image}
+                  alt="GIF"
+                  width={237}
+                  height={236}
+                  className="w-1/2"
+                />
+                <div className="flex flex-col justify-between w-1/2 mobile:w-2/3 mobile:gap-20">
+                  <p className="text-muted-light text-[20px] font-[600] leading-[120%] mobile:text-[14px] mobile:text-">
+                    {news.description}
                   </p>
-                  <div className="text-muted">{arrowRight}</div>
+                  <div className="flex justify-between">
+                    {clock}
+                    <p className="font-[500] text-[16px] leading-[100%] text-muted mobile:text-[14px]">
+                      {news.createTime}
+                    </p>
+                    <div className="text-muted">{arrowRight}</div>
+                  </div>
                 </div>
-              </div>
-            </Area>
-            <Area variant="lower__shadow" className="flex gap-4">
-              <Image
-                src="/news.png"
-                alt="GIF"
-                width={237}
-                height={236}
-                className="w-1/2"
-              />
-              <div className="flex flex-col justify-between w-1/2 mobile:w-2/3 mobile:gap-20">
-                <p className="text-muted-light text-[20px] font-[600] leading-[120%] mobile:text-[14px] mobile:text-">
-                  Exciting News: Facundo Banchero to Join LFN Secondment Program
-                  in Colombia
-                </p>
-                <div className="flex justify-between">
-                  {clock}
-                  <p className="font-[500] text-[16px] leading-[100%] text-muted mobile:text-[14px]">
-                    February 24, 2025
-                  </p>
-                  <div className="text-muted">{arrowRight}</div>
-                </div>
-              </div>
-            </Area>
-            <Area variant="lower__shadow" className="flex gap-4">
-              <Image
-                src="/news.png"
-                alt="GIF"
-                width={237}
-                height={236}
-                className="w-1/2"
-              />
-              <div className="flex flex-col justify-between w-1/2 mobile:w-2/3 mobile:gap-20">
-                <p className="text-muted-light text-[20px] font-[600] leading-[120%] mobile:text-[14px] mobile:text-">
-                  Exciting News: Facundo Banchero to Join LFN Secondment Program
-                  in Colombia
-                </p>
-                <div className="flex justify-between">
-                  {clock}
-                  <p className="font-[500] text-[16px] leading-[100%] text-muted mobile:text-[14px]">
-                    February 24, 2025
-                  </p>
-                  <div className="text-muted">{arrowRight}</div>
-                </div>
-              </div>
-            </Area>
-            <Area variant="lower__shadow" className="flex gap-4">
-              <Image
-                src="/news.png"
-                alt="GIF"
-                width={237}
-                height={236}
-                className="w-1/2 "
-              />
-              <div className="flex flex-col justify-between w-1/2 mobile:w-2/3 mobile:gap-20">
-                <p className="text-muted-light text-[20px] font-[600] leading-[120%] mobile:text-[14px] mobile:text-">
-                  Exciting News: Facundo Banchero to Join LFN Secondment Program
-                  in Colombia
-                </p>
-                <div className="flex justify-between">
-                  {clock}
-                  <p className="font-[500] text-[16px] leading-[100%] text-muted mobile:text-[14px]">
-                    February 24, 2025
-                  </p>
-                  <div className="text-muted">{arrowRight}</div>
-                </div>
-              </div>
-            </Area>
+              </Area>
+            ))}
           </div>
         </div>
       </section>

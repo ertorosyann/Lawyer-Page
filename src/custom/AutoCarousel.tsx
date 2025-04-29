@@ -19,7 +19,7 @@ export default function AutoCarousel() {
       <div
         className="flex gap-40 mobile:gap-2"
         style={{
-          animation: "scroll-left 2s linear infinite",
+          animation: "scroll-left 3s linear infinite",
         }}
       >
         {partners.map((partner) => (

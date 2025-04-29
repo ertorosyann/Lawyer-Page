@@ -1,10 +1,12 @@
 import { mail, telephone } from "@/app/assets/svg";
 import { ArrowCarousel } from "@/custom/ArrowCarousel";
 import { Button } from "@/custom/Button";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React from "react";
 
 export default function About() {
+  const t = useTranslations("About");
   return (
     <>
       <section className=" max-w-[1024px] mx-auto mobile:w-full">
@@ -12,12 +14,10 @@ export default function About() {
           <div className="md:relative mobile:grid mobile:gap-20">
             <div className="grid gap-6 border cart-bg-grey text-center py-10 px-6 w-[55%] gradient-border-about mobile:w-full">
               <h1 className="font-[700] text-[42px] leading-[100%] text-muted-light mobile:text-[20px]">
-                Legal Expertise with a Proven Track Record
+                {t("title")}
               </h1>
               <p className="font-[500] text-[22px] text-muted leading-[100%] mobile:text-[16px]">
-                Volutpa sit&apos;eu o porttito dolor volutpa neque faucib, a
-                praese egesta quisqua ut consect vita neque vita&apos; aliqua,
-                mi et scelerisqu tempus a felis feugiat.
+                {t("titile-description")}
               </p>
             </div>
             <div className="md:absolute md:left-130 md:top-18">
@@ -26,12 +26,7 @@ export default function About() {
           </div>
           <div className="">
             <p className="text-center text-[28px] font-[500] text-muted leading-[120%] mobile:text-[16px]">
-              At Tatoyan , we provide expert legal services with a commitment to
-              excellence. Our team of experienced attorneys works tirelessly to
-              ensure that your legal needs are met with professionalism,
-              integrity, and personal attention. With years of experience in
-              various areas of law, we are dedicated to helping individuals and
-              businesses navigate complex legal challenges.
+              {t("titile-description2")}
             </p>
           </div>
         </div>
@@ -53,15 +48,10 @@ export default function About() {
       <section className="max-w-[1280px] mx-auto mobile:w-full">
         <div className="grid gap-6 text-center py-10 px-6  cart-bg-grey border border-[#1F0C6F] shadow-[0px_0px_4px_0px_#F5F5F51F] mobile:m-5">
           <h2 className="font-[700] text-[42px] leading-[100%] text-muted-light mobile:text-[20px]">
-            Our Mission...
+            {t("mission")}
           </h2>
           <p className="font-[500] text-[24px] text-muted leading-[100%] mobile:text-[16px]">
-            Our mission is to uphold justice, advocate for our clients, and
-            provide ethical, results-driven legal representation. With
-            dedication and expertise, we protect your rights and guide you
-            through every legal challenge. We aim to deliver reliable,
-            efficient, and compassionate legal solutions tailored to our
-            clients&apos; unique situations.
+            {t("mission-description")}
           </p>
         </div>
       </section>
@@ -72,7 +62,7 @@ export default function About() {
         </div>
         <div className="flex justify-center gap-[62px] mobile:grid mobile:gap-[20px]">
           <Button className="font-[500] text-[24px] leading-[120%] py-[12px] px-[24px] text-muted-light mobile:text-[14px]">
-            Get In Toich
+            {t("btn-get")}
           </Button>
           <div className="flex gap-[16px] items-center">
             {React.cloneElement(telephone, {

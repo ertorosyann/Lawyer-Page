@@ -2,6 +2,7 @@
 
 import { removeToken } from "@/app/api/_helpers/actionToken";
 import { edit, logo, logOuth } from "@/app/assets/svg";
+import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -36,12 +37,18 @@ export default function AdminLayer() {
             ))}
           </ul>
         </div>
-        <Link onClick={removeToken} href="/login">
+        <LogoutLink postLogoutRedirectURL="/login">
           <div className="flex justify-between p-5 font-[600] text-[28px] hover:bg-amber-50 curs">
             <p>Log Out</p>
             {logOuth}
           </div>
-        </Link>
+        </LogoutLink>
+        {/* <Link onClick={removeToken} href="/login">
+          <div className="flex justify-between p-5 font-[600] text-[28px] hover:bg-amber-50 curs">
+            <p>Log Out</p>
+            {logOuth}
+          </div>
+        </Link> */}
       </div>
     </section>
   );

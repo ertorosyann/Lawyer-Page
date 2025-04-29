@@ -1,33 +1,86 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/custom/Button";
-import { usa } from "@/app/assets/svg";
+import { arm, usa } from "@/app/assets/svg";
+import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import React from "react";
 
 export const NavBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
+  const t = useTranslations("Navbar");
+  const [locale, setLocale] = useState<string>();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const toggleMenu = () => setIsOpen(!isOpen);
+  const router = useRouter();
+
+  useEffect(() => {
+    const cookieLocale = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("MYNEXTAPP_LOCALE="))
+      ?.split("=")[1];
+    if (cookieLocale) {
+      setLocale(cookieLocale);
+    } else {
+      const browserLocale = navigator.language.slice(0, 2);
+      setLocale(browserLocale);
+      document.cookie = `MYNEXTAPP_LOCALE=${browserLocale};`;
+      router.refresh();
+    }
+  }, [router]);
+
+  const changeLocal = (newLocal: string) => {
+    setLocale(newLocal);
+    document.cookie = `MYNEXTAPP_LOCALE=${newLocal};`;
+    router.refresh();
+  };
 
   return (
-    <nav className="p-4 border-muted flex items-center gap-4 text-[#D0D0D0]">
+    <nav className="p-4 border-muted flex items-center gap-15 text-[#D0D0D0]">
       {/* Desktop nav */}
       <ul className="mobile:hidden flex flex-row gap-10 text-[18px] font-[500]">
         <li>
-          <Link href="/about">About</Link>
+          <Link href="/about">{t("about")}</Link>
         </li>
         <li>
-          <Link href="/services">Services</Link>
+          <Link href="/services">{t("services")}</Link>
         </li>
         <li>
-          <Link href="/partners">Partners</Link>
+          <Link href="/partners">{t("partners")}</Link>
         </li>
         <li>
-          <Link href="/news">News</Link>
+          <Link href="/news">{t("news")}</Link>
         </li>
       </ul>
+      <div className="flex items-center gap-5  mobile:hidden ">
+        <Button className="text-[18px] leading-[100%] py-3 px-6  rounded-xl">
+          {t("contact")}
+        </Button>
+        <div className="flex gap-4 ">
+          <button
+            onClick={() => changeLocal("en")}
+            className={`${
+              locale === "en" && "bg-[#6A49A2] "
+            } p-2 cursor-pointer`}
+          >
+            {React.cloneElement(usa, {
+              className: "w-[40px]",
+            })}
+          </button>
+          <button
+            onClick={() => changeLocal("am")}
+            className={`${
+              locale === "am" && "bg-[#6A49A2]"
+            } p-2 cursor-pointer`}
+          >
+            {React.cloneElement(arm, {
+              className: "w-[40px]",
+            })}
+          </button>
+        </div>
+      </div>
 
       {/* Mobile hamburger */}
       <div className="md:hidden h-full relative">
@@ -44,32 +97,53 @@ export const NavBar = () => {
             <ul className="grid gap-4">
               <li>
                 <Link href="/about" onClick={toggleMenu}>
-                  About
+                  {t("about")}
                 </Link>
               </li>
               <li>
                 <Link href="/services" onClick={toggleMenu}>
-                  Services
+                  {t("services")}
                 </Link>
               </li>
               <li>
                 <Link href="/partners" onClick={toggleMenu}>
-                  Partners
+                  {t("partners")}
                 </Link>
               </li>
               <li>
                 <Link href="/news" onClick={toggleMenu}>
-                  News
+                  {t("news")}
                 </Link>
               </li>
             </ul>
           </div>
 
-          <div className="grid m-20 jus items-center">
-            <Button className="text-[18px] leading-[100%] py-[10px]">
-              Contact Us
+          <div className="grid p-10 justify-center items-center ">
+            <Button className="w-[200px] h-[50px] text-[18px] leading-[100%] py-[10px]s">
+              {t("contact")}
             </Button>
-            <div className="mx-auto">{usa}</div>
+            <div className="flex gap-10 justify-center">
+              <button
+                onClick={() => changeLocal("en")}
+                className={`${
+                  locale === "en" && "bg-[#6A49A2] "
+                } p-2 cursor-pointer`}
+              >
+                {React.cloneElement(usa, {
+                  className: "w-[40px]",
+                })}
+              </button>
+              <button
+                onClick={() => changeLocal("am")}
+                className={`${
+                  locale === "am" && "bg-[#6A49A2]"
+                } p-2 cursor-pointer`}
+              >
+                {React.cloneElement(arm, {
+                  className: "w-[40px]",
+                })}
+              </button>
+            </div>
           </div>
         </div>
       )}

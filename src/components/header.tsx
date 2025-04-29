@@ -2,7 +2,6 @@
 
 import { logo, usa } from "@/app/assets/svg";
 import { NavBar } from "./navbar";
-import { Button } from "@/custom/Button";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import React from "react";
@@ -40,12 +39,6 @@ export const Header = () => {
           </div>
 
           <NavBar />
-          <div className="flex items-center gap-10 mobile:gap-[24px] mobile:hidden">
-            <Button className="text-[20px] leading-[100%] px-[12px] py-[10px]  text-muted-light">
-              Contact Us
-            </Button>
-            <div className="flex items-center">{usa}</div>
-          </div>
         </div>
       </section>
     </header>

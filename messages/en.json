@@ -1,9 +1,141 @@
 {
+  "TabTitles": {
+    "home": "Lawyer Page"
+  },
   "Navbar": {
     "about": "About",
     "services": "Services",
     "partners": "Partners",
     "news": "News",
     "contact": "Contact Us"
+  },
+  "Home": {
+    "experiance": "Specialised Attorney With Experiance",
+    "description-experiance": "Volutpa sit'eu o porttito dolor volutpa neque faucib, a praese egesta quisqua ut consect vita neque vita' aliqua, mi et scelerisqu tempus a felis feugiat.",
+    "btn-consulation": "Consulation",
+    "services": "Services We Provide",
+    "description-services": "We deliver expert legal solutions with a commitment to protecting your rights and achieving the best outcomes.",
+    "serviceCard": {
+      "card1": {
+        "title": "Corporate law",
+        "description": " Lorem ipsum dolor sit amet consectetur. Magna maecenas purus urna et augue sed fringilla faucibus lorem. Quis id vel in nibh tellus libero facilisis nisl. Elit aliquet ut enim dictumst nunc. At quam amet nunc in tempor eu pharetra."
+      },
+      "card2": {
+        "title": "Civil right",
+        "description": " Lorem ipsum dolor sit amet consectetur. Magna maecenas purus urna et augue sed fringilla faucibus lorem. Quis id vel in nibh tellus libero facilisis nisl. Elit aliquet ut enim dictumst nunc. At quam amet nunc in tempor eu pharetra."
+      },
+      "card3": {
+        "title": "Administrative law",
+        "description": " Lorem ipsum dolor sit amet consectetur. Magna maecenas purus urna et augue sed fringilla faucibus lorem. Quis id vel in nibh tellus libero facilisis nisl. Elit aliquet ut enim dictumst nunc. At quam amet nunc in tempor eu pharetra."
+      },
+      "card4": {
+        "title": "International judicial processes",
+        "description": " Lorem ipsum dolor sit amet consectetur. Magna maecenas purus urna et augue sed fringilla faucibus lorem. Quis id vel in nibh tellus libero facilisis nisl. Elit aliquet ut enim dictumst nunc. At quam amet nunc in tempor eu pharetra."
+      },
+      "card5": {
+        "title": "Legal examination",
+        "description": " Lorem ipsum dolor sit amet consectetur. Magna maecenas purus urna et augue sed fringilla faucibus lorem. Quis id vel in nibh tellus libero facilisis nisl. Elit aliquet ut enim dictumst nunc. At quam amet nunc in tempor eu pharetra."
+      },
+      "card6": {
+        "title": "Criminal Justice",
+        "description": " Lorem ipsum dolor sit amet consectetur. Magna maecenas purus urna et augue sed fringilla faucibus lorem. Quis id vel in nibh tellus libero facilisis nisl. Elit aliquet ut enim dictumst nunc. At quam amet nunc in tempor eu pharetra."
+      }
+    },
+    "makes": "What makes us different?",
+    "makes-item1": "Experienced",
+    "makes-item2": "Affordable",
+    "makes-item3": "Flexible",
+    "makes-item4": "Approachable",
+    "attorneys": "Our Attorneys",
+    "attorneys-description": "Our skilled attorneys are dedicated to delivering exceptional legal services, utilizing the latest technology to offer efficient and costeffective solutions tailored to your unique needs.",
+
+    "wil bee lawyers": "=========================================================",
+    "wil bee lawyers": "=========================================================",
+    "wil bee lawyers": "=========================================================",
+    "wil bee lawyers": "=========================================================",
+
+    "experience": "Years of Experience",
+    "case": "Cases Won",
+    "client": "Client Satisfaction",
+
+    "background-title": "Trusted by Many, Proven by Results",
+    "background-description": "We understand that many people may be reluctant to contact a lawyer because they’re worried they won’t be able to afford the fees. They may be tempted to try to handle their legal matter themselves, but that’s often a recipe for a less-than-desirable outcome.",
+    "background-btn": "Get in Toich",
+
+    "clients-say": "Our Clients Say It Best",
+    "clients-description": "Our skilled attorneys are dedicated to delivering exceptional legal services, utilizing the latest technology to offer efficient and cost-effective solutions tailored to your unique needs.",
+    "clents-comments": {
+      "client1": {
+        "name": "William Doyle",
+        "thinks": "Great experience. Very communicative, pleasant, and knowledgeable all the way from the legal secretary to the paralegal to the attorney. Everyone was on the same page at the same time, very refreshing. Everything was done online as I was in NY and my transactions were for the state of AZ. TYVM"
+      },
+      "client2": {
+        "name": "William Doyle",
+        "thinks": "Great experience. Very communicative, pleasant, and knowledgeable all the way from the legal secretary to the paralegal to the attorney. Everyone was on the same page at the same time, very refreshing. Everything was done online as I was in NY and my transactions were for the state of AZ. TYVM"
+      },
+      "client3": {
+        "name": "William Doyle",
+        "thinks": "Great experience. Very communicative, pleasant, and knowledgeable all the way from the legal secretary to the paralegal to the attorney. Everyone was on the same page at the same time, very refreshing. Everything was done online as I was in NY and my transactions were for the state of AZ. TYVM"
+      }
+    },
+
+    "stay": "Stay Informed",
+    "stay-description": "Vel feugiat consectet cum fermentum ex consectetu exercitatio morbi occaecat, vestibulu nam congue exercitati ex minim vestibulu ubi quas-voluptate parturien voluptat ad saep tempor culpa.",
+    "wil bee news": "=========================================================",
+    "wil bee news": "=========================================================",
+    "wil bee news": "=========================================================",
+    "wil bee news": "=========================================================",
+    "btn-learn": "Learn More"
+  },
+  "About": {
+    "title": "Legal Expertise with a Proven Track Record",
+    "titile-description": "Volutpa sit&apos;eu o porttito dolor volutpa neque faucib, apraese egesta quisqua ut consect vita neque vita&apos; aliqua,mi et scelerisqu tempus a felis feugiat.",
+    "titile-description2": "At Tatoyan , we provide expert legal services with a commitment to excellence. Our team of experienced attorneys works tirelessly to ensure that your legal needs are met with professionalism,integrity, and personal attention. With years of experience in various areas of law, we are dedicated to helping individuals and businesses navigate complex legal challenges.",
+    "mission": "Our Mission...",
+    "mission-description": "Our mission is to uphold justice, advocate for our clients, and provide ethical, results-driven legal representation. With dedication and expertise, we protect your rights and guide you through every legal challenge. We aim to deliver reliable, efficient, and compassionate legal solutions tailored to our clients' unique situations.",
+    "btn-get": "Get In Toich"
+  },
+
+  "Services": {
+    "title": "Services We Provide",
+    "title-description": "We deliver expert legal solutions with a commitment to protecting your rights and achieving the best outcomes.",
+    "items": {
+      "all": "All",
+      "item1": {
+        "name": "Civil Right",
+        "description": "Lorem ipsum dolor sit amet consectetur. Massa cras eget tristique scelerisque enim vestibulum arcu consequat. Ullamcorper in in risus vitae. Parturient cursus egestas sit varius pellentesque nisi. Nulla vitae hendrerit pulvinar egestas amet netus. Purus volutpat et id non sit eget tristique eu tempor. Turpis orci ipsum eu maecenas nullam at. At elit auctor sit tristique gravida id. Vestibulum rhoncus blandit nam viverra consectetur donec. Leo viverra neque suspendisse tempus. Lorem ipsum dolor sit amet consectetur. Massa cras eget tristique scelerisque enim vestibulum arcu consequat. Ullamcorper in in risus vitae. Parturient cursus egestas sit varius pellentesque nisi. Nulla vitae hendrerit pulvinar egestas amet netus. Purus volutpat et id non sit eget tristique eu tempor. Turpis orci ipsum eu maecenas nullam at. At elit auctor sit tristique gravida id. Vestibulum rhoncus blandit nam viverra consectetur donec. Leo viverra neque suspendisse tempus. Lorem ipsum dolor sit amet consectetur. Massa cras eget tristique scelerisque enim vestibulum arcu consequat."
+      },
+      "item2": {
+        "name": "Corporate law",
+        "description": "Lorem ipsum dolor sit amet consectetur. Massa cras eget tristique scelerisque enim vestibulum arcu consequat. Ullamcorper in in risus vitae. Parturient cursus egestas sit varius pellentesque nisi. Nulla vitae hendrerit pulvinar egestas amet netus. Purus volutpat et id non sit eget tristique eu tempor. Turpis orci ipsum eu maecenas nullam at. At elit auctor sit tristique gravida id. Vestibulum rhoncus blandit nam viverra consectetur donec. Leo viverra neque suspendisse tempus. Lorem ipsum dolor sit amet consectetur. Massa cras eget tristique scelerisque enim vestibulum arcu consequat. Ullamcorper in in risus vitae. Parturient cursus egestas sit varius pellentesque nisi. Nulla vitae hendrerit pulvinar egestas amet netus. Purus volutpat et id non sit eget tristique eu tempor. Turpis orci ipsum eu maecenas nullam at. At elit auctor sit tristique gravida id. Vestibulum rhoncus blandit nam viverra consectetur donec. Leo viverra neque suspendisse tempus. Lorem ipsum dolor sit amet consectetur. Massa cras eget tristique scelerisque enim vestibulum arcu consequat."
+      },
+      "item3": {
+        "name": "Administrative law",
+        "description": "Lorem ipsum dolor sit amet consectetur. Massa cras eget tristique scelerisque enim vestibulum arcu consequat. Ullamcorper in in risus vitae. Parturient cursus egestas sit varius pellentesque nisi. Nulla vitae hendrerit pulvinar egestas amet netus. Purus volutpat et id non sit eget tristique eu tempor. Turpis orci ipsum eu maecenas nullam at. At elit auctor sit tristique gravida id. Vestibulum rhoncus blandit nam viverra consectetur donec. Leo viverra neque suspendisse tempus. Lorem ipsum dolor sit amet consectetur. Massa cras eget tristique scelerisque enim vestibulum arcu consequat. Ullamcorper in in risus vitae. Parturient cursus egestas sit varius pellentesque nisi. Nulla vitae hendrerit pulvinar egestas amet netus. Purus volutpat et id non sit eget tristique eu tempor. Turpis orci ipsum eu maecenas nullam at. At elit auctor sit tristique gravida id. Vestibulum rhoncus blandit nam viverra consectetur donec. Leo viverra neque suspendisse tempus. Lorem ipsum dolor sit amet consectetur. Massa cras eget tristique scelerisque enim vestibulum arcu consequat."
+      },
+      "item4": {
+        "name": "Criminal Justice",
+        "description": "Lorem ipsum dolor sit amet consectetur. Massa cras eget tristique scelerisque enim vestibulum arcu consequat. Ullamcorper in in risus vitae. Parturient cursus egestas sit varius pellentesque nisi. Nulla vitae hendrerit pulvinar egestas amet netus. Purus volutpat et id non sit eget tristique eu tempor. Turpis orci ipsum eu maecenas nullam at. At elit auctor sit tristique gravida id. Vestibulum rhoncus blandit nam viverra consectetur donec. Leo viverra neque suspendisse tempus. Lorem ipsum dolor sit amet consectetur. Massa cras eget tristique scelerisque enim vestibulum arcu consequat. Ullamcorper in in risus vitae. Parturient cursus egestas sit varius pellentesque nisi. Nulla vitae hendrerit pulvinar egestas amet netus. Purus volutpat et id non sit eget tristique eu tempor. Turpis orci ipsum eu maecenas nullam at. At elit auctor sit tristique gravida id. Vestibulum rhoncus blandit nam viverra consectetur donec. Leo viverra neque suspendisse tempus. Lorem ipsum dolor sit amet consectetur. Massa cras eget tristique scelerisque enim vestibulum arcu consequat."
+      }
+    }
+  },
+
+  "Partners": {
+    "title": "Our Trusted Partners",
+    "title-description": "At Tatoyan, we collaborate with a network of highly respected partners across various industries. Our strong partnerships enhance the quality of services we provide, ensuring that our clients receive the best possible legal support."
+  },
+  "News": {
+    "title": "Legal Insights and Industry News",
+    "title-description": "Stay up to date with the latest developments in law, legal precedents, and industry news. Our team at Tatoyan regularly shares insights and articles on relevant topics to keep our clients informed about key changes in legal landscapes."
+  },
+
+  "Footer": {
+    "specialised": "Specialised Attorney With Experiance",
+    "address": "Armenia, Erevan, St Abovyan 12/5",
+    "about": "About",
+    "resources": "Resources",
+    "support": "Support",
+    "privacy": "Privacy",
+    "serteficate": "© Copyright 2025. All Rights Reserved"
   }
 }
