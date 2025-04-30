@@ -9,7 +9,9 @@ export default function MainLayout({
   return (
     <>
       <Header />
-      <main className="md:pt-[10rem] bg-darkk mobile:pt-20">{children}</main>
+      <main className="md:pt-[10rem] bg-darkk mobile:pt-20 bg-darkk">
+        {children}
+      </main>
       <Footer />
     </>
   );

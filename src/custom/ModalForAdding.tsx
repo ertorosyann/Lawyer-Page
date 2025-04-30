@@ -61,15 +61,23 @@ export default function ModalForAdding({
         </button>
 
         {/* Modal Content */}
-        <div className="text-[28px] font-[500] leading-[100%] grid gap-6 p-10 text-[#1D1D1FCC]">
-          <h2 className="text-[30px] font-[500] text-center">{title}</h2>
+        <div className="text-[24px] font-[500] leading-[100%] grid gap-6 p-5 text-[#1D1D1FCC]">
+          <h2 className="text-[25px] font-[500] text-center">{title}</h2>
 
           {fields.map((field) => (
-            <div key={field} className="grid gap-4">
-              <p>{field}</p>
+            <div key={field} className="grid gap-2">
+              <p>{field} in English</p>
               <input
                 type="text"
-                placeholder={field}
+                placeholder={`${field} in English`}
+                className="w-full px-4 py-5 bg-[#F3F4F6] rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
+                value={formData[field] || ""}
+                onChange={(e) => handleInputChange(e, field)}
+              />
+              <p>{field} in Armenian</p>
+              <input
+                type="text"
+                placeholder={`${field} in Armenian`}
                 className="w-full px-4 py-5 bg-[#F3F4F6] rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
                 value={formData[field] || ""}
                 onChange={(e) => handleInputChange(e, field)}
@@ -110,7 +118,7 @@ export default function ModalForAdding({
                       alt="Preview"
                       priority
                       fill
-                      className="object-contain rounded-lg"
+                      className="object-cover rounded-lg"
                     />
                   </div>
                   <button

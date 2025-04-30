@@ -32,7 +32,7 @@ export default function Laywers() {
   }, []);
 
   return (
-    <section>
+    <>
       <div className="grid gap-10">
         <div className="flex justify-between font-[600] text-[24px] pb-10 bg-[#F3F4F6] items-center">
           <h1>Our Laywers</h1>
@@ -43,9 +43,9 @@ export default function Laywers() {
             Add Laywer +
           </Button>
         </div>
-        <div className="p-10 grid grid-cols-5 gap-20">
+        <div className="`p-10 grid  grid-cols-3 gap-20`">
           {lawyers.map((lawyer, index) => (
-            <div key={index}>
+            <div key={index} className="w-60">
               <Area className="relative rounded-[4px] grid gap-6 bg-white">
                 <div className="absolute top-4 right-4 z-40">
                   <button
@@ -89,18 +89,14 @@ export default function Laywers() {
                   src={lawyer.image}
                   alt={`Lawyer Image ${index + 1}`}
                   priority
-                  width={1257}
-                  height={354}
-                  className="rounded-[4px]"
+                  width={100}
+                  height={50}
+                  className="rounded-[4px] object-cover"
                 />
-
                 <p className="text-center font-500 text-[20px]">
-                  {lawyer.name}
+                  {lawyer.name} {lawyer.surname}
                 </p>
-                <p className="text-center font-500 text-[20px]">
-                  {lawyer.surname}
-                </p>
-                <p>{lawyer.description}</p>
+                <p className="text-[14px] text-muted">{lawyer.description}</p>
               </Area>
             </div>
           ))}
@@ -145,6 +141,6 @@ export default function Laywers() {
           fetchAndUpdate={fetchLawyersAndSet}
         />
       )}
-    </section>
+    </>
   );
 }

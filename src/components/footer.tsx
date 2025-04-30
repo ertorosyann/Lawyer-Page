@@ -11,7 +11,7 @@ import React from "react";
 export const Footer = () => {
   const t = useTranslations("Footer");
   return (
-    <footer className="px-10 pt-35 pb-10 bg-darkk mobile:px-4 mobile:pt-10">
+    <footer className="px-10 pt-35 pb-10 bg-darkk mobile:px-4 mobile:pt-10 bg-darkk">
       <section className="max-w-[1280px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between pb-10 border-b-2 border-[#7B7B7B] gap-10">
           {/* Mobile styles: center content and adjust text size */}
@@ -56,12 +56,13 @@ export const Footer = () => {
 
         <div className="pt-10 flex mobile:flex-col flex-row items-center mobile:items-baseline justify-between gap-6">
           {/* Mobile styles: vertical menu layout and smaller text */}
-          <ul className="flex flex-row items-center gap-3 md:space-x-[60px] text-[22px] font-[700] text-center mobile:w-full mobile:justify-between mobile:text-[14px]">
+          <ul className="flex flex-row items-center gap-3 md:space-x-[60px] text-[22px] font-[700] text-center mobile:grid  mobile:w-full mobile:justify-center mobile:text-[14px]">
             <li> {t("about")}</li>
             <li> {t("resources")}</li>
             <li>{t("support")}</li>
             <li>{t("privacy")}</li>
           </ul>
+
           {/* Mobile styles: smaller font and centered */}
           <p className="text-[16px] font-[400] text-[#717173] text-center mobile:text-left mobile:text-[14px]">
             {t("serteficate")}

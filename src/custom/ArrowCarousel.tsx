@@ -41,6 +41,7 @@ export const ArrowCarousel = () => {
           alt={`partner ${index}`}
           width={163}
           height={80}
+          className="object-cover"
         />
       </div>
 

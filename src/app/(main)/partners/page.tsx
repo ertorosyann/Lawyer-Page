@@ -38,6 +38,7 @@ export default function PartnerPage() {
                 alt="Partner"
                 width={250}
                 height={79}
+                className="object-cover"
               />
             ))}
           </div>
@@ -69,7 +70,7 @@ export default function PartnerPage() {
                 alt="GIF"
                 width={237}
                 height={236}
-                className="w-full"
+                className="w-full object-cover"
               />
               <div className="md:hidden">{partner1_bg}</div>
             </div>
@@ -99,7 +100,7 @@ export default function PartnerPage() {
                 alt="GIF"
                 width={237}
                 height={236}
-                className="w-full"
+                className="w-full object-cover"
               />
               <div className="md:hidden">{partner1_bg}</div>
             </div>
@@ -129,7 +130,7 @@ export default function PartnerPage() {
                 alt="GIF"
                 width={237}
                 height={236}
-                className="w-full"
+                className="w-full object-cover"
               />
               <div className="md:hidden">{partner1_bg}</div>
             </div>
@@ -159,7 +160,7 @@ export default function PartnerPage() {
                 alt="GIF"
                 width={237}
                 height={236}
-                className="w-full"
+                className="w-full object-cover"
               />
               <div className="md:hidden">{partner1_bg}</div>
             </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { logo, usa } from "@/app/assets/svg";
+import { logo } from "@/app/assets/svg";
 import { NavBar } from "./navbar";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -24,7 +24,7 @@ export const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-100 px-4 mobile:px-0  bg-[#121212] transition-shadow duration-250
+      className={`fixed top-0 left-0 right-0 z-100 px-4 mobile:px-0  bg-[#121212] bg-darkk  transition-shadow duration-250
         ${scroll ? "shadow-[0_3px_10px_rgba(255,255,255,0.1)]" : ""}
       `}
     >

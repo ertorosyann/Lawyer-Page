@@ -13,7 +13,7 @@ export const Area: FC<Area> = ({
   className,
   children,
 }: Area) => {
-  const baseStyles = "rounded-[4px] p-2 border-[2px] border-solid";
+  const baseStyles = "rounded-[14px] p-2 border-[2px] border-solid";
 
   const variantStyles = {
     default:

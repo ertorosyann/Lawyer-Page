@@ -7,7 +7,10 @@
     "services": "Services",
     "partners": "Partners",
     "news": "News",
-    "contact": "Contact Us"
+    "contact": "Contact Us",
+    "en": "English",
+    "am": "Armenian"  
+    
   },
   "Home": {
     "experiance": "Specialised Attorney With Experiance",

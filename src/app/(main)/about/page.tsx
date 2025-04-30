@@ -40,7 +40,7 @@ export default function About() {
             alt="GIF"
             width={650}
             height={580}
-            className="rotate-[-133.81deg]"
+            className="rotate-[-133.81deg] object-cover"
           />
         </div>
       </section>

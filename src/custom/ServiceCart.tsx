@@ -19,7 +19,7 @@ export const ServiceCard: FC<ServiceCardProps> = ({
 
   return (
     <Area className="mobile:m-5">
-      <div className="h-full group hover:bg-[#44424C] flex justify-end flex-col gap-10 px-[16px] py-[24px] ">
+      <div className="h-full group hover:bg-[#44424C] flex justify-end flex-col gap-10 px-[16px] py-[24px] hover:transition-[200] ">
         <div className="grid gap-10">
           <div className="flex flex-col gap-[12px]">
             {icone}
@@ -32,7 +32,7 @@ export const ServiceCard: FC<ServiceCardProps> = ({
           </p>
         </div>
         <div className="flex justify-end">
-          <Button className="flex justify-between p-[12px] gap-[32px] bg-[#44424C]  group-hover:bg-[#44424C] group-hover:border-[#D0D0D0] items-center mobile:text-[12px]">
+          <Button className="flex justify-between p-[12px] gap-[32px] bg-[#44424C]  group-hover:bg-[#6A49A2] group-hover:border-[#D0D0D0] items-center mobile:text-[12px]">
             {t("btn-learn")} {arrowRight}
           </Button>
         </div>

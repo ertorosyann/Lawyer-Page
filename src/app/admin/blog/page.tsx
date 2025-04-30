@@ -8,6 +8,8 @@ import { Button } from "@/custom/Button";
 import { more } from "@/app/assets/svg";
 import { Area } from "@/custom/Area";
 import { Blogs } from "@/types/items";
+import { format } from "date-fns";
+
 import Image from "next/image";
 
 export default function Blog() {
@@ -32,7 +34,7 @@ export default function Blog() {
   }, []);
 
   return (
-    <section>
+    <>
       <div className="grid gap-10">
         <div className="flex justify-between font-[600] text-[24px] pb-10 bg-[#F3F4F6] items-center">
           <h1>Our Blogs</h1>
@@ -43,10 +45,10 @@ export default function Blog() {
             Add Blog +
           </Button>
         </div>
-        <div className="p-10 grid grid-cols-5 gap-20">
+        <div className="p-10 grid grid-cols-3 gap-10">
           {blogs.map((blog, index) => (
             <div key={index}>
-              <Area className="rounded-[4px] grid gap-6 bg-white">
+              <Area className="rounded-[4px] grid gap-2 bg-white">
                 <div className="relative flex justify-end">
                   <button
                     onClick={() =>
@@ -89,13 +91,19 @@ export default function Blog() {
                   src={blog.image}
                   alt={`Lawyer Image ${index + 1}`}
                   priority
-                  width={300}
-                  height={354}
-                  className="rounded-[4px]"
+                  width={100}
+                  height={50}
+                  className="rounded-[4px] object-cover"
                 />
-                <h2 className="font-500 text-[20px]">{blog.title}</h2>
-                <p className="font-[600] text-[16px]">{blog.description}</p>
-                <p>{blog.createTime}</p>
+                <h2 className="font-[700] text-[16px]">{blog.title}</h2>
+                <p className="font-[600] text-[14px] text-muted">
+                  {blog.description}
+                </p>
+                <p className="text-[14px] text-muted">
+                  {blog.createTime
+                    ? format(new Date(blog.createTime), "MMMM d, yyyy")
+                    : null}
+                </p>
               </Area>
             </div>
           ))}
@@ -141,6 +149,6 @@ export default function Blog() {
           fetchAndUpdate={fetchBlogsAndSet}
         />
       )}
-    </section>
+    </>
   );
 }

@@ -42,8 +42,7 @@ export default function News() {
                 {t("title")}
               </h1>
               <p className="font-[500] text-[24px] text-muted mobile:text-[16px]">
-              {t("title-description")}
-
+                {t("title-description")}
               </p>
             </div>
 
@@ -59,13 +58,14 @@ export default function News() {
                       alt="GIF"
                       width={489}
                       height={269}
+                      className="object-cover"
                     />
-                    <div className="grid gap-15">
-                      <div className="grid gap-6">
+                    <div className="grid gap-15 justify-between">
+                      <div className="grid gap-6 text-center">
                         <h3 className="font-[600] text-[20px] text-muted-light">
                           {news[0]?.title}
                         </h3>
-                        <p className="text-muted-light text-[20px] font-[600] leading-[120%]">
+                        <p className="text-muted text-[14px] font-[600] leading-[120%]">
                           {news[0]?.description}
                         </p>
                       </div>
@@ -101,13 +101,18 @@ export default function News() {
                         alt="GIF"
                         width={237}
                         height={236}
-                        className="mobile:w-full"
+                        className="mobile:w-full object-cover"
                       />
                       <div className="grid md:justify-between w-1/2 mobile:w-full mobile:gap-4">
-                        <p className="text-muted-light text-[20px] font-[600] leading-[120%]">
-                          {news[1]?.description}
-                        </p>
-                        <div className="flex justify-between mobile:px-0 mobile:py-0">
+                        <div className="grid justify-b">
+                          <p className="text-muted-light text-[20px] font-[600] leading-[120%] text-center">
+                            {news[1]?.title}
+                          </p>
+                          <p className="text-muted text-[14px] font-[600] leading-[120%] text-center">
+                            {news[1]?.description}
+                          </p>
+                        </div>
+                        <div className="flex  justify-between items-center mobile:px-0 mobile:py-0">
                           {clock}
                           <p className="font-[500] text-[16px] leading-[100%] text-muted">
                             {news[1]?.createTime
@@ -136,13 +141,17 @@ export default function News() {
                         alt="GIF"
                         width={237}
                         height={236}
-                        className="mobile:w-full"
+                        className="mobile:w-full object-cover"
                       />
                       <div className="grid md:justify-between w-1/2 mobile:w-full mobile:gap-4">
                         <p className="text-muted-light text-[20px] font-[600] leading-[120%]">
+                          {news[1]?.title}
+                        </p>
+                        <p className="text-muted text-[14px] font-[600] leading-[120%]">
                           {news[1]?.description}
                         </p>
-                        <div className="flex justify-between mobile:px-0 mobile:py-0">
+
+                        <div className="flex justify-between items-center mobile:px-0 mobile:py-0">
                           {clock}
                           <p className="font-[500] text-[16px] leading-[100%] text-muted">
                             {news[2]?.createTime
@@ -196,13 +205,14 @@ export default function News() {
                   alt={`Image ${newss._id} is not find `}
                   width={301}
                   height={258}
+                  className="object-cover"
                 />
                 <div className="grid  gap-10">
                   <div className="grid gap-2">
-                    <h3 className="font-[600] text-[20px] text-muted-light">
+                    <h3 className="font-[600] text-[20px] text-muted-light text-center">
                       {newss.title}
                     </h3>
-                    <p className="text-muted-light text-[20px] font-[600] leading-[120%]">
+                    <p className=" text-[14px] font-[600] leading-[120%] text-muted">
                       {newss.description}
                     </p>
                   </div>

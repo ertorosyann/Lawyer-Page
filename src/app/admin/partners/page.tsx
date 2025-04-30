@@ -32,7 +32,7 @@ export default function Partners() {
   }, []);
 
   return (
-    <section>
+    <>
       <div className="grid gap-10">
         <div className="flex justify-between font-[600] text-[24px] pb-10 bg-[#F3F4F6] items-center">
           <h1>Our Partners</h1>
@@ -43,7 +43,7 @@ export default function Partners() {
             Add Partner +
           </Button>
         </div>
-        <div className="p-10 grid grid-cols-5 gap-20 items-center">
+        <div className="p-10 grid grid-cols-3 gap-20 items-center">
           {partners.map((partner, index) => (
             <div key={index}>
               <Area className="rounded-[4px] flex flex-col gap-5 bg-white p-8">
@@ -92,9 +92,9 @@ export default function Partners() {
                   alt={`Lawyer Image ${index + 1}`}
                   width={257}
                   height={78}
-                  className="rounded-[4px]"
+                  className="rounded-[4px] object-cover"
                 />
-                <p className="font-[600] text-[16px] break-words w-full">
+                <p className="font-[600] text-[14px] text-muted">
                   {partner.description}
                 </p>
               </Area>
@@ -141,6 +141,6 @@ export default function Partners() {
           fetchAndUpdate={fetchPartnersAndSet}
         />
       )}
-    </section>
+    </>
   );
 }
