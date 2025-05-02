@@ -9,9 +9,11 @@ import { Blogs } from "@/types/items";
 import { fetchBlogs } from "@/lib/actions";
 import { format } from "date-fns";
 import { Button } from "@/custom/Button";
+import { useLocale } from "next-intl";
 
 export default function NewsSlugPage() {
   const [news, setNews] = useState<Blogs[]>([]);
+  const locale = useLocale();
 
   useEffect(() => {
     (async () => {
@@ -50,10 +52,10 @@ export default function NewsSlugPage() {
           />
           <div className="grid gap-6">
             <h1 className="text-[28px] font-bold text-muted-light ">
-              {post.title}
+              {post[`title_${locale}` as keyof Blogs]}
             </h1>
             <p className="text-[20px] leading-[100%] font-[600] text-muted ">
-              {post.description}
+              {post[`description_${locale}` as keyof Blogs]}
             </p>
           </div>
         </Area>
@@ -83,11 +85,10 @@ export default function NewsSlugPage() {
                     <div className="grid justify-between items-center gap-10">
                       <div className="grid gap-2">
                         <h3 className="font-[600] text-[16px] text-muted-light ">
-                          {news.title}
+                          {news[`title_${locale}` as keyof Blogs]}
                         </h3>
                         <p className="text-[14px] text-muted">
-                          {" "}
-                          {news.description}
+                          {news[`description_${locale}` as keyof Blogs]}
                         </p>
                       </div>
                       <div className="flex justify-between">

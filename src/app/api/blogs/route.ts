@@ -20,11 +20,15 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     await connectDB();
-    const { image, description } = await request.json();
+    const { image, title_en, title_am, description_am, description_en } =
+      await request.json();
 
     const newBlog = new Blog({
       image: image,
-      description: description,
+      title_en: title_en,
+      title_am: title_am,
+      description_am: description_am,
+      description_en: description_en,
       createTime: new Date(),
     });
 
@@ -41,11 +45,12 @@ export async function POST(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     await connectDB();
-    const { id, image, description } = await request.json();
+    const { id, image, description_am, description_en } = await request.json();
 
     const updateBlog = await Blog.findByIdAndUpdate(id, {
       image,
-      description,
+      description_am,
+      description_en,
     });
 
     if (!updateBlog) {
@@ -76,7 +81,6 @@ export async function DELETE(request: NextRequest) {
       const imagePath = path.join(process.cwd(), "public", deleteBlog.image);
       try {
         await unlink(imagePath);
-        console.log("Image file deleted:", imagePath);
       } catch (fileError) {
         console.error("Failed to delete image file:", fileError);
       }

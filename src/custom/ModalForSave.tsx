@@ -42,9 +42,12 @@ export default function ModalForDelete({
     try {
       await axios.post("/api/lawyers", {
         image: imageUrl,
-        name: formData.name,
-        description: formData.description,
-        surname: formData.surname,
+        name_en: formData.name_en,
+        description_en: formData.description_en,
+        surname_en: formData.surname_en,
+        name_am: formData.name_am,
+        description_am: formData.description_am,
+        surname_am: formData.surname_am,
       });
       await fetchAndUpdate();
     } catch (error) {
@@ -61,8 +64,10 @@ export default function ModalForDelete({
     try {
       await axios.post("/api/partners", {
         image: imageUrl,
-        description: formData.description,
-        title: formData.title,
+        description_en: formData.description_en,
+        title_en: formData.title_en,
+        description_am: formData.description_am,
+        title_am: formData.title_am,
       });
       await fetchAndUpdate();
     } catch (error) {
@@ -78,7 +83,10 @@ export default function ModalForDelete({
     try {
       await axios.post("/api/blogs", {
         image: imageUrl,
-        description: formData.description,
+        description_en: formData.description_en,
+        description_am: formData.description_am,
+        title_en: formData.title_en,
+        title_am: formData.title_am,
       });
       await fetchAndUpdate();
     } catch (error) {
@@ -95,8 +103,10 @@ export default function ModalForDelete({
       await axios.put("/api/partners", {
         id: formData.id,
         image: imageUrl,
-        description: formData.description,
-        title: formData.title,
+        description_en: formData.description_en,
+        title_en: formData.title_en,
+        description_am: formData.description_am,
+        title_am: formData.title_am,
       });
       await fetchAndUpdate();
     } catch (error) {
@@ -114,8 +124,10 @@ export default function ModalForDelete({
       await axios.put("/api/lawyers", {
         id: formData.id,
         image: imageUrl,
-        name: formData.name,
-        surname: formData.surname,
+        name_en: formData.name_en,
+        surname_en: formData.surname_en,
+        name_am: formData.name_am,
+        surname_am: formData.surname_am,
       });
       await fetchAndUpdate();
     } catch (error) {
@@ -132,7 +144,8 @@ export default function ModalForDelete({
       await axios.put("/api/blogs", {
         id: formData.id,
         image: imageUrl,
-        description: formData.description,
+        description_am: formData.description_am,
+        description_en: formData.description_en,
       });
       await fetchAndUpdate();
     } catch (error) {

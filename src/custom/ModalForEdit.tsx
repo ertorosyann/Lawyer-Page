@@ -1,8 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Button } from "./Button";
 import ModalForSave from "./ModalForSave";
+import { useOutsideClick } from "@/hooks/useOutsideClick";
 
 type ModalForAddingProps = {
   isOpen: boolean;
@@ -14,6 +15,18 @@ type ModalForAddingProps = {
   editIndex: string;
   fetchAndUpdate: () => Promise<void>;
 };
+
+// Helper to make "name_am" => "Name (AM)"
+function formatLabel(key: string): string {
+  return key
+    .split("_")
+    .map((part, index) =>
+      index === 0
+        ? part[0].toUpperCase() + part.slice(1)
+        : `(${part.toUpperCase()})`
+    )
+    .join(" ");
+}
 
 export default function ModalForEdit({
   isOpen,
@@ -28,6 +41,9 @@ export default function ModalForEdit({
   const [image, setImage] = useState<File | null>(null);
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
   const [formData, setFormData] = useState<{ [key: string]: string }>({});
+
+  const modalRef = useRef<HTMLDivElement | null>(null);
+  useOutsideClick(modalRef, onClose);
 
   useEffect(() => {
     if (isOpen) {
@@ -62,127 +78,126 @@ export default function ModalForEdit({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/20  flex items-center justify-center">
-      <div className="bg-white p-6 rounded-xl h-[600px] relative min-w-[1024px] grid gap-5">
+    <div className="fixed inset-0 z-50 bg-black/20 flex items-center justify-center">
+      <div
+        ref={modalRef}
+        className="bg-white p-8 rounded-2xl w-[95%] max-w-[1024px] max-h-[90vh] overflow-y-auto relative shadow-lg"
+      >
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 text-[40px] text-gray-500 hover:text-black"
+          className="absolute top-3 right-3 text-3xl text-gray-500 hover:text-black"
         >
           ✕
         </button>
 
-        {/* Modal Content */}
-        <div className="text-[28px] font-[500] leading-[100%] grid gap-8 p-10 text-[#1D1D1FCC]">
-          <h2 className="text-[25px] font-[700] text-center ">{title}</h2>
+        <h2 className="text-2xl font-bold text-center mb-6">{title}</h2>
 
-          <div className="flex gap-10">
-            <div className="w-1/2">
-              {fields.map((fieldObj, i) =>
-                Object.entries(fieldObj).map(([key]) =>
-                  key == "image" ? null : (
-                    <div key={`${key}-${i}`} className="grid gap-4">
-                      <p className="text-[18px]">{key}</p>
+        <div className="flex gap-8">
+          <div className="flex-1 space-y-6 overflow-y-auto max-h-[400px] pr-2">
+            {fields.map((fieldObj, i) =>
+              Object.entries(fieldObj).map(([key]) =>
+                key === "image" ? null : (
+                  <div key={`${key}-${i}`}>
+                    <label className="block text-gray-700 mb-2 text-base">
+                      {formatLabel(key)}
+                    </label>
+
+                    {key.toLowerCase().includes("description") ? (
+                      <textarea
+                        placeholder={formatLabel(key)}
+                        value={formData[key] || ""}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 text-base resize-none min-h-[150px]"
+                        onChange={(e) =>
+                          setFormData({ ...formData, [key]: e.target.value })
+                        }
+                      />
+                    ) : (
                       <input
                         type="text"
-                        placeholder={key}
+                        placeholder={formatLabel(key)}
                         value={formData[key] || ""}
-                        className="w-full px-4 py-5 bg-[#F3F4F6] rounded-lg text-[18px] text-muted"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 text-base"
                         onChange={(e) => handleInputChange(e, key)}
                       />
-                    </div>
-                  )
+                    )}
+                  </div>
                 )
-              )}
-            </div>
-            <div className="w-1/2 ">
-              {/* Image Upload Section */}
-              {imageRequired && (
-                <div className="flex justify-between h-[200px]">
-                  <div className="grid">
-                    <p className="text-[18px] font-[500]">Image Now</p>
-                    <Image
-                      src={fields[0].image}
-                      width={100}
-                      height={100}
-                      alt="Preview"
-                      className="object-cover rounded-lg"
-                    />
-                  </div>
-                  <div className="grid">
-                    {image ? null : (
-                      <>
-                        <p className="text-[18px] font-[500]">
-                          Upload an Image
-                        </p>
-                        <input
-                          id="file-upload"
-                          type="file"
-                          accept="image/*"
-                          className="hidden"
-                          onChange={handleFileUpload}
-                        />
-                        <label
-                          htmlFor="file-upload"
-                          className="w-[250px] flex items-center justify-center px-2  bg-[#F3F4F6] text-muted border-2 border-dashed border-gray-400 rounded-lg cursor-pointer hover:border-gray-600 hover:text-black transition-[300]"
-                        >
-                          <span className="text-sm">
-                            Click to upload or drag file here
-                          </span>
-                        </label>
-                      </>
-                    )}
+              )
+            )}
+          </div>
 
-                    {image && (
-                      <div className=" grid gap-10">
-                        <div className="grid  gap-14">
-                          <p className="text-[18px] font-[500]">
-                            Editing image
-                          </p>
-                          <Image
-                            src={URL.createObjectURL(image)}
-                            alt="Preview"
-                            width={150}
-                            height={100}
-                            className="object-cover rounded-lg"
-                          />
-                        </div>
-                        <div>
-                          <button
-                            onClick={removeImage}
-                            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition text-[20px]"
-                          >
-                            Delete image
-                          </button>
-                        </div>
-                      </div>
-                    )}
-                  </div>
+          {imageRequired && (
+            <div className="flex-1 space-y-6">
+              <div>
+                <p className="font-medium mb-2">Image Now</p>
+                <Image
+                  src={fields[0].image}
+                  width={200}
+                  height={150}
+                  alt="Current"
+                  className="rounded-lg object-cover"
+                />
+              </div>
+
+              {!image ? (
+                <div>
+                  <label className="font-medium mb-2 block">Upload Image</label>
+                  <input
+                    id="file-upload"
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleFileUpload}
+                  />
+                  <label
+                    htmlFor="file-upload"
+                    className="block w-full border-2 border-dashed border-gray-300 px-4 py-8 text-center text-sm text-gray-500 bg-gray-100 rounded-lg cursor-pointer hover:border-gray-400 hover:text-black transition"
+                  >
+                    Click to upload or drag file here
+                  </label>
+                </div>
+              ) : (
+                <div>
+                  <p className="font-medium mb-2">Editing Image</p>
+                  <Image
+                    src={URL.createObjectURL(image)}
+                    width={200}
+                    height={150}
+                    alt="Preview"
+                    className="rounded-lg object-cover"
+                  />
+                  <button
+                    onClick={removeImage}
+                    className="mt-3 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm"
+                  >
+                    Delete Image
+                  </button>
                 </div>
               )}
             </div>
-          </div>
-
-          {/* Save Button */}
-          <div className="grid justify-end">
-            <Button
-              onClick={() => setIsSaveModalOpen(true)}
-              className="mt-1 text-white text-[20px]  px-5 py-6 rounded-lg cursor-pointer"
-            >
-              Save Changes
-            </Button>
-            <ModalForSave
-              isOpen={isSaveModalOpen}
-              addType={editType}
-              image={image}
-              formData={{ ...formData, id: editIndex }}
-              fetchAndUpdate={fetchAndUpdate}
-              onClose={() => {
-                setIsSaveModalOpen(false);
-                onClose();
-              }}
-            />
-          </div>
+          )}
         </div>
+
+        <div className="mt-8 text-right">
+          <Button
+            onClick={() => setIsSaveModalOpen(true)}
+            className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-6 py-3 rounded-lg"
+          >
+            Save Changes
+          </Button>
+        </div>
+
+        <ModalForSave
+          isOpen={isSaveModalOpen}
+          addType={editType}
+          image={image}
+          formData={{ ...formData, id: editIndex }}
+          fetchAndUpdate={fetchAndUpdate}
+          onClose={() => {
+            setIsSaveModalOpen(false);
+            onClose();
+          }}
+        />
       </div>
     </div>
   );

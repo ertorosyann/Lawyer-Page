@@ -8,11 +8,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function News() {
   const [news, setNews] = useState<Blogs[]>([]);
   const [visibleCount, setVisibleCount] = useState(6);
+  const locale = useLocale();
 
   useEffect(() => {
     (async () => {
@@ -63,10 +64,10 @@ export default function News() {
                     <div className="grid gap-15 justify-between">
                       <div className="grid gap-6 text-center">
                         <h3 className="font-[600] text-[20px] text-muted-light">
-                          {news[0]?.title}
+                          {news[0]?.[`title_${locale}` as keyof Blogs]}
                         </h3>
                         <p className="text-muted text-[14px] font-[600] leading-[120%]">
-                          {news[0]?.description}
+                          {news[0]?.[`description_${locale}` as keyof Blogs]}
                         </p>
                       </div>
                       <div className="flex justify-between items-center">
@@ -106,10 +107,10 @@ export default function News() {
                       <div className="grid md:justify-between w-1/2 mobile:w-full mobile:gap-4">
                         <div className="grid justify-b">
                           <p className="text-muted-light text-[20px] font-[600] leading-[120%] text-center">
-                            {news[1]?.title}
+                            {news[1]?.[`title_${locale}` as keyof Blogs]}
                           </p>
                           <p className="text-muted text-[14px] font-[600] leading-[120%] text-center">
-                            {news[1]?.description}
+                            {news[1]?.[`description_${locale}` as keyof Blogs]}
                           </p>
                         </div>
                         <div className="flex  justify-between items-center mobile:px-0 mobile:py-0">
@@ -145,10 +146,10 @@ export default function News() {
                       />
                       <div className="grid md:justify-between w-1/2 mobile:w-full mobile:gap-4">
                         <p className="text-muted-light text-[20px] font-[600] leading-[120%]">
-                          {news[1]?.title}
+                          {news[2]?.[`title_${locale}` as keyof Blogs]}
                         </p>
                         <p className="text-muted text-[14px] font-[600] leading-[120%]">
-                          {news[1]?.description}
+                          {news[2]?.[`description_${locale}` as keyof Blogs]}
                         </p>
 
                         <div className="flex justify-between items-center mobile:px-0 mobile:py-0">
@@ -210,10 +211,10 @@ export default function News() {
                 <div className="grid  gap-10">
                   <div className="grid gap-2">
                     <h3 className="font-[600] text-[20px] text-muted-light text-center">
-                      {newss.title}
+                      {newss[`title_${locale}` as keyof Blogs]}
                     </h3>
                     <p className=" text-[14px] font-[600] leading-[120%] text-muted">
-                      {newss.description}
+                      {newss[`description_${locale}` as keyof Blogs]}
                     </p>
                   </div>
                   <div className="flex justify-between items-center ">

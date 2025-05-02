@@ -1,6 +1,8 @@
 "use client";
 import axios from "axios";
 import { Button } from "./Button";
+import { useRef } from "react";
+import { useOutsideClick } from "@/hooks/useOutsideClick";
 
 type ModalForDeleteProps = {
   isOpen: boolean;
@@ -17,7 +19,8 @@ export default function ModalForDelete({
   deleteType,
   fetchAndUpdate,
 }: ModalForDeleteProps) {
-  if (!isOpen) return null;
+  const modalRef = useRef<HTMLDivElement | null>(null);
+  useOutsideClick(modalRef, onClose);
 
   const deletePartner = async () => {
     try {
@@ -70,9 +73,14 @@ export default function ModalForDelete({
     onClose();
   };
 
+  if (!isOpen) return null;
+
   return (
     <div className="fixed inset-0 z-50 bg-black/20  flex items-center justify-center text-">
-      <div className="bg-white p-8 rounded-xl shadow-xl min-w-[500px] relative text-center grid gap-16 ">
+      <div
+        ref={modalRef}
+        className="bg-white p-8 rounded-xl shadow-xl min-w-[500px] relative text-center grid gap-16 "
+      >
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-[28px] text-gray-400 hover:text-black"

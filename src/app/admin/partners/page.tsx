@@ -34,7 +34,7 @@ export default function Partners() {
   return (
     <>
       <div className="grid gap-10">
-        <div className="flex justify-between font-[600] text-[24px] pb-10 bg-[#F3F4F6] items-center">
+        <div className="flex justify-between font-[600] text-[24px] bg-[#F3F4F6] items-center">
           <h1>Our Partners</h1>
           <Button
             className="px-10 py-5 rounded-2xl text-white"
@@ -43,7 +43,7 @@ export default function Partners() {
             Add Partner +
           </Button>
         </div>
-        <div className="p-10 grid grid-cols-3 gap-20 items-center">
+        <div className="grid grid-cols-3 gap-20 ">
           {partners.map((partner, index) => (
             <div key={index}>
               <Area className="rounded-[4px] flex flex-col gap-5 bg-white p-8">
@@ -85,17 +85,19 @@ export default function Partners() {
                   )}
                 </div>
 
-                <h3 className="font-600 text-[26px]"> {partner.title}</h3>
                 <Image
                   src={partner.image}
                   priority
                   alt={`Lawyer Image ${index + 1}`}
-                  width={257}
-                  height={78}
+                  width={100}
+                  height={50}
                   className="rounded-[4px] object-cover"
                 />
-                <p className="font-[600] text-[14px] text-muted">
-                  {partner.description}
+                <h3 className="font-[700] text-[18px]">
+                  {partner.title_am} {partner.title_en}
+                </h3>
+                <p className="font-[600] text-[12px] text-muted">
+                  {partner.description_am} {partner.description_en}
                 </p>
               </Area>
             </div>
@@ -124,8 +126,10 @@ export default function Partners() {
           fields={[
             {
               image: partners[partnersEdit].image,
-              description: partners[partnersEdit].description,
-              title: partners[partnersEdit].title,
+              description_am: partners[partnersEdit].description_am,
+              description_en: partners[partnersEdit].description_en,
+              title_am: partners[partnersEdit].title_am,
+              title_en: partners[partnersEdit].title_en,
             },
           ]}
         />

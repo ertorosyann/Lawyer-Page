@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { Button } from "./Button";
 import ModalForSave from "./ModalForSave";
+import { useOutsideClick } from "@/hooks/useOutsideClick";
 
 type ModalForAddingProps = {
   isOpen: boolean;
@@ -25,7 +26,13 @@ export default function ModalForAdding({
 }: ModalForAddingProps) {
   const [image, setImage] = useState<File | null>(null);
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
+  const [error, setError] = useState<string>("");
   const [formData, setFormData] = useState<{ [key: string]: string }>({});
+  const modalRef = useRef<HTMLDivElement | null>(null);
+  useOutsideClick(modalRef, onClose);
+
+  const formatFieldLabel = (field: string) =>
+    field.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -39,20 +46,79 @@ export default function ModalForAdding({
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    field: string
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    field: string,
+    lang: "am" | "en"
   ) => {
     setFormData((prev) => ({
       ...prev,
-      [field]: e.target.value,
+      [`${field}_${lang}`]: e.target.value,
     }));
+  };
+
+  const checkFilles = () => {
+    const hasEmptyField = fields.some((field) => {
+      return (
+        !formData[`${field}_am`] ||
+        formData[`${field}_am`].trim() === "" ||
+        !formData[`${field}_en`] ||
+        formData[`${field}_en`].trim() === ""
+      );
+    });
+
+    if (hasEmptyField) {
+      setError("Please fill in all Armenian and English fields.");
+      return;
+    }
+
+    if (imageRequired && !image) {
+      setError("Image is required.");
+      return;
+    }
+
+    setError("");
+    setIsSaveModalOpen(true);
+  };
+
+  const renderInput = (field: string, lang: "am" | "en") => {
+    const label = `${formatFieldLabel(field)} (${lang === "am" ? "AM" : "EN"})`;
+    const placeholder = `Enter ${formatFieldLabel(field)} in ${
+      lang === "am" ? "AM" : "EN"
+    }`;
+
+    const value = formData[`${field}_${lang}`] || "";
+
+    return (
+      <div className="w-[250px]">
+        <label className="text-gray-600">{label}</label>
+        {field.includes("description") ? (
+          <textarea
+            placeholder={placeholder}
+            className="w-full px-2 py-3 bg-[#F3F4F6] rounded-[15px] min-h-[150px] resize-none"
+            value={value}
+            onChange={(e) => handleInputChange(e, field, lang)}
+          />
+        ) : (
+          <input
+            type="text"
+            placeholder={placeholder}
+            className="w-full px-2 py-3 bg-[#F3F4F6] rounded-[15px]"
+            value={value}
+            onChange={(e) => handleInputChange(e, field, lang)}
+          />
+        )}
+      </div>
+    );
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60  flex items-center justify-center">
-      <div className="bg-white p-6 rounded-xl shadow-lg relative min-w-[1024px] grid gap-10">
+    <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center">
+      <div
+        ref={modalRef}
+        className="bg-white p-6 rounded-xl shadow-lg h-[650px] relative min-w-[1024px] grid gap-5"
+      >
         <button
           onClick={onClose}
           className="absolute top-3 right-3 text-[40px] text-gray-500 hover:text-black"
@@ -60,83 +126,73 @@ export default function ModalForAdding({
           ✕
         </button>
 
-        {/* Modal Content */}
-        <div className="text-[24px] font-[500] leading-[100%] grid gap-6 p-5 text-[#1D1D1FCC]">
-          <h2 className="text-[25px] font-[500] text-center">{title}</h2>
+        <div className="text-[24px] leading-[100%] grid gap-6 p-5 text-[#1D1D1FCC]">
+          <h2 className="text-[25px] font-[700] text-center">{title}</h2>
 
-          {fields.map((field) => (
-            <div key={field} className="grid gap-2">
-              <p>{field} in English</p>
-              <input
-                type="text"
-                placeholder={`${field} in English`}
-                className="w-full px-4 py-5 bg-[#F3F4F6] rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
-                value={formData[field] || ""}
-                onChange={(e) => handleInputChange(e, field)}
-              />
-              <p>{field} in Armenian</p>
-              <input
-                type="text"
-                placeholder={`${field} in Armenian`}
-                className="w-full px-4 py-5 bg-[#F3F4F6] rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
-                value={formData[field] || ""}
-                onChange={(e) => handleInputChange(e, field)}
-              />
-            </div>
-          ))}
-
-          {/* Image Upload Section */}
-          {imageRequired && (
-            <div className="grid gap-2">
-              <p className="text-[16px] font-medium">Upload an Image</p>
-
-              {!image && (
-                <>
-                  <input
-                    id="file-upload"
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
-                    onChange={handleFileUpload}
-                  />
-                  <label
-                    htmlFor="file-upload"
-                    className="w-full flex items-center justify-center px-4 py-6 bg-[#F3F4F6] text-gray-500 border-2 border-dashed border-gray-400 rounded-lg cursor-pointer hover:border-gray-600 hover:text-black transition"
-                  >
-                    <span className="text-sm">
-                      Click to upload or drag file here
-                    </span>
-                  </label>
-                </>
-              )}
-
-              {image && (
-                <div className="mt-2 grid gap-4">
-                  <div className="relative w-full max-w-[150px] h-[150px]">
-                    <Image
-                      src={URL.createObjectURL(image)}
-                      alt="Preview"
-                      priority
-                      fill
-                      className="object-cover rounded-lg"
-                    />
-                  </div>
-                  <button
-                    onClick={removeImage}
-                    className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition w-fit"
-                  >
-                    Delete image
-                  </button>
-                </div>
-              )}
-            </div>
+          {error && (
+            <p className="text-red-600 text-center text-[20px]">{error}</p>
           )}
 
-          {/* Save Button */}
+          <div className="flex justify-center gap-20">
+            <div className="grid gap-5">
+              {fields.map((field) => (
+                <div key={field} className="flex gap-6 text-[18px]">
+                  {renderInput(field, "am")}
+                  {renderInput(field, "en")}
+                </div>
+              ))}
+            </div>
+
+            {imageRequired && (
+              <div className="grid items-start w-[30%]">
+                <p className="text-[20px] font-[700]">Upload an Image</p>
+                {!image && (
+                  <>
+                    <input
+                      id="file-upload"
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={handleFileUpload}
+                    />
+                    <label
+                      htmlFor="file-upload"
+                      className="w-full flex items-center justify-center px-4 py-6 bg-[#F3F4F6] text-gray-500 border-2 border-dashed border-gray-400 rounded-lg cursor-pointer hover:border-gray-600 hover:text-black transition"
+                    >
+                      <span className="text-sm">
+                        Click to upload or drag file here
+                      </span>
+                    </label>
+                  </>
+                )}
+
+                {image && (
+                  <div className="mt-2 grid gap-4">
+                    <div className="relative w-full max-w-[150px] h-[150px]">
+                      <Image
+                        src={URL.createObjectURL(image)}
+                        alt="Preview"
+                        priority
+                        fill
+                        className="object-cover rounded-lg"
+                      />
+                    </div>
+                    <button
+                      onClick={removeImage}
+                      className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition w-fit"
+                    >
+                      Delete image
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
           <div className="grid justify-end">
             <Button
-              onClick={() => setIsSaveModalOpen(true)}
-              className="mt-4 text-white  px-5 py-6 rounded-lg cursor-pointer"
+              onClick={checkFilles}
+              className="mt-4 text-white px-5 py-2 rounded-[20px] cursor-pointer"
             >
               Save Changes
             </Button>

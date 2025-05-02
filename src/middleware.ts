@@ -1,50 +1,27 @@
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function middleware(request: NextRequest) {
-  const { isAuthenticated } = getKindeServerSession();
-  const isAuthed = await isAuthenticated();
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  const token = request.cookies.get("access_token")?.value;
 
-  if (request.nextUrl.pathname.startsWith("/admin") && !isAuthed) {
-    return NextResponse.redirect(new URL("/login", request.url)); // url  changING
+  // Redirect authenticated users away from /login to /admin/blog
+  if (pathname === "/login" && token) {
+    return NextResponse.redirect(new URL("/admin/blog", request.url));
+  }
+
+  // Redirect /admin to /admin/page
+  if (pathname === "/admin") {
+    return NextResponse.redirect(new URL("/admin/blog", request.url));
+  }
+
+  // Protect /admin routes if not authenticated
+  if (pathname.startsWith("/admin") && !token) {
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/admin/:path*", "/admin", "/login"],
 };
-
-// import { NextRequest, NextResponse } from "next/server";
-// import createMiddleware from "next-intl/middleware";
-// import { routing } from "./i18n/routing";
-
-// // Создаем middleware для языка
-// const intlMiddleware = createMiddleware(routing);
-
-// export async function middleware(request: NextRequest) {
-//   // Сначала обрабатываем перевод
-//   const intlResponse = intlMiddleware(request);
-//   if (intlResponse instanceof NextResponse) {
-//     return intlResponse;
-//   }
-
-//   // Потом твоя проверка для /admin
-//   const adminToken = request.cookies.get("_token");
-//   const isLogin = Boolean(adminToken);
-
-//   if (request.nextUrl.pathname.startsWith("/admin") && !isLogin) {
-//     // ⚡ ВАЖНО: редирект должен учитывать язык!
-//     const locale = request.nextUrl.pathname.split("/")[1]; // например "en" или "hy"
-//     return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
-//   }
-
-//   // Всё ок — продолжаем
-//   return NextResponse.next();
-// }
-
-// // Один правильный matcher
-// export const config = {
-//   matcher: ["/((?!api|trpc|_next|_vercel|.*\\..*).*)"],
-// };

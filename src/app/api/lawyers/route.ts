@@ -20,13 +20,24 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     await connectDB();
-    const { image, name, surname, description } = await request.json();
+    const {
+      image,
+      name_en,
+      name_am,
+      surname_en,
+      surname_am,
+      description_en,
+      description_am,
+    } = await request.json();
 
     const newLawyer = new Lawyer({
       image: image,
-      name: name,
-      surname: surname,
-      description: description,
+      name_en: name_en,
+      surname_en: surname_en,
+      description_en: description_en,
+      name_am: name_am,
+      surname_am: surname_am,
+      description_am: description_am,
     });
 
     await newLawyer.save();
@@ -42,14 +53,25 @@ export async function POST(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     await connectDB();
-    const { id, image, name, surname, description } = await request.json();
-
+    const {
+      id,
+      image,
+      name_en,
+      surname_en,
+      description_en,
+      name_am,
+      surname_am,
+      description_am,
+    } = await request.json();
 
     const updateLawyer = await Lawyer.findByIdAndUpdate(id, {
       image,
-      name,
-      surname,
-      description,
+      name_en,
+      surname_en,
+      description_en,
+      name_am,
+      surname_am,
+      description_am,
     });
 
     if (!updateLawyer) {

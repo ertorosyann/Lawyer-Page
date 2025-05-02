@@ -24,11 +24,17 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     await connectDB();
-    const { image, description } = await request.json();
+    const { image, description_en, description_am, title_en, title_am } =
+      await request.json();
+
+    console.log(image, description_en, description_am, title_en, title_am);
 
     const newPartner = new Partner({
       image: image,
-      description: description,
+      description_en: description_en,
+      description_am: description_am,
+      title_en: title_en,
+      title_am: title_am,
     });
 
     await newPartner.save();
@@ -44,12 +50,15 @@ export async function POST(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     await connectDB();
-    const { id, image, description, title } = await request.json();
+    const { id, image, description_am, description_en, title_en, title_am } =
+      await request.json();
 
     const updatePartner = await Partner.findByIdAndUpdate(id, {
       image,
-      description,
-      title,
+      description_am,
+      description_en,
+      title_en,
+      title_am,
     });
 
     if (!updatePartner) {

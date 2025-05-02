@@ -11,12 +11,10 @@ interface MongooseCache {
   promise: Promise<typeof mongoose> | null;
 }
 
-// Расширяем глобальный объект для хранения кэша
 const globalWithMongoose = global as typeof global & {
   mongoose: MongooseCache;
 };
 
-// Используем глобальный кэш, если он есть
 const cached: MongooseCache = globalWithMongoose.mongoose || {
   conn: null,
   promise: null,

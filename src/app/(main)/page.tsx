@@ -28,12 +28,13 @@ import { useEffect, useState } from "react";
 import { Blogs, Lawyer } from "@/types/items";
 import { fetchBlogs, fetchLawyers } from "@/lib/actions";
 import React from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function Home() {
   const [lawyers, setLawyers] = useState<Lawyer[] | undefined>([]);
   const [news, setNews] = useState<Blogs[] | undefined>([]);
   const t = useTranslations("Home");
+  const locale = useLocale();
 
   useEffect(() => {
     (async () => {
@@ -218,16 +219,14 @@ export default function Home() {
                   <div className="grid gap-1">
                     <div className="flex justify-between gap-[6px]">
                       <h3 className="text-[20px] font-[600] text-[#D0D0D0] mobile:text-[16px]">
-                        {lawyer.name} {lawyer.surname}
+                        {lawyer[`name_${locale}` as keyof Lawyer]}{" "}
+                        {lawyer[`surname_${locale}` as keyof Lawyer]}
                       </h3>
                       {arrowUp}
                     </div>
-                    <h4 className="text-[#AEAEAE] text-[16px] mobile:text-[14px]">
-                      Civil right
-                    </h4>
                   </div>
                   <p className="text-[12px] text-[#AEAEAE] font-[500] mobile:text-[14px]">
-                    {lawyer.description}
+                    {lawyer[`description_${locale}` as keyof Lawyer]}
                   </p>
                 </div>
               </Area>
@@ -458,10 +457,10 @@ export default function Home() {
                 />
                 <div className="flex flex-col justify-between w-1/2 mobile:w-2/3 mobile:gap-20">
                   <p className="text-muted-light text-[20px] font-[600] leading-[120%] mobile:text-[14px] mobile:text-">
-                    {news.title}
+                    {news[`title_${locale}` as keyof Blogs]}
                   </p>
-                  <p className="text-muted text-[14px] font-[600] leading-[120%] mobile:text-[14px] mobile:text-">
-                    {news.description}
+                  <p className="text-muted text-[12px] font-[600] leading-[120%] mobile:text-[14px] mobile:text-">
+                    {news[`description_${locale}` as keyof Blogs]}
                   </p>
                   <div className="flex justify-between">
                     {clock}

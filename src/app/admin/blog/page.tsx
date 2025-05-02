@@ -24,6 +24,8 @@ export default function Blog() {
 
   const fetchBlogsAndSet = async () => {
     const data = await fetchBlogs();
+    console.log(data);
+
     if (data) {
       setBlogs(data);
     }
@@ -95,9 +97,11 @@ export default function Blog() {
                   height={50}
                   className="rounded-[4px] object-cover"
                 />
-                <h2 className="font-[700] text-[16px]">{blog.title}</h2>
+                <h2 className="font-[700] text-[16px]">
+                  {blog.title_am} {blog.title_en}
+                </h2>
                 <p className="font-[600] text-[14px] text-muted">
-                  {blog.description}
+                  {blog.description_am} {blog.description_en}
                 </p>
                 <p className="text-[14px] text-muted">
                   {blog.createTime
@@ -133,8 +137,10 @@ export default function Blog() {
           fetchAndUpdate={fetchBlogsAndSet}
           fields={[
             {
-              title: blogs[blogEdit].title,
-              description: blogs[blogEdit].description,
+              title_am: blogs[blogEdit].title_am,
+              title_en: blogs[blogEdit].title_en,
+              description_am: blogs[blogEdit].description_am,
+              description_en: blogs[blogEdit].description_en,
               image: blogs[blogEdit].image,
             },
           ]}

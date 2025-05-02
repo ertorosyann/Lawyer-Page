@@ -94,9 +94,12 @@ export default function Laywers() {
                   className="rounded-[4px] object-cover"
                 />
                 <p className="text-center font-500 text-[20px]">
-                  {lawyer.name} {lawyer.surname}
+                  {lawyer.name_am} {lawyer.surname_am} {lawyer.name_en}{" "}
+                  {lawyer.surname_en}
                 </p>
-                <p className="text-[14px] text-muted">{lawyer.description}</p>
+                <p className="text-[14px] text-muted">
+                  {lawyer.description_am} {lawyer.description_en}
+                </p>
               </Area>
             </div>
           ))}
@@ -124,10 +127,13 @@ export default function Laywers() {
           fetchAndUpdate={fetchLawyersAndSet}
           fields={[
             {
-              name: lawyers[lawyerEdit].name,
-              surname: lawyers[lawyerEdit].surname,
-              description: lawyers[lawyerEdit].description,
               image: lawyers[lawyerEdit].image,
+              name_am: lawyers[lawyerEdit].name_am,
+              name_en: lawyers[lawyerEdit].name_en,
+              surname_en: lawyers[lawyerEdit].surname_en,
+              surname_am: lawyers[lawyerEdit].surname_am,
+              description_en: lawyers[lawyerEdit].description_en,
+              description_am: lawyers[lawyerEdit].description_am,
             },
           ]}
         />
