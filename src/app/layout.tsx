@@ -2,11 +2,8 @@ import { getLocale, getMessages } from "next-intl/server";
 import "./globals.css";
 import { AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
+export async function generateMetadata() {
+  const locale = await getLocale();
   const messages: AbstractIntlMessages = await getMessages({ locale });
   const title = (messages.TabTitles as AbstractIntlMessages)?.home;
   return {
