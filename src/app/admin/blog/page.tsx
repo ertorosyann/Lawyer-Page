@@ -37,9 +37,9 @@ export default function Blog() {
 
   return (
     <>
-      <div className="grid gap-10">
-        <div className="flex justify-between font-[600] text-[24px] pb-10 bg-[#F3F4F6] items-center">
-          <h1>Our Blogs</h1>
+      <div className="grid gap-10 ">
+        <div className="flex justify-between font-[600] text-[24px] p-10  items-center">
+          <h1 className="font-[700] text-[30px]">Our Blogs</h1>
           <Button
             className="px-10 py-5 rounded-2xl text-white"
             onClick={() => setAddBlogIsOpen(true)}
@@ -50,7 +50,7 @@ export default function Blog() {
         <div className="p-10 grid grid-cols-3 gap-10">
           {blogs.map((blog, index) => (
             <div key={index}>
-              <Area className="rounded-[4px] grid gap-2 bg-white">
+              <Area className="rounded-[4px] grid gap-2 bg-white px-5 border-[#ad90de]">
                 <div className="relative flex justify-end">
                   <button
                     onClick={() =>
@@ -58,7 +58,7 @@ export default function Blog() {
                         selectedPopupIndex === index ? null : index
                       )
                     }
-                    className="cursor-pointer"
+                    className="cursor-pointer p-3 hover:bg-[#d0d0d0] rounded-[10px]"
                   >
                     {more}
                   </button>
@@ -89,17 +89,19 @@ export default function Blog() {
                     </div>
                   )}
                 </div>
-                <Image
-                  src={blog.image}
-                  alt={`Lawyer Image ${index + 1}`}
-                  priority
-                  width={100}
-                  height={50}
-                  className="rounded-[4px] object-cover"
-                />
-                <h2 className="font-[700] text-[16px]">
-                  {blog.title_am} {blog.title_en}
-                </h2>
+                <div className="flex items-center gap-5">
+                  <Image
+                    src={blog.image}
+                    alt={`Lawyer Image ${index + 1}`}
+                    priority
+                    width={100}
+                    height={50}
+                    className="rounded-[4px] object-cover"
+                  />
+                  <h2 className="font-[700] text-[16px]">
+                    {blog.title_am} {blog.title_en}
+                  </h2>
+                </div>
                 <p className="font-[600] text-[14px] text-muted">
                   {blog.description_am} {blog.description_en}
                 </p>

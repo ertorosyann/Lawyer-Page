@@ -81,16 +81,29 @@ export default function ModalForEdit({
     <div className="fixed inset-0 z-50 bg-black/20 flex items-center justify-center">
       <div
         ref={modalRef}
-        className="bg-white p-8 rounded-2xl w-[95%] max-w-[1024px] max-h-[90vh] overflow-y-auto relative shadow-lg"
+        className="bg-white p-8 rounded-2xl w-[95%] max-w-[1024px] max-h-[90vh] overflow-y-auto  shadow-lg grid gap-10"
       >
-        <button
+        {/* <button
           onClick={onClose}
           className="absolute top-3 right-3 text-3xl text-gray-500 hover:text-black"
         >
           ✕
-        </button>
+        </button> */}
 
-        <h2 className="text-2xl font-bold text-center mb-6">{title}</h2>
+        <div className="flex justify-between items-center">
+          <div className="pl-[45%]">
+            <h2 className="text-[25px] font-[700] text-center">{title}</h2>
+          </div>
+          <div>
+            <button
+              onClick={onClose}
+              className="  text-[40px] text-gray-500 hover:text-black"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+        {/* <h2 className="text-2xl font-bold text-center mb-6">{title}</h2> */}
 
         <div className="flex gap-8">
           <div className="flex-1 space-y-6 overflow-y-auto max-h-[400px] pr-2">
@@ -178,7 +191,7 @@ export default function ModalForEdit({
           )}
         </div>
 
-        <div className="mt-8 text-right">
+        <div className="text-right">
           <Button
             onClick={() => setIsSaveModalOpen(true)}
             className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-6 py-3 rounded-lg"

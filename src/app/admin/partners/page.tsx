@@ -33,9 +33,9 @@ export default function Partners() {
 
   return (
     <>
-      <div className="grid gap-10">
-        <div className="flex justify-between font-[600] text-[24px] bg-[#F3F4F6] items-center">
-          <h1>Our Partners</h1>
+      <div className="grid gap-10 ">
+        <div className="flex justify-between font-[600] text-[24px] p-10  items-center">
+          <h1 className="text-[30px] font-[700]">Our Partners</h1>
           <Button
             className="px-10 py-5 rounded-2xl text-white"
             onClick={() => setAddPartnerIsOpen(true)}
@@ -43,10 +43,10 @@ export default function Partners() {
             Add Partner +
           </Button>
         </div>
-        <div className="grid grid-cols-3 gap-20 ">
+        <div className="grid grid-cols-3 gap-20 p-10">
           {partners.map((partner, index) => (
             <div key={index}>
-              <Area className="rounded-[4px] flex flex-col gap-5 bg-white p-8">
+              <Area className="rounded-[4px] flex flex-col gap-5 bg-white p-8 border-[#ad90de]">
                 <div className="relative flex justify-end">
                   <button
                     onClick={() => {
@@ -54,7 +54,7 @@ export default function Partners() {
                         selectedPopupIndex === index ? null : index
                       );
                     }}
-                    className="cursor-pointer"
+                    className="cursor-pointer p-3 hover:bg-[#d0d0d0] rounded-[10px]"
                   >
                     {more}
                   </button>
@@ -85,17 +85,24 @@ export default function Partners() {
                   )}
                 </div>
 
-                <Image
-                  src={partner.image}
-                  priority
-                  alt={`Lawyer Image ${index + 1}`}
-                  width={100}
-                  height={50}
-                  className="rounded-[4px] object-cover"
-                />
-                <h3 className="font-[700] text-[18px]">
-                  {partner.title_am} {partner.title_en}
-                </h3>
+                <div className="flex gap-6">
+                  <Image
+                    src={partner.image}
+                    priority
+                    alt={`Lawyer Image ${index + 1}`}
+                    width={100}
+                    height={50}
+                    className="rounded-[4px] object-cover"
+                  />
+                  <div className="grid text-center">
+                    <h3 className="font-[700] text-[18px]">
+                      {partner.title_am}
+                    </h3>
+                    <h3 className="font-[700] text-[18px]">
+                      {partner.title_en}
+                    </h3>
+                  </div>
+                </div>
                 <p className="font-[600] text-[12px] text-muted">
                   {partner.description_am} {partner.description_en}
                 </p>

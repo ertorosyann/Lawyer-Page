@@ -33,9 +33,9 @@ export default function Laywers() {
 
   return (
     <>
-      <div className="grid gap-10">
-        <div className="flex justify-between font-[600] text-[24px] pb-10 bg-[#F3F4F6] items-center">
-          <h1>Our Laywers</h1>
+      <div className="grid gap-10 ">
+        <div className="flex justify-between font-[600] text-[24px] p-10  items-center">
+          <h1 className="text-[30px] font-[700]">Our Laywers</h1>
           <Button
             className="px-10 py-5 rounded-2xl text-white"
             onClick={() => setAddLawyerIsOpen(true)}
@@ -43,10 +43,10 @@ export default function Laywers() {
             Add Laywer +
           </Button>
         </div>
-        <div className="`p-10 grid  grid-cols-3 gap-20`">
+        <div className=" flex gap-20 p-10">
           {lawyers.map((lawyer, index) => (
-            <div key={index} className="w-60">
-              <Area className="relative rounded-[4px] grid gap-6 bg-white">
+            <div key={index} className="">
+              <Area className="relative rounded-[4px] grid gap-5 bg-white p-8 border-[#ad90de] ">
                 <div className="absolute top-4 right-4 z-40">
                   <button
                     onClick={() =>
@@ -54,7 +54,7 @@ export default function Laywers() {
                         selectedPopupIndex === index ? null : index
                       )
                     }
-                    className="cursor-pointer"
+                    className="cursor-pointer p-3 hover:bg-[#d0d0d0] rounded-[10px]"
                   >
                     {more}
                   </button>
@@ -85,18 +85,25 @@ export default function Laywers() {
                   )}
                 </div>
 
-                <Image
-                  src={lawyer.image}
-                  alt={`Lawyer Image ${index + 1}`}
-                  priority
-                  width={100}
-                  height={50}
-                  className="rounded-[4px] object-cover"
-                />
-                <p className="text-center font-500 text-[20px]">
-                  {lawyer.name_am} {lawyer.surname_am} {lawyer.name_en}{" "}
-                  {lawyer.surname_en}
-                </p>
+                <div className="flex items-center gap-4">
+                  <Image
+                    src={lawyer.image}
+                    alt={`Lawyer Image ${index + 1}`}
+                    priority
+                    width={100}
+                    height={50}
+                    className="rounded-[4px] object-cover"
+                  />
+                  <div className="grid">
+                    <p className="text-center font-500 text-[20px]">
+                      {lawyer.name_am} {lawyer.surname_am}
+                    </p>
+                    <p className="text-center font-500 text-[20px]">
+                      {lawyer.name_en}
+                      {lawyer.surname_en}
+                    </p>
+                  </div>
+                </div>
                 <p className="text-[14px] text-muted">
                   {lawyer.description_am} {lawyer.description_en}
                 </p>

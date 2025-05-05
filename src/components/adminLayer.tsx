@@ -14,15 +14,15 @@ export default function AdminLayer() {
   ];
 
   return (
-    <section className="p-4">
-      <div className="flex flex-col justify-between h-full px-10">
+    <section className=" bg-[#d0d0d0] rounded-[10px] h-full">
+      <div className="flex flex-col justify-between h-full p-10 ">
         <div className="grid gap-15">
           {logo}
-          <ul className="grid gap-10 font-[500] text-[28px]">
+          <ul className="grid gap-4 font-[500] text-[28px]">
             {navItems.map(({ title, href }) => (
               <li key={href}>
                 <div
-                  className={`flex justify-between items-center rounded-2xl px-2 ${
+                  className={`flex justify-between items-center rounded-2xl p-3 ${
                     pathname === href ? "bg-gray-200" : ""
                   }`}
                 >
@@ -41,7 +41,7 @@ export default function AdminLayer() {
           </ul>
         </div>
         <LogoutLink postLogoutRedirectURL="/login">
-          <div className="flex justify-between p-5 font-[600] text-[28px] hover:bg-amber-50 items-center cursor-pointer">
+          <div className="flex justify-between p-5 font-[600] text-[28px] hover:bg-gray-200 items-center cursor-pointer rounded-2xl">
             <p>Log Out</p>
             {logOuth}
           </div>

@@ -29,7 +29,10 @@ export default function ModalForAdding({
   const [error, setError] = useState<string>("");
   const [formData, setFormData] = useState<{ [key: string]: string }>({});
   const modalRef = useRef<HTMLDivElement | null>(null);
-  useOutsideClick(modalRef, onClose);
+  useOutsideClick(modalRef, () => {
+    onClose();
+    setError("");
+  });
 
   const formatFieldLabel = (field: string) =>
     field.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
@@ -117,17 +120,22 @@ export default function ModalForAdding({
     <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center">
       <div
         ref={modalRef}
-        className="bg-white p-6 rounded-xl shadow-lg h-[650px] relative min-w-[1024px] grid gap-5"
+        className="bg-white p-6 rounded-xl shadow-lg h-[650px]  min-w-[1024px] grid gap-5"
       >
-        <button
-          onClick={onClose}
-          className="absolute top-3 right-3 text-[40px] text-gray-500 hover:text-black"
-        >
-          ✕
-        </button>
-
         <div className="text-[24px] leading-[100%] grid gap-6 p-5 text-[#1D1D1FCC]">
-          <h2 className="text-[25px] font-[700] text-center">{title}</h2>
+          <div className="flex justify-between">
+            <div className="pl-[45%]">
+              <h2 className="text-[25px] font-[700] text-center">{title}</h2>
+            </div>
+            <div>
+              <button
+                onClick={onClose}
+                className="  text-[40px] text-gray-500 hover:text-black"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
 
           {error && (
             <p className="text-red-600 text-center text-[20px]">{error}</p>
@@ -189,25 +197,35 @@ export default function ModalForAdding({
             )}
           </div>
 
-          <div className="grid justify-end">
+          {/* <div className="grid justify-end pt-10">
             <Button
               onClick={checkFilles}
-              className="mt-4 text-white px-5 py-2 rounded-[20px] cursor-pointer"
+              className="text-[20px] text-white   rounded-[20px] cursor-pointer px-6"
             >
               Save Changes
             </Button>
-            <ModalForSave
-              isOpen={isSaveModalOpen}
-              formData={formData}
-              addType={addType}
-              image={image}
-              fetchAndUpdate={fetchAndUpdate}
-              onClose={() => {
-                setIsSaveModalOpen(false);
-                onClose();
-              }}
-            />
+          </div> */}
+
+          <div className=" text-right">
+            <Button
+              onClick={checkFilles}
+              className=" text-white text-lg px-6 py-3 rounded-lg"
+            >
+              Save Changes
+            </Button>
           </div>
+
+          <ModalForSave
+            isOpen={isSaveModalOpen}
+            formData={formData}
+            addType={addType}
+            image={image}
+            fetchAndUpdate={fetchAndUpdate}
+            onClose={() => {
+              setIsSaveModalOpen(false);
+              onClose();
+            }}
+          />
         </div>
       </div>
     </div>
