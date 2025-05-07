@@ -43,7 +43,7 @@ export default function Laywers() {
             Add Laywer +
           </Button>
         </div>
-        <div className=" flex gap-20 p-10">
+        <div className=" grid grid-cols-3 gap-10 p-10">
           {lawyers.map((lawyer, index) => (
             <div key={index} className="">
               <Area className="relative rounded-[4px] grid gap-5 bg-white p-8 border-[#ad90de] ">
@@ -85,7 +85,7 @@ export default function Laywers() {
                   )}
                 </div>
 
-                <div className="flex items-center gap-4">
+                <div className="grid items-center gap-4">
                   <Image
                     src={lawyer.image}
                     alt={`Lawyer Image ${index + 1}`}
@@ -94,15 +94,13 @@ export default function Laywers() {
                     height={50}
                     className="rounded-[4px] object-cover"
                   />
-                  <div className="grid">
-                    <p className="text-center font-500 text-[20px]">
-                      {lawyer.name_am} {lawyer.surname_am}
-                    </p>
-                    <p className="text-center font-500 text-[20px]">
-                      {lawyer.name_en}
-                      {lawyer.surname_en}
-                    </p>
-                  </div>
+                  <p className="text-center font-500 text-[20px]">
+                    {lawyer.name_am} {lawyer.surname_am}
+                  </p>
+                  <p className="text-center font-500 text-[20px]">
+                    {lawyer.name_en}
+                    {lawyer.surname_en}
+                  </p>
                 </div>
                 <p className="text-[14px] text-muted">
                   {lawyer.description_am} {lawyer.description_en}

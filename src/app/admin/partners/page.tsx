@@ -43,7 +43,7 @@ export default function Partners() {
             Add Partner +
           </Button>
         </div>
-        <div className="grid grid-cols-3 gap-20 p-10">
+        <div className="grid grid-cols-3 gap-10 p-10">
           {partners.map((partner, index) => (
             <div key={index}>
               <Area className="rounded-[4px] flex flex-col gap-5 bg-white p-8 border-[#ad90de]">
@@ -85,7 +85,7 @@ export default function Partners() {
                   )}
                 </div>
 
-                <div className="flex gap-6">
+                <div className="grid text-start gap-3">
                   <Image
                     src={partner.image}
                     priority
@@ -94,14 +94,8 @@ export default function Partners() {
                     height={50}
                     className="rounded-[4px] object-cover"
                   />
-                  <div className="grid text-center">
-                    <h3 className="font-[700] text-[18px]">
-                      {partner.title_am}
-                    </h3>
-                    <h3 className="font-[700] text-[18px]">
-                      {partner.title_en}
-                    </h3>
-                  </div>
+                  <h3 className="font-[700] text-[18px]">{partner.title_am}</h3>
+                  <h3 className="font-[700] text-[18px]">{partner.title_en}</h3>
                 </div>
                 <p className="font-[600] text-[12px] text-muted">
                   {partner.description_am} {partner.description_en}

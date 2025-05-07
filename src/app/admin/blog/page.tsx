@@ -89,7 +89,7 @@ export default function Blog() {
                     </div>
                   )}
                 </div>
-                <div className="flex items-center gap-5">
+                <div className="grid text-center gap-5">
                   <Image
                     src={blog.image}
                     alt={`Lawyer Image ${index + 1}`}
