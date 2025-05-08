@@ -23,10 +23,10 @@ export default function PartnerPage() {
       <section className=" max-w-[1024px] mx-auto mobile:w-full">
         <div className="grid justify-center gap-15 ">
           <div className="grid gap-4 text-center px-20 mobile:px-10">
-            <h1 className="font-[700] text-[42px] text-muted-light mobile:text-[20px]">
+            <h1 className="font-bold text-[42px] text-muted-light mobile:text-[20px]">
               {t("title")}
             </h1>
-            <p className="font-[500] text-[24px] text-muted mobile:text-[14px] mobile:px-10">
+            <p className="font-medium text-[24px] text-muted mobile:text-[14px] mobile:px-10">
               {t("title-description")}
             </p>
           </div>

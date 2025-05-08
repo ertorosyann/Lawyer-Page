@@ -18,7 +18,7 @@ export default function AdminLayer() {
       <div className="flex flex-col justify-between h-full p-10 ">
         <div className="grid gap-15">
           {logo}
-          <ul className="grid gap-4 font-[500] text-[28px]">
+          <ul className="grid gap-4 font-medium text-[28px]">
             {navItems.map(({ title, href }) => (
               <li key={href}>
                 <div

@@ -39,16 +39,16 @@ export default function News() {
         <div className="max-w-[1024px] mx-auto pb-25">
           <div className="grid justify-center  gap-2 ">
             <div className="text-center px-20 mobile:px-10">
-              <h1 className="font-[700] text-[42px] text-muted-light mobile:text-[20px]">
+              <h1 className="font-bold text-[42px] text-muted-light mobile:text-[20px]">
                 {t("title")}
               </h1>
-              <p className="font-[500] text-[24px] text-muted mobile:text-[16px]">
+              <p className="font-medium text-[24px] text-muted mobile:text-[16px]">
                 {t("title-description")}
               </p>
             </div>
 
             <div className="grid gap-2 mobile:m-5">
-              <h3 className="text-[24px] font-[500] text-[#6A49A2]">
+              <h3 className="text-[24px] font-medium text-[#6A49A2]">
                 Recent News
               </h3>
               <div className="grid lg:grid-cols-2 gap-15 mobile:grid-cols-1">
@@ -115,7 +115,7 @@ export default function News() {
                         </div>
                         <div className="flex  justify-between items-center mobile:px-0 mobile:py-0">
                           {clock}
-                          <p className="font-[500] text-[16px] leading-[100%] text-muted">
+                          <p className="font-medium text-[16px] leading-[100%] text-muted">
                             {news[1]?.createTime
                               ? format(
                                   new Date(news[1].createTime),
@@ -154,7 +154,7 @@ export default function News() {
 
                         <div className="flex justify-between items-center mobile:px-0 mobile:py-0">
                           {clock}
-                          <p className="font-[500] text-[16px] leading-[100%] text-muted">
+                          <p className="font-medium text-[16px] leading-[100%] text-muted">
                             {news[2]?.createTime
                               ? format(
                                   new Date(news[2].createTime),
@@ -193,7 +193,7 @@ export default function News() {
 
       <section className="max-w-[1024px] mx-auto mobile:w-full">
         <div className="grid gap-15 mobile:m-5">
-          <h3 className="text-[24px] font-[500] text-[#6A49A2]">All Posts</h3>
+          <h3 className="text-[24px] font-medium text-[#6A49A2]">All Posts</h3>
           <div className="grid lg:grid-cols-3 gap-15 mobile:grid-cols-1">
             {news.slice(3, 3 + visibleCount).map((newss) => (
               <Area
@@ -220,7 +220,7 @@ export default function News() {
                   <div className="flex justify-between items-center ">
                     <div className="flex  gap-3  items-center">
                       {clock}
-                      <p className="font-[500] text-[16px] leading-[100%] text-muted">
+                      <p className="font-medium text-[16px] leading-[100%] text-muted">
                         {newss?.createTime
                           ? format(new Date(newss.createTime), "MMMM d, yyyy")
                           : null}

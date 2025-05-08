@@ -1,3 +1,5 @@
+"use client";
+
 import {
   location_black,
   logo,
@@ -5,33 +7,73 @@ import {
   telephone_black,
 } from "@/app/assets/svg";
 import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
+import { FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
 import Link from "next/link";
 import React from "react";
+import { Button } from "@/custom/Button";
 
 export const Footer = () => {
   const t = useTranslations("Footer");
+  const tNavbar = useTranslations("Navbar");
+
+  const pathname = usePathname();
+
   return (
-    <footer className="px-10 pt-35 pb-10 bg-darkk mobile:px-4 mobile:pt-10 bg-darkk">
-      <section className="max-w-[1280px] mx-auto">
-        <div className="flex flex-col md:flex-row justify-between pb-10 border-b-2 border-[#7B7B7B] gap-10">
+    <footer className="px-10 pt-35 pb-10 bg-darkk mobile:px-8 mobile:pt-10 ">
+      <section className="max-w-[1280px] mx-auto grid gap-10 mobile:max-w-full">
+        <div className="flex justify-between  mobile:flex-col mobile:gap-10">
           {/* Mobile styles: center content and adjust text size */}
-          <div className="flex flex-col gap-4 text-left items-center">
+          <div className="flex flex-col gap-4 text-left items-center mobile:items-start">
             <Link href="/">
               {React.cloneElement(logo, {
-                className: "mobile:w-[300px]  mobile:items-start ",
+                className: "mobile:w-[300px]",
               })}
             </Link>
-            <h2 className="font-[700] text-[28px] text-muted-light leading-[100%] mobile:text-[16px] ">
+            <h2 className="font-bold text-3xl text-muted-light mobile:text-base ">
               {t("specialised")}
             </h2>
+
+            <Button className="text-[18px] py-3 px-8  rounded-[50px] md:hidden">
+              {tNavbar("contact")}
+            </Button>
           </div>
+
+          <div className="grid items-start">
+            {/* Mobile styles: vertical menu layout and smaller text */}
+            <ul className="grid items-start gap-3 text-2xl font-bold  mobile:w-full mobile:text-base ">
+              <li
+                className={`${pathname === "/about" ? "text-[#6A49A2]" : ""}`}
+              >
+                <Link href="/about">{tNavbar("about")}</Link>
+              </li>
+              <li
+                className={`${
+                  pathname === "/services" ? "text-[#6A49A2]" : ""
+                }`}
+              >
+                <Link href="/services">{tNavbar("services")}</Link>
+              </li>
+              <li
+                className={`${
+                  pathname === "/partners" ? "text-[#6A49A2]" : ""
+                }`}
+              >
+                <Link href="/partners">{tNavbar("partners")}</Link>
+              </li>
+              <li className={`${pathname === "/news" ? "text-[#6A49A2]" : ""}`}>
+                <Link href="/news">{tNavbar("news")}</Link>
+              </li>
+            </ul>
+          </div>
+
           {/* Mobile styles: smaller text and centered items */}
-          <div className="flex flex-col gap-4  ">
+          <div className="grid gap-1">
             <div className="flex items-center gap-4">
               {React.cloneElement(telephone_black, {
                 className: "mobile:w-[40px]",
               })}
-              <p className="font-[500] text-[24px] leading-[100%]  mobile:text-[12px]">
+              <p className="font-medium text-2xl leading-[100%]  mobile:text-base">
                 +374 12122112
               </p>
             </div>
@@ -39,7 +81,7 @@ export const Footer = () => {
               {React.cloneElement(mail_black, {
                 className: "mobile:w-[40px]",
               })}
-              <p className="font-[500] text-[24px] leading-[100%]  mobile:text-[12px]">
+              <p className="font-medium text-2xl leading-[100%]  mobile:text-base">
                 Lawyerhelp@gmail.com
               </p>
             </div>
@@ -47,24 +89,43 @@ export const Footer = () => {
               {React.cloneElement(location_black, {
                 className: "mobile:w-[40px]",
               })}
-              <p className="font-[500] text-[24px] leading-[100%]  mobile:text-[12px]">
+              <p className="font-medium text-2xl leading-[100%]  mobile:text-base">
                 {t("address")}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="pt-10 flex mobile:flex-col flex-row items-center mobile:items-baseline justify-between gap-6">
-          {/* Mobile styles: vertical menu layout and smaller text */}
-          <ul className="flex flex-row items-center gap-3 md:space-x-[60px] text-[22px] font-[700] text-center mobile:grid  mobile:w-full mobile:justify-center mobile:text-[14px]">
-            <li> {t("about")}</li>
-            <li> {t("resources")}</li>
-            <li>{t("support")}</li>
-            <li>{t("privacy")}</li>
-          </ul>
-
-          {/* Mobile styles: smaller font and centered */}
-          <p className="text-[16px] font-[400] text-[#717173] text-center mobile:text-left mobile:text-[14px]">
+        <div className="w-full bg-[#937abd] rounded-2xl px-8 py-3 flex justify-between mobile:grid mobile:justify-center">
+          <Button className="text-[18px] py-3 px-8  rounded-[50px] mobile:hidden">
+            {tNavbar("contact")}
+          </Button>
+          <div className="flex items-center gap-6 ">
+            <a
+              href="https://www.linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedin className="text-white text-4xl hover:text-[#6A49A2]" />
+            </a>
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram className="text-white text-4xl hover:text-[#6A49A2]" />
+            </a>
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebook className="text-white text-4xl hover:text-[#6A49A2]" />
+            </a>
+          </div>
+        </div>
+        <div className="text-center">
+          <p className="text-xl font-normal text-[#717173]  mobile:text-base">
             {t("serteficate")}
           </p>
         </div>

@@ -35,7 +35,7 @@ export default function Partners() {
     <>
       <div className="grid gap-10 ">
         <div className="flex justify-between font-[600] text-[24px] p-10  items-center">
-          <h1 className="text-[30px] font-[700]">Our Partners</h1>
+          <h1 className="text-[30px] font-bold">Our Partners</h1>
           <Button
             className="px-10 py-5 rounded-2xl text-white"
             onClick={() => setAddPartnerIsOpen(true)}
@@ -94,8 +94,8 @@ export default function Partners() {
                     height={50}
                     className="rounded-[4px] object-cover"
                   />
-                  <h3 className="font-[700] text-[18px]">{partner.title_am}</h3>
-                  <h3 className="font-[700] text-[18px]">{partner.title_en}</h3>
+                  <h3 className="font-bold text-[18px]">{partner.title_am}</h3>
+                  <h3 className="font-bold text-[18px]">{partner.title_en}</h3>
                 </div>
                 <p className="font-[600] text-[12px] text-muted">
                   {partner.description_am} {partner.description_en}

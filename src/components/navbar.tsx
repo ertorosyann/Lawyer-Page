@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/custom/Button";
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { FaChevronDown } from "react-icons/fa";
 import React from "react";
+import { useOutsideClick } from "@/hooks/useOutsideClick";
 
 export const NavBar = () => {
   const t = useTranslations("Navbar");
@@ -17,6 +18,11 @@ export const NavBar = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
   const router = useRouter();
   const pathname = usePathname();
+
+  const modalRef = useRef<HTMLDivElement | null>(null);
+  useOutsideClick(modalRef, () => {
+    setOpen(false);
+  });
 
   useEffect(() => {
     const cookieLocale = document.cookie
@@ -42,7 +48,7 @@ export const NavBar = () => {
   return (
     <nav className="p-4 border-muted flex items-center gap-15 text-[#D0D0D0]">
       {/* Desktop nav */}
-      <ul className="mobile:hidden flex flex-row gap-10 text-[18px] font-[500]">
+      <ul className="mobile:hidden flex flex-row gap-10 text-[18px] font-medium">
         <li className={`${pathname === "/about" ? "text-[#6A49A2]" : ""}`}>
           <Link href="/about">{t("about")}</Link>
         </li>
@@ -57,12 +63,12 @@ export const NavBar = () => {
         </li>
       </ul>
       <div className="flex items-center gap-5  mobile:hidden ">
-        <Button className="text-[18px] leading-[100%] py-3 px-8  rounded-[50px]">
+        <Button className="text-[18px] py-3 px-8  rounded-[50px]">
           {t("contact")}
         </Button>
 
         {/* Desctop language */}
-        <div className="relative w-36 text-[14px] font-[500] ">
+        <div className="relative w-36 text-[14px] font-medium " ref={modalRef}>
           <button
             onClick={() => setOpen(!open)}
             className="w-full px-4 py-3 flex items-center justify-between rounded-xl bg-none cursor-pointer"
@@ -121,7 +127,7 @@ export const NavBar = () => {
 
       {/* Mobile menu dropdown */}
       {isOpen && (
-        <div className="md:hidden absolute top-[70px] left-0 w-full h-screen bg-darkk p-10 grid text-[18px] font-[500] z-50">
+        <div className="md:hidden absolute top-[70px] left-0 w-full h-screen bg-darkk p-10 grid text-[18px] font-medium z-50">
           <div>
             <ul className="grid gap-4">
               <li>
@@ -153,7 +159,7 @@ export const NavBar = () => {
             </Button>
 
             {/* Mobile language */}
-            <div className="relative  text-[18px] font-[500] flex justify-center items-center w-full h-full">
+            <div className="relative  text-[18px] font-medium flex justify-center items-center w-full h-full">
               <div>
                 <button
                   onClick={() => setOpen(!open)}

@@ -39,7 +39,7 @@ export default function Blog() {
     <>
       <div className="grid gap-10 ">
         <div className="flex justify-between font-[600] text-[24px] p-10  items-center">
-          <h1 className="font-[700] text-[30px]">Our Blogs</h1>
+          <h1 className="font-bold text-[30px]">Our Blogs</h1>
           <Button
             className="px-10 py-5 rounded-2xl text-white"
             onClick={() => setAddBlogIsOpen(true)}
@@ -98,7 +98,7 @@ export default function Blog() {
                     height={50}
                     className="rounded-[4px] object-cover"
                   />
-                  <h2 className="font-[700] text-[16px]">
+                  <h2 className="font-bold text-[16px]">
                     {blog.title_am} {blog.title_en}
                   </h2>
                 </div>

@@ -92,7 +92,7 @@ export default function ModalForEdit({
 
         <div className="flex justify-between items-center">
           <div className="pl-[45%]">
-            <h2 className="text-[25px] font-[700] text-center">{title}</h2>
+            <h2 className="text-[25px] font-bold text-center">{title}</h2>
           </div>
           <div>
             <button

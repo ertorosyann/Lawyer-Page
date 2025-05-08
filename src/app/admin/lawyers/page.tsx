@@ -35,7 +35,7 @@ export default function Laywers() {
     <>
       <div className="grid gap-10 ">
         <div className="flex justify-between font-[600] text-[24px] p-10  items-center">
-          <h1 className="text-[30px] font-[700]">Our Laywers</h1>
+          <h1 className="text-[30px] font-bold">Our Laywers</h1>
           <Button
             className="px-10 py-5 rounded-2xl text-white"
             onClick={() => setAddLawyerIsOpen(true)}

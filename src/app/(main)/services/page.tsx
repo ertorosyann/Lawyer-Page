@@ -18,7 +18,7 @@ export default function Services() {
     <>
       <section className=" max-w-[1024px] mx-auto mobile:w-full">
         <div className="grid gap-15 mobile:justify-center">
-          <div className="max-w-[720px] mx-auto grid text-center font-[500] gap-6 ">
+          <div className="max-w-[720px] mx-auto grid text-center font-medium gap-6 ">
             <h1 className=" text-muted-light text-[42px] mobile:text-[20px]">
               {t("title")}
             </h1>
@@ -62,18 +62,18 @@ export default function Services() {
       <section className=" max-w-[1024px] mx-auto mobile:w-full mobile:px-4">
         <div className="flex flex-col items-center text-center gap-25 pt-25 pb-25">
           <div ref={civilRef} className="grid gap-6 scroll-mt-[120px]">
-            <h1 className=" text-muted-light font-[700] text-[30px] leading-[100%] mobile:text-[20px]">
+            <h1 className=" text-muted-light font-bold text-[30px] leading-[100%] mobile:text-[20px]">
               {t("items.item1.name")}
             </h1>
-            <p className="text-muted font-[500] text-[24px] leading-[100%] mobile:text-[16px] ">
+            <p className="text-muted font-medium text-[24px] leading-[100%] mobile:text-[16px] ">
               {t("items.item1.description")}
             </p>
           </div>
           <div ref={corporateRef} className="grid gap-6 scroll-mt-[120px]">
-            <h1 className=" text-muted-light font-[700] text-[30px] leading-[100%] mobile:text-[20px]">
+            <h1 className=" text-muted-light font-bold text-[30px] leading-[100%] mobile:text-[20px]">
               {t("items.item2.name")}
             </h1>
-            <p className="text-muted font-[500] text-[24px] leading-[100%] mobile:text-[16px]">
+            <p className="text-muted font-medium text-[24px] leading-[100%] mobile:text-[16px]">
               {t("items.item2.description")}
             </p>
           </div>
@@ -88,10 +88,10 @@ export default function Services() {
             />
           </div>
           <div ref={adminRef} className="grid gap-6 scroll-mt-[120px]">
-            <h1 className=" text-muted-light font-[700] text-[30px] leading-[100%] mobile:text-[20px]">
+            <h1 className=" text-muted-light font-bold text-[30px] leading-[100%] mobile:text-[20px]">
               {t("items.item3.name")}
             </h1>
-            <p className="text-muted font-[500] text-[24px] leading-[100%] mobile:text-[16px]">
+            <p className="text-muted font-medium text-[24px] leading-[100%] mobile:text-[16px]">
               {t("items.item3.description")}
             </p>
           </div>
@@ -106,10 +106,10 @@ export default function Services() {
             />
           </div>
           <div ref={criminalRef} className="grid gap-6 scroll-mt-[120px]">
-            <h1 className=" text-muted-light font-[700] text-[30px] leading-[100%] mobile:text-[20px]">
+            <h1 className=" text-muted-light font-bold text-[30px] leading-[100%] mobile:text-[20px]">
               {t("items.item4.name")}
             </h1>
-            <p className="text-muted font-[500] text-[24px] leading-[100%] mobile:text-[16px]">
+            <p className="text-muted font-medium text-[24px] leading-[100%] mobile:text-[16px]">
               {t("items.item4.description")}
             </p>
           </div>

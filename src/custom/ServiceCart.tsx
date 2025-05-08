@@ -23,11 +23,11 @@ export const ServiceCard: FC<ServiceCardProps> = ({
         <div className="grid gap-10">
           <div className="flex flex-col gap-[12px]">
             {icone}
-            <h2 className="font-[500] text-[24px] leading-[100%]  mobile:text[16px]">
+            <h2 className="font-medium text-[24px] leading-[100%]  mobile:text[16px]">
               {title}
             </h2>
           </div>
-          <p className="font-[500] text-[16px] text-[#757677] leading-[100%] mobile:text[12px]">
+          <p className="font-medium text-[16px] text-[#757677] leading-[100%] mobile:text[12px]">
             {content}
           </p>
         </div>

@@ -61,7 +61,7 @@ export default function NewsSlugPage() {
         </Area>
 
         <div className="grid gap-4 w-[25%]  mobile:w-full mobile:mx-auto ">
-          <h3 className="text-[20px] text-[#6A49A2] font-[500]">
+          <h3 className="text-[20px] text-[#6A49A2] font-medium">
             Recent Posts
           </h3>
           <div className="overflow-y-auto max-h-[600px]">
@@ -94,7 +94,7 @@ export default function NewsSlugPage() {
                       <div className="flex justify-between">
                         <div className="flex gap-3 items-center">
                           {clock}
-                          <p className="font-[500] text-[10px] leading-[100%] text-muted">
+                          <p className="font-medium text-[10px] leading-[100%] text-muted">
                             {news?.createTime
                               ? format(
                                   new Date(news.createTime),

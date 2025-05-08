@@ -13,10 +13,10 @@ export default function About() {
         <div className="grid gap-55 mobile:gap-10 mobile:m-5">
           <div className="md:relative mobile:grid mobile:gap-20">
             <div className="grid gap-6 border cart-bg-grey text-center py-10 px-6 w-[55%] gradient-border-about mobile:w-full">
-              <h1 className="font-[700] text-[42px] leading-[100%] text-muted-light mobile:text-[20px]">
+              <h1 className="font-bold text-[42px] leading-[100%] text-muted-light mobile:text-[20px]">
                 {t("title")}
               </h1>
-              <p className="font-[500] text-[22px] text-muted leading-[100%] mobile:text-[16px]">
+              <p className="font-medium text-[22px] text-muted leading-[100%] mobile:text-[16px]">
                 {t("titile-description")}
               </p>
             </div>
@@ -25,7 +25,7 @@ export default function About() {
             </div>
           </div>
           <div className="">
-            <p className="text-center text-[28px] font-[500] text-muted leading-[120%] mobile:text-[16px]">
+            <p className="text-center text-[28px] font-medium text-muted leading-[120%] mobile:text-[16px]">
               {t("titile-description2")}
             </p>
           </div>
@@ -47,10 +47,10 @@ export default function About() {
 
       <section className="max-w-[1280px] mx-auto mobile:w-full">
         <div className="grid gap-6 text-center py-10 px-6  cart-bg-grey border border-[#1F0C6F] shadow-[0px_0px_4px_0px_#F5F5F51F] mobile:m-5">
-          <h2 className="font-[700] text-[42px] leading-[100%] text-muted-light mobile:text-[20px]">
+          <h2 className="font-bold text-[42px] leading-[100%] text-muted-light mobile:text-[20px]">
             {t("mission")}
           </h2>
-          <p className="font-[500] text-[24px] text-muted leading-[100%] mobile:text-[16px]">
+          <p className="font-medium text-[24px] text-muted leading-[100%] mobile:text-[16px]">
             {t("mission-description")}
           </p>
         </div>
@@ -61,7 +61,7 @@ export default function About() {
           <ArrowCarousel />
         </div>
         <div className="flex justify-center gap-[62px] mobile:grid mobile:gap-[20px]">
-          <Button className="font-[500] text-[24px] leading-[120%] py-[12px] px-[24px] text-muted-light mobile:text-[14px]">
+          <Button className="font-medium text-[24px] leading-[120%] py-[12px] px-[24px] text-muted-light mobile:text-[14px]">
             {t("btn-get")}
           </Button>
           <div className="flex gap-[16px] items-center">
@@ -76,7 +76,7 @@ export default function About() {
             {React.cloneElement(mail, {
               className: "mobile:w-[30px]",
             })}
-            <h4 className="font-[500] text-[24px] leading-[120%] text-muted-light mobile:text-[14px]">
+            <h4 className="font-medium text-[24px] leading-[120%] text-muted-light mobile:text-[14px]">
               Lawyerhelp@gmail.com
             </h4>
           </div>

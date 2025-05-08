@@ -186,7 +186,7 @@ export default function ModalForDelete({
         >
           ✕
         </button>
-        <h2 className="text-[28px] font-[700] text-[#1D1D1F] pt-15">
+        <h2 className="text-[28px] font-bold text-[#1D1D1F] pt-15">
           Are you sure you want to save these changes?
         </h2>
 

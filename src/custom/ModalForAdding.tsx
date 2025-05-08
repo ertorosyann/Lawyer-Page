@@ -125,7 +125,7 @@ export default function ModalForAdding({
         <div className="text-[24px] leading-[100%] grid gap-6 p-5 text-[#1D1D1FCC]">
           <div className="flex justify-between">
             <div className="pl-[45%]">
-              <h2 className="text-[25px] font-[700] text-center">{title}</h2>
+              <h2 className="text-[25px] font-bold text-center">{title}</h2>
             </div>
             <div>
               <button
@@ -153,7 +153,7 @@ export default function ModalForAdding({
 
             {imageRequired && (
               <div className="grid items-start w-[30%]">
-                <p className="text-[20px] font-[700]">Upload an Image</p>
+                <p className="text-[20px] font-bold">Upload an Image</p>
                 {!image && (
                   <>
                     <input
