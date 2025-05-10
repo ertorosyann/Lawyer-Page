@@ -1,9 +1,9 @@
 "use client";
-import { useRef, useState } from "react";
-import Image from "next/image";
-import { Button } from "./Button";
-import ModalForSave from "./ModalForSave";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
+import ModalForSave from "./ModalForSave";
+import { useRef, useState } from "react";
+import { Button } from "./Button";
+import Image from "next/image";
 
 type ModalForAddingProps = {
   isOpen: boolean;
@@ -28,6 +28,7 @@ export default function ModalForAdding({
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
   const [error, setError] = useState<string>("");
   const [formData, setFormData] = useState<{ [key: string]: string }>({});
+
   const modalRef = useRef<HTMLDivElement | null>(null);
   useOutsideClick(modalRef, () => {
     onClose();
@@ -120,9 +121,9 @@ export default function ModalForAdding({
     <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center">
       <div
         ref={modalRef}
-        className="bg-white p-6 rounded-xl shadow-lg h-[650px]  min-w-[1024px] grid gap-5"
+        className="bg-white p-6 rounded-xl shadow-lg h-[650px]  min-w-[1024px] grid gap-5 animate-fadeIn"
       >
-        <div className="text-[24px] leading-[100%] grid gap-6 p-5 text-[#1D1D1FCC]">
+        <div className="text-2xl leading-[100%] grid gap-6 p-5 text-[#1D1D1FCC]">
           <div className="flex justify-between">
             <div className="pl-[45%]">
               <h2 className="text-[25px] font-bold text-center">{title}</h2>
@@ -130,21 +131,19 @@ export default function ModalForAdding({
             <div>
               <button
                 onClick={onClose}
-                className="  text-[40px] text-gray-500 hover:text-black"
+                className="text-[40px] text-gray-500 hover:text-black"
               >
                 ✕
               </button>
             </div>
           </div>
 
-          {error && (
-            <p className="text-red-600 text-center text-[20px]">{error}</p>
-          )}
+          {error && <p className="text-red-600 text-center text-xl">{error}</p>}
 
           <div className="flex justify-center gap-20">
             <div className="grid gap-5">
               {fields.map((field) => (
-                <div key={field} className="flex gap-6 text-[18px]">
+                <div key={field} className="flex gap-6 text-lg">
                   {renderInput(field, "am")}
                   {renderInput(field, "en")}
                 </div>
@@ -153,7 +152,7 @@ export default function ModalForAdding({
 
             {imageRequired && (
               <div className="grid items-start w-[30%]">
-                <p className="text-[20px] font-bold">Upload an Image</p>
+                <p className="text-xl font-bold">Upload an Image</p>
                 {!image && (
                   <>
                     <input
@@ -200,7 +199,7 @@ export default function ModalForAdding({
           {/* <div className="grid justify-end pt-10">
             <Button
               onClick={checkFilles}
-              className="text-[20px] text-white   rounded-[20px] cursor-pointer px-6"
+              className="text-xl text-white   rounded-[20px] cursor-pointer px-6"
             >
               Save Changes
             </Button>

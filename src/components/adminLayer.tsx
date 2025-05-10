@@ -1,9 +1,9 @@
 "use client";
 
-import { edit, logo, logOuth } from "@/app/assets/svg";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
-import Link from "next/link";
+import { edit, logo, logOuth } from "@/app/assets/svg";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function AdminLayer() {
   const pathname = usePathname();
@@ -18,7 +18,7 @@ export default function AdminLayer() {
       <div className="flex flex-col justify-between h-full p-10 ">
         <div className="grid gap-15">
           {logo}
-          <ul className="grid gap-4 font-medium text-[28px]">
+          <ul className="grid gap-4 font-medium text-3xl">
             {navItems.map(({ title, href }) => (
               <li key={href}>
                 <div
@@ -41,13 +41,13 @@ export default function AdminLayer() {
           </ul>
         </div>
         <LogoutLink postLogoutRedirectURL="/login">
-          <div className="flex justify-between p-5 font-[600] text-[28px] hover:bg-gray-200 items-center cursor-pointer rounded-2xl">
+          <div className="flex justify-between p-5 font-semibold text-3xl hover:bg-gray-200 items-center cursor-pointer rounded-2xl">
             <p>Log Out</p>
             {logOuth}
           </div>
         </LogoutLink>
         {/* <Link onClick={removeToken} href="/login">
-          <div className="flex justify-between p-5 font-[600] text-[28px] hover:bg-amber-50 curs">
+          <div className="flex justify-between p-5 font-semibold text-3xl hover:bg-amber-50 curs">
             <p>Log Out</p>
             {logOuth}
           </div>

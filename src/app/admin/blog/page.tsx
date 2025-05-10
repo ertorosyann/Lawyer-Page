@@ -9,7 +9,6 @@ import { more } from "@/app/assets/svg";
 import { Area } from "@/custom/Area";
 import { Blogs } from "@/types/items";
 import { format } from "date-fns";
-
 import Image from "next/image";
 
 export default function Blog() {
@@ -38,8 +37,8 @@ export default function Blog() {
   return (
     <>
       <div className="grid gap-10 ">
-        <div className="flex justify-between font-[600] text-[24px] p-10  items-center">
-          <h1 className="font-bold text-[30px]">Our Blogs</h1>
+        <div className="flex justify-between font-semibold text-2xl p-10  items-center">
+          <h1 className="font-bold text-3xl">Our Blogs</h1>
           <Button
             className="px-10 py-5 rounded-2xl text-white"
             onClick={() => setAddBlogIsOpen(true)}
@@ -72,7 +71,7 @@ export default function Blog() {
                           setSelectedPopupIndex(null);
                           setBlogId(blog._id);
                         }}
-                        className="px-4 py-2 text-left text-[26px] hover:bg-gray-100"
+                        className="px-4 py-2 text-left text-2xl hover:bg-gray-100"
                       >
                         Edit
                       </button>
@@ -82,7 +81,7 @@ export default function Blog() {
                           setSelectedPopupIndex(null);
                           setBlogId(blog._id);
                         }}
-                        className="px-4 py-2 text-left text-[26px] text-red-600 hover:bg-gray-100"
+                        className="px-4 py-2 text-left text-2xl text-red-600 hover:bg-gray-100"
                       >
                         Delete
                       </button>
@@ -98,14 +97,14 @@ export default function Blog() {
                     height={50}
                     className="rounded-[4px] object-cover"
                   />
-                  <h2 className="font-bold text-[16px]">
+                  <h2 className="font-bold text-base">
                     {blog.title_am} {blog.title_en}
                   </h2>
                 </div>
-                <p className="font-[600] text-[14px] text-muted">
+                <p className="font-semibold text-sm text-muted">
                   {blog.description_am} {blog.description_en}
                 </p>
-                <p className="text-[14px] text-muted">
+                <p className="text-sm text-muted">
                   {blog.createTime
                     ? format(new Date(blog.createTime), "MMMM d, yyyy")
                     : null}

@@ -1,19 +1,22 @@
 "use client";
 
+import { FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
+import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { Button } from "@/custom/Button";
+import React, { useState } from "react";
+import PopUp from "@/custom/PopUp";
+import Link from "next/link";
 import {
   location_black,
   logo,
   mail_black,
   telephone_black,
 } from "@/app/assets/svg";
-import { useTranslations } from "next-intl";
-import { usePathname } from "next/navigation";
-import { FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
-import Link from "next/link";
-import React from "react";
-import { Button } from "@/custom/Button";
 
 export const Footer = () => {
+  const [popUpContacte, setPopUpContacte] = useState<boolean>(false);
+
   const t = useTranslations("Footer");
   const tNavbar = useTranslations("Navbar");
 
@@ -34,7 +37,10 @@ export const Footer = () => {
               {t("specialised")}
             </h2>
 
-            <Button className="text-[18px] py-3 px-8  rounded-[50px] md:hidden">
+            <Button
+              className="text-lg py-3 px-8  rounded-[50px] md:hidden"
+              onClick={() => setPopUpContacte(true)}
+            >
               {tNavbar("contact")}
             </Button>
           </div>
@@ -73,7 +79,7 @@ export const Footer = () => {
               {React.cloneElement(telephone_black, {
                 className: "mobile:w-[40px]",
               })}
-              <p className="font-medium text-2xl leading-[100%]  mobile:text-base">
+              <p className="font-medium text-2xl   mobile:text-base">
                 +374 12122112
               </p>
             </div>
@@ -81,7 +87,7 @@ export const Footer = () => {
               {React.cloneElement(mail_black, {
                 className: "mobile:w-[40px]",
               })}
-              <p className="font-medium text-2xl leading-[100%]  mobile:text-base">
+              <p className="font-medium text-2xl   mobile:text-base">
                 Lawyerhelp@gmail.com
               </p>
             </div>
@@ -89,7 +95,7 @@ export const Footer = () => {
               {React.cloneElement(location_black, {
                 className: "mobile:w-[40px]",
               })}
-              <p className="font-medium text-2xl leading-[100%]  mobile:text-base">
+              <p className="font-medium text-2xl   mobile:text-base">
                 {t("address")}
               </p>
             </div>
@@ -97,7 +103,10 @@ export const Footer = () => {
         </div>
 
         <div className="w-full bg-[#937abd] rounded-2xl px-8 py-3 flex justify-between mobile:grid mobile:justify-center">
-          <Button className="text-[18px] py-3 px-8  rounded-[50px] mobile:hidden">
+          <Button
+            className="text-lg py-3 px-8  rounded-[50px] mobile:hidden"
+            onClick={() => setPopUpContacte(true)}
+          >
             {tNavbar("contact")}
           </Button>
           <div className="flex items-center gap-6 ">
@@ -129,6 +138,7 @@ export const Footer = () => {
             {t("serteficate")}
           </p>
         </div>
+        {popUpContacte && <PopUp onClose={() => setPopUpContacte(false)} />}
       </section>
     </footer>
   );

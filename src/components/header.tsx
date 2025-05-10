@@ -1,8 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { logo } from "@/app/assets/svg";
 import { NavBar } from "./navbar";
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import React from "react";
 

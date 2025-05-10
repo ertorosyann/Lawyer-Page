@@ -1,8 +1,8 @@
 "use client";
 
 import { fetchPartners } from "@/lib/actions";
-import { Partner } from "@/types/items";
 import { useEffect, useState } from "react";
+import { Partner } from "@/types/items";
 import Image from "next/image";
 
 export default function AutoCarousel() {

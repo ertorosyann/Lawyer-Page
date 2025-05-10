@@ -1,15 +1,15 @@
 "use client";
-import { useParams } from "next/navigation";
-import Image from "next/image";
-import { Area } from "@/custom/Area";
-import Link from "next/link";
 import { arrowRight, clock } from "@/app/assets/svg";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Blogs } from "@/types/items";
 import { fetchBlogs } from "@/lib/actions";
-import { format } from "date-fns";
 import { Button } from "@/custom/Button";
+import { Blogs } from "@/types/items";
 import { useLocale } from "next-intl";
+import { Area } from "@/custom/Area";
+import { format } from "date-fns";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function NewsSlugPage() {
   const [news, setNews] = useState<Blogs[]>([]);
@@ -33,7 +33,7 @@ export default function NewsSlugPage() {
     <section className="max-w-[1024px] mx-auto mobile:w-full">
       <div className="pb-10">
         <Link href={"/news"}>
-          <Button className="text-[20px] p-4 rounded-[16px] hover:bg-[#717173] hover:text-black">
+          <Button className="text-xl p-4 rounded-[16px] hover:bg-[#717173] hover:text-black">
             Back to News
           </Button>
         </Link>
@@ -51,19 +51,17 @@ export default function NewsSlugPage() {
             className="object-cover"
           />
           <div className="grid gap-6">
-            <h1 className="text-[28px] font-bold text-muted-light ">
+            <h1 className="text-3xl font-bold text-muted-light ">
               {post[`title_${locale}` as keyof Blogs]}
             </h1>
-            <p className="text-[20px] leading-[100%] font-[600] text-muted ">
+            <p className="text-xl leading-[100%] font-semibold text-muted ">
               {post[`description_${locale}` as keyof Blogs]}
             </p>
           </div>
         </Area>
 
         <div className="grid gap-4 w-[25%]  mobile:w-full mobile:mx-auto ">
-          <h3 className="text-[20px] text-[#6A49A2] font-medium">
-            Recent Posts
-          </h3>
+          <h3 className="text-xl text-[#6A49A2] font-medium">Recent Posts</h3>
           <div className="overflow-y-auto max-h-[600px]">
             {/* add scrolling */}
             <div className="grid gap-10 p-2 ">
@@ -84,10 +82,10 @@ export default function NewsSlugPage() {
                     />
                     <div className="grid justify-between items-center gap-10">
                       <div className="grid gap-2">
-                        <h3 className="font-[600] text-[16px] text-muted-light ">
+                        <h3 className="font-semibold text-base text-muted-light ">
                           {news[`title_${locale}` as keyof Blogs]}
                         </h3>
-                        <p className="text-[14px] text-muted">
+                        <p className="text-sm text-muted">
                           {news[`description_${locale}` as keyof Blogs]}
                         </p>
                       </div>

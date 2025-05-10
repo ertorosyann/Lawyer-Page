@@ -1,7 +1,7 @@
-import { connectDB } from "@/lib/mongodb";
-import Blog from "@/models/blog";
-import { unlink } from "fs/promises";
 import { NextRequest, NextResponse } from "next/server";
+import { connectDB } from "@/lib/mongodb";
+import { unlink } from "fs/promises";
+import Blog from "@/models/blog";
 import path from "path";
 
 export async function GET() {

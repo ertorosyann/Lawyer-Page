@@ -1,14 +1,14 @@
 "use client";
-import { more } from "@/app/assets/svg";
-import { Area } from "@/custom/Area";
-import { Button } from "@/custom/Button";
 import ModalForAdding from "@/custom/ModalForAdding";
 import ModalForDelete from "@/custom/ModalForDelete";
 import ModalForEdit from "@/custom/ModalForEdit";
 import { fetchLawyers } from "@/lib/actions";
-import { Lawyer } from "@/types/items";
-import Image from "next/image";
 import { useEffect, useState } from "react";
+import { Button } from "@/custom/Button";
+import { more } from "@/app/assets/svg";
+import { Lawyer } from "@/types/items";
+import { Area } from "@/custom/Area";
+import Image from "next/image";
 
 export default function Laywers() {
   const [addLawyerIsOpen, setAddLawyerIsOpen] = useState(false);
@@ -34,8 +34,8 @@ export default function Laywers() {
   return (
     <>
       <div className="grid gap-10 ">
-        <div className="flex justify-between font-[600] text-[24px] p-10  items-center">
-          <h1 className="text-[30px] font-bold">Our Laywers</h1>
+        <div className="flex justify-between font-semibold text-2xl p-10  items-center">
+          <h1 className="text-3xl font-bold">Our Laywers</h1>
           <Button
             className="px-10 py-5 rounded-2xl text-white"
             onClick={() => setAddLawyerIsOpen(true)}
@@ -67,7 +67,7 @@ export default function Laywers() {
                           setSelectedPopupIndex(null);
                           setLawyerId(lawyer._id);
                         }}
-                        className="px-4 py-2 text-left text-[26px] hover:bg-gray-100"
+                        className="px-4 py-2 text-left text-2xl hover:bg-gray-100"
                       >
                         Edit
                       </button>
@@ -77,7 +77,7 @@ export default function Laywers() {
                           setSelectedPopupIndex(null);
                           setLawyerId(lawyer._id);
                         }}
-                        className="px-4 py-2 text-left text-[26px] text-red-600 hover:bg-gray-100"
+                        className="px-4 py-2 text-left text-2xl text-red-600 hover:bg-gray-100"
                       >
                         Delete
                       </button>
@@ -94,15 +94,15 @@ export default function Laywers() {
                     height={50}
                     className="rounded-[4px] object-cover"
                   />
-                  <p className="text-center font-500 text-[20px]">
+                  <p className="text-center font-medium text-xl">
                     {lawyer.name_am} {lawyer.surname_am}
                   </p>
-                  <p className="text-center font-500 text-[20px]">
+                  <p className="text-center font-medium text-xl">
                     {lawyer.name_en}
                     {lawyer.surname_en}
                   </p>
                 </div>
-                <p className="text-[14px] text-muted">
+                <p className="text-sm text-muted">
                   {lawyer.description_am} {lawyer.description_en}
                 </p>
               </Area>

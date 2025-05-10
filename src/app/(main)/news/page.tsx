@@ -1,14 +1,14 @@
 "use client";
+import { useLocale, useTranslations } from "next-intl";
 import { arrowRight, clock } from "@/app/assets/svg";
-import { Area } from "@/custom/Area";
-import { Button } from "@/custom/Button";
+import { useEffect, useState } from "react";
 import { fetchBlogs } from "@/lib/actions";
+import { Button } from "@/custom/Button";
 import { Blogs } from "@/types/items";
+import { Area } from "@/custom/Area";
+import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { format } from "date-fns";
-import { useLocale, useTranslations } from "next-intl";
 
 export default function News() {
   const [news, setNews] = useState<Blogs[]>([]);
@@ -39,16 +39,16 @@ export default function News() {
         <div className="max-w-[1024px] mx-auto pb-25">
           <div className="grid justify-center  gap-2 ">
             <div className="text-center px-20 mobile:px-10">
-              <h1 className="font-bold text-[42px] text-muted-light mobile:text-[20px]">
+              <h1 className="font-bold text-5xl text-muted-light mobile:text-xl">
                 {t("title")}
               </h1>
-              <p className="font-medium text-[24px] text-muted mobile:text-[16px]">
+              <p className="font-medium text-2xl text-muted mobile:text-base">
                 {t("title-description")}
               </p>
             </div>
 
             <div className="grid gap-2 mobile:m-5">
-              <h3 className="text-[24px] font-medium text-[#6A49A2]">
+              <h3 className="text-2xl font-medium text-[#6A49A2]">
                 Recent News
               </h3>
               <div className="grid lg:grid-cols-2 gap-15 mobile:grid-cols-1">
@@ -63,17 +63,17 @@ export default function News() {
                     />
                     <div className="grid gap-15 justify-between">
                       <div className="grid gap-6 text-center">
-                        <h3 className="font-[600] text-[20px] text-muted-light">
+                        <h3 className="font-semibold text-xl text-muted-light">
                           {news[0]?.[`title_${locale}` as keyof Blogs]}
                         </h3>
-                        <p className="text-muted text-[14px] font-[600] leading-[120%]">
+                        <p className="text-muted text-sm font-semibold leading-[120%]">
                           {news[0]?.[`description_${locale}` as keyof Blogs]}
                         </p>
                       </div>
                       <div className="flex justify-between items-center">
                         <div className="flex gap-3 items-center">
                           {clock}
-                          <p className="font-[200] text-[16px] leading-[100%] text-muted">
+                          <p className="font-[200] text-base  text-muted">
                             {news[0]?.createTime
                               ? format(
                                   new Date(news[0].createTime),
@@ -106,16 +106,16 @@ export default function News() {
                       />
                       <div className="grid md:justify-between w-1/2 mobile:w-full mobile:gap-4">
                         <div className="grid justify-b">
-                          <p className="text-muted-light text-[20px] font-[600] leading-[120%] text-center">
+                          <p className="text-muted-light text-xl font-semibold leading-[120%] text-center">
                             {news[1]?.[`title_${locale}` as keyof Blogs]}
                           </p>
-                          <p className="text-muted text-[14px] font-[600] leading-[120%] text-center">
+                          <p className="text-muted text-sm font-semibold leading-[120%] text-center">
                             {news[1]?.[`description_${locale}` as keyof Blogs]}
                           </p>
                         </div>
                         <div className="flex  justify-between items-center mobile:px-0 mobile:py-0">
                           {clock}
-                          <p className="font-medium text-[16px] leading-[100%] text-muted">
+                          <p className="font-medium text-base  text-muted">
                             {news[1]?.createTime
                               ? format(
                                   new Date(news[1].createTime),
@@ -145,16 +145,16 @@ export default function News() {
                         className="mobile:w-full object-cover"
                       />
                       <div className="grid md:justify-between w-1/2 mobile:w-full mobile:gap-4">
-                        <p className="text-muted-light text-[20px] font-[600] leading-[120%]">
+                        <p className="text-muted-light text-xl font-semibold leading-[120%]">
                           {news[2]?.[`title_${locale}` as keyof Blogs]}
                         </p>
-                        <p className="text-muted text-[14px] font-[600] leading-[120%]">
+                        <p className="text-muted text-sm font-semibold leading-[120%]">
                           {news[2]?.[`description_${locale}` as keyof Blogs]}
                         </p>
 
                         <div className="flex justify-between items-center mobile:px-0 mobile:py-0">
                           {clock}
-                          <p className="font-medium text-[16px] leading-[100%] text-muted">
+                          <p className="font-medium text-base  text-muted">
                             {news[2]?.createTime
                               ? format(
                                   new Date(news[2].createTime),
@@ -186,14 +186,13 @@ export default function News() {
             alt="GIF"
             width={650}
             height={580}
-            className="rotate-[-133.81deg]"
           />
         </div>
       </section>
 
       <section className="max-w-[1024px] mx-auto mobile:w-full">
         <div className="grid gap-15 mobile:m-5">
-          <h3 className="text-[24px] font-medium text-[#6A49A2]">All Posts</h3>
+          <h3 className="text-2xl font-medium text-[#6A49A2]">All Posts</h3>
           <div className="grid lg:grid-cols-3 gap-15 mobile:grid-cols-1">
             {news.slice(3, 3 + visibleCount).map((newss) => (
               <Area
@@ -210,17 +209,17 @@ export default function News() {
                 />
                 <div className="grid  gap-10">
                   <div className="grid gap-2">
-                    <h3 className="font-[600] text-[20px] text-muted-light text-center">
+                    <h3 className="font-semibold text-xl text-muted-light text-center">
                       {newss[`title_${locale}` as keyof Blogs]}
                     </h3>
-                    <p className=" text-[14px] font-[600] leading-[120%] text-muted">
+                    <p className=" text-sm font-semibold leading-[120%] text-muted">
                       {newss[`description_${locale}` as keyof Blogs]}
                     </p>
                   </div>
                   <div className="flex justify-between items-center ">
                     <div className="flex  gap-3  items-center">
                       {clock}
-                      <p className="font-medium text-[16px] leading-[100%] text-muted">
+                      <p className="font-medium text-base  text-muted">
                         {newss?.createTime
                           ? format(new Date(newss.createTime), "MMMM d, yyyy")
                           : null}
@@ -240,7 +239,7 @@ export default function News() {
             <div className="grid justify-center">
               <Button
                 onClick={handleLoadMore}
-                className="font-600 text-[20px] text-muted-light leading-[100%] px-6 py-3"
+                className="font-semibold text-xl text-muted-light  px-6 py-3"
               >
                 Upload More
               </Button>

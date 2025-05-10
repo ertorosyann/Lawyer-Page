@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
 import { arrowLeftDouble, arrowRightDouble } from "@/app/assets/svg";
-import { Partner } from "@/types/items";
 import { fetchPartners } from "@/lib/actions";
+import { useEffect, useState } from "react";
+import { Partner } from "@/types/items";
+import Image from "next/image";
 
 export const ArrowCarousel = () => {
   const [index, setIndex] = useState(0);

@@ -1,11 +1,11 @@
 "use client";
 import { partner1_bg } from "@/app/assets/svg";
-import { Area } from "@/custom/Area";
 import { fetchPartners } from "@/lib/actions";
-import { Partner } from "@/types/items";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import { useEffect, useState } from "react";
+import { Partner } from "@/types/items";
+import { Area } from "@/custom/Area";
+import Image from "next/image";
 
 export default function PartnerPage() {
   const [partners, setPartners] = useState<Partner[]>([]);
@@ -23,10 +23,10 @@ export default function PartnerPage() {
       <section className=" max-w-[1024px] mx-auto mobile:w-full">
         <div className="grid justify-center gap-15 ">
           <div className="grid gap-4 text-center px-20 mobile:px-10">
-            <h1 className="font-bold text-[42px] text-muted-light mobile:text-[20px]">
+            <h1 className="font-bold text-5xl text-muted-light mobile:text-xl">
               {t("title")}
             </h1>
-            <p className="font-medium text-[24px] text-muted mobile:text-[14px] mobile:px-10">
+            <p className="font-medium text-2xl text-muted mobile:text-sm mobile:px-10">
               {t("title-description")}
             </p>
           </div>
@@ -53,7 +53,6 @@ export default function PartnerPage() {
             alt="GIF"
             width={650}
             height={580}
-            className="rotate-[-133.81deg]"
           />
         </div>
       </section>
@@ -77,7 +76,7 @@ export default function PartnerPage() {
 
             <div className="w-2/3 grid gap-2 pb-10 mobile:w-full ">
               <div className="mobile:hidden">{partner1_bg}</div>
-              <p className="text-muted-light text-[20px] font-[600] leading-[120%] mobile:text-[14px] mobile:font-[400]">
+              <p className="text-muted-light text-xl font-semibold leading-[120%] mobile:text-sm mobile:font-normal">
                 Lorem ipsum dolor sit amet consectetur. Tempor amet nunc netus
                 sed pellentesque elit tristique ornare ut. Ut cum massa lacus
                 fames nunc enim. Suscipit commodo in et sed venenatis. Duis sit
@@ -107,7 +106,7 @@ export default function PartnerPage() {
 
             <div className="w-2/3 grid gap-2 pb-10 mobile:w-full ">
               <div className="mobile:hidden">{partner1_bg}</div>
-              <p className="text-muted-light text-[20px] font-[600] leading-[120%] mobile:text-[14px] mobile:font-[400]">
+              <p className="text-muted-light text-xl font-semibold leading-[120%] mobile:text-sm mobile:font-normal">
                 Lorem ipsum dolor sit amet consectetur. Tempor amet nunc netus
                 sed pellentesque elit tristique ornare ut. Ut cum massa lacus
                 fames nunc enim. Suscipit commodo in et sed venenatis. Duis sit
@@ -137,7 +136,7 @@ export default function PartnerPage() {
 
             <div className="w-2/3 grid gap-2 pb-10 mobile:w-full ">
               <div className="mobile:hidden">{partner1_bg}</div>
-              <p className="text-muted-light text-[20px] font-[600] leading-[120%] mobile:text-[14px] mobile:font-[400]">
+              <p className="text-muted-light text-xl font-semibold leading-[120%] mobile:text-sm mobile:font-normal">
                 Lorem ipsum dolor sit amet consectetur. Tempor amet nunc netus
                 sed pellentesque elit tristique ornare ut. Ut cum massa lacus
                 fames nunc enim. Suscipit commodo in et sed venenatis. Duis sit
@@ -167,7 +166,7 @@ export default function PartnerPage() {
 
             <div className="w-2/3 grid gap-2 pb-10 mobile:w-full ">
               <div className="mobile:hidden">{partner1_bg}</div>
-              <p className="text-muted-light text-[20px] font-[600] leading-[120%] mobile:text-[14px] mobile:font-[400]">
+              <p className="text-muted-light text-xl font-semibold leading-[120%] mobile:text-sm mobile:font-normal">
                 Lorem ipsum dolor sit amet consectetur. Tempor amet nunc netus
                 sed pellentesque elit tristique ornare ut. Ut cum massa lacus
                 fames nunc enim. Suscipit commodo in et sed venenatis. Duis sit

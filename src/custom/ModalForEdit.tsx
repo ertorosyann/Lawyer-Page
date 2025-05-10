@@ -1,9 +1,9 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { Button } from "./Button";
-import ModalForSave from "./ModalForSave";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
+import { useEffect, useRef, useState } from "react";
+import ModalForSave from "./ModalForSave";
+import { Button } from "./Button";
+import Image from "next/image";
 
 type ModalForAddingProps = {
   isOpen: boolean;
@@ -81,7 +81,7 @@ export default function ModalForEdit({
     <div className="fixed inset-0 z-50 bg-black/20 flex items-center justify-center">
       <div
         ref={modalRef}
-        className="bg-white p-8 rounded-2xl w-[95%] max-w-[1024px] max-h-[90vh] overflow-y-auto  shadow-lg grid gap-10"
+        className="bg-white p-8 rounded-2xl w-[95%] max-w-[1024px] max-h-[90vh] overflow-y-auto  shadow-lg grid gap-10 animate-fadeIn"
       >
         {/* <button
           onClick={onClose}

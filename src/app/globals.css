@@ -117,14 +117,14 @@ body {
 /* 1) Define your “min-width” breakpoints */
 @theme {
   --breakpoint-sup-sm: 641px;
-  --breakpoint-mobile: 769px;
+  --breakpoint-mobile: 1025px;
   --breakpoint-sup-lg: 1025px;
   --breakpoint-sup-xl: 1281px;
   --breakpoint-sup-2xl: 1537px;
 }
 /* 2) Define your “max-width” and raw queries */
 @custom-variant sup-sm (@media (max-width: 640px));
-@custom-variant mobile (@media (max-width: 768px));
+@custom-variant mobile (@media (max-width: 1025px));
 @custom-variant sup-lg (@media (max-width: 1024px));
 @custom-variant sup-xl (@media (max-width: 1280px));
 @custom-variant sup-2xl (@media (max-width: 1536px));
@@ -209,4 +209,19 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
 }

@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { Button } from "@/components/ui/button";
 
 export default function Login() {
   return (
@@ -7,7 +7,7 @@ export default function Login() {
       {/* <LoginLink>Login</LoginLink> */}
       <Button
         variant="outline"
-        className="w-[120px] h-[50px] text-[22px] text-muted-light"
+        className="w-[120px] h-[50px] text-2xl text-muted-light"
       >
         <LoginLink>Login</LoginLink>
       </Button>

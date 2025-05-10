@@ -1,6 +1,6 @@
+import { AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import "./globals.css";
-import { AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
 
 export async function generateMetadata() {
   const locale = await getLocale();

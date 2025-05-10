@@ -1,7 +1,7 @@
+import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import Lawyer from "@/models/lawyer";
 import { unlink } from "fs/promises";
-import { NextRequest, NextResponse } from "next/server";
 import path from "path";
 
 export async function GET() {

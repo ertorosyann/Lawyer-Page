@@ -1,20 +1,22 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/custom/Button";
-import { usePathname, useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
-import { FaChevronDown } from "react-icons/fa";
-import React from "react";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { FaChevronDown } from "react-icons/fa";
+import { useTranslations } from "next-intl";
+import { Button } from "@/custom/Button";
+import { Menu, X } from "lucide-react";
+import PopUp from "@/custom/PopUp";
+import Link from "next/link";
+import React from "react";
 
 export const NavBar = () => {
   const t = useTranslations("Navbar");
   const [locale, setLocale] = useState<string>();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [open, setOpen] = useState(false);
+  const [popUpContacte, setPopUpContacte] = useState<boolean>(false);
   const toggleMenu = () => setIsOpen(!isOpen);
   const router = useRouter();
   const pathname = usePathname();
@@ -48,7 +50,7 @@ export const NavBar = () => {
   return (
     <nav className="p-4 border-muted flex items-center gap-15 text-[#D0D0D0]">
       {/* Desktop nav */}
-      <ul className="mobile:hidden flex flex-row gap-10 text-[18px] font-medium">
+      <ul className="mobile:hidden flex flex-row gap-10 text-lg font-medium">
         <li className={`${pathname === "/about" ? "text-[#6A49A2]" : ""}`}>
           <Link href="/about">{t("about")}</Link>
         </li>
@@ -63,12 +65,17 @@ export const NavBar = () => {
         </li>
       </ul>
       <div className="flex items-center gap-5  mobile:hidden ">
-        <Button className="text-[18px] py-3 px-8  rounded-[50px]">
+        <Button
+          className="text-lg py-3 px-8  rounded-[50px]"
+          onClick={() => setPopUpContacte(true)}
+        >
           {t("contact")}
         </Button>
 
+        {popUpContacte && <PopUp onClose={() => setPopUpContacte(false)} />}
+
         {/* Desctop language */}
-        <div className="relative w-36 text-[14px] font-medium " ref={modalRef}>
+        <div className="relative w-36 text-sm font-medium " ref={modalRef}>
           <button
             onClick={() => setOpen(!open)}
             className="w-full px-4 py-3 flex items-center justify-between rounded-xl bg-none cursor-pointer"
@@ -127,7 +134,7 @@ export const NavBar = () => {
 
       {/* Mobile menu dropdown */}
       {isOpen && (
-        <div className="md:hidden absolute top-[70px] left-0 w-full h-screen bg-darkk p-10 grid text-[18px] font-medium z-50">
+        <div className="md:hidden absolute top-[70px] left-0 w-full h-screen bg-darkk p-10 grid text-lg font-medium z-50">
           <div>
             <ul className="grid gap-4">
               <li>
@@ -154,12 +161,12 @@ export const NavBar = () => {
           </div>
 
           <div className="grid justify-center items-center gap-0">
-            <Button className="w-[200px] h-[50px] text-[18px] leading-[100%] py-[10px]">
+            <Button className="w-[200px] h-[50px] text-lg leading-[100%] py-[10px]">
               {t("contact")}
             </Button>
 
             {/* Mobile language */}
-            <div className="relative  text-[18px] font-medium flex justify-center items-center w-full h-full">
+            <div className="relative  text-lg font-medium flex justify-center items-center w-full h-full">
               <div>
                 <button
                   onClick={() => setOpen(!open)}

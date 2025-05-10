@@ -1,14 +1,14 @@
 "use client";
 import ModalForAdding from "@/custom/ModalForAdding";
-import { more } from "@/app/assets/svg";
-import { Area } from "@/custom/Area";
-import { Button } from "@/custom/Button";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import ModalForEdit from "@/custom/ModalForEdit";
 import ModalForDelete from "@/custom/ModalForDelete";
-import { Partner } from "@/types/items";
+import ModalForEdit from "@/custom/ModalForEdit";
 import { fetchPartners } from "@/lib/actions";
+import { useEffect, useState } from "react";
+import { Button } from "@/custom/Button";
+import { more } from "@/app/assets/svg";
+import { Partner } from "@/types/items";
+import { Area } from "@/custom/Area";
+import Image from "next/image";
 
 export default function Partners() {
   const [addPartnerIsOpen, setAddPartnerIsOpen] = useState(false);
@@ -34,8 +34,8 @@ export default function Partners() {
   return (
     <>
       <div className="grid gap-10 ">
-        <div className="flex justify-between font-[600] text-[24px] p-10  items-center">
-          <h1 className="text-[30px] font-bold">Our Partners</h1>
+        <div className="flex justify-between font-semibold text-2xl p-10  items-center">
+          <h1 className="text-3xl font-bold">Our Partners</h1>
           <Button
             className="px-10 py-5 rounded-2xl text-white"
             onClick={() => setAddPartnerIsOpen(true)}
@@ -67,7 +67,7 @@ export default function Partners() {
                           setSelectedPopupIndex(null);
                           setPartnerId(partner._id);
                         }}
-                        className="px-4 py-2 text-left text-[26px] hover:bg-gray-100"
+                        className="px-4 py-2 text-left text-2xl hover:bg-gray-100"
                       >
                         Edit
                       </button>
@@ -77,7 +77,7 @@ export default function Partners() {
                           setSelectedPopupIndex(null);
                           setPartnerId(partner._id);
                         }}
-                        className="px-4 py-2 text-left text-[26px] text-red-600 hover:bg-gray-100"
+                        className="px-4 py-2 text-left text-2xl text-red-600 hover:bg-gray-100"
                       >
                         Delete
                       </button>
@@ -94,10 +94,10 @@ export default function Partners() {
                     height={50}
                     className="rounded-[4px] object-cover"
                   />
-                  <h3 className="font-bold text-[18px]">{partner.title_am}</h3>
-                  <h3 className="font-bold text-[18px]">{partner.title_en}</h3>
+                  <h3 className="font-bold text-lg">{partner.title_am}</h3>
+                  <h3 className="font-bold text-lg">{partner.title_en}</h3>
                 </div>
-                <p className="font-[600] text-[12px] text-muted">
+                <p className="font-semibold text-sm text-muted">
                   {partner.description_am} {partner.description_en}
                 </p>
               </Area>
