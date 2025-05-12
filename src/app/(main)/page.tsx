@@ -68,7 +68,7 @@ export default function Home() {
                 {t("description-experiance")}
               </p>
             </div>
-            <div className="flex gap-15 mobile:justify-between mobile:gap-6 justify-center">
+            <div className="flex gap-15 mobile:justify-center mobile:gap-6 justify-center">
               <Button
                 className="font-medium text-2xl rounded-4xl py-3 px-5 hover:bg-[#937abd] mobile:text-base mobile:px-1 hover:transition-[200]"
                 onClick={() => setPopUpContacte(true)}
@@ -200,7 +200,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid mobile:grid-cols-1 grid-cols-3 gap-4 mobile:gap-0">
+          <div className="grid grid-cols-3 gap-4 p-4 mobile:gap-0 mobile:grid-cols-1 sup-lg:grid-cols-2 items-center">
             {lawyers?.map((lawyer) => (
               <Area
                 className="relative group overflow-hidden rounded-[4px] mobile:m-5"

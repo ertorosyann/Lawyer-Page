@@ -1,12 +1,16 @@
+"use client";
 import { ArrowCarousel } from "@/custom/ArrowCarousel";
 import { mail, telephone } from "@/app/assets/svg";
 import { useTranslations } from "next-intl";
 import { Button } from "@/custom/Button";
+import React, { useState } from "react";
 import Image from "next/image";
-import React from "react";
+import PopUp from "@/custom/PopUp";
 
 export default function About() {
   const t = useTranslations("About");
+  const [popUpContacte, setPopUpContacte] = useState<boolean>(false);
+
   return (
     <>
       <section className=" max-w-[1024px] mx-auto mobile:w-full">
@@ -61,7 +65,10 @@ export default function About() {
           <ArrowCarousel />
         </div>
         <div className="flex justify-center gap-[62px] mobile:grid mobile:gap-[20px]">
-          <Button className="font-medium text-2xl leading-[120%] py-3 px-6 text-muted-light mobile:text-sm">
+          <Button
+            className="font-medium text-2xl leading-[120%] py-3 px-6 text-muted-light mobile:text-sm"
+            onClick={() => setPopUpContacte(true)}
+          >
             {t("btn-get")}
           </Button>
           <div className="flex gap-[16px] items-center">
@@ -81,6 +88,7 @@ export default function About() {
             </h4>
           </div>
         </div>
+        {popUpContacte && <PopUp onClose={() => setPopUpContacte(false)} />}
       </section>
 
       <section className="max-w-[1280px] mx-auto mobile:hidden">

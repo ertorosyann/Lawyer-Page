@@ -14,42 +14,42 @@ export default function AutoCarousel() {
     })();
   }, []);
 
+  if (!partners.length) return null;
+
   return (
-    <div className="overflow-hidden w-full bg-black py-4 mobile:py-0">
-      <div
-        className="flex w-max animate-scroll-left gap-40 mobile:gap-2"
-        style={{
-          animation: "scroll-left 15s linear infinite",
-        }}
-      >
+    <div className="relative w-full overflow-hidden bg-black py-4 mobile:py-0">
+      <div className="flex w-max animate-scroll whitespace-nowrap">
         {[...partners, ...partners].map((partner, index) => (
           <div
-            key={`${partner._id}-${index}`} // using index to avoid duplicate key error
-            className="h-[100px] flex items-center justify-between mobile:w-full mobile:h-[50px]"
+            key={`${partner._id}-${index}`}
+            className="h-[100px] w-auto px-10 flex-shrink-0 flex items-center mobile:h-[50px] mobile:px-4"
           >
             <Image
               src={partner.image}
               width={190}
               height={47}
-              alt="Partner Image"
-              className="object-cover"
+              alt="Partner"
+              className="object-contain"
+              priority={index < 5}
             />
           </div>
         ))}
       </div>
 
-      <style>
-        {`
-          @keyframes scroll-left {
-            0% {
-              transform: translateX(0);
-            }
-            100% {
-              transform: translateX(-50%);
-            }
+      <style jsx>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
           }
-        `}
-      </style>
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        .animate-scroll {
+          animation: scroll 30s linear infinite;
+        }
+      `}</style>
     </div>
   );
 }

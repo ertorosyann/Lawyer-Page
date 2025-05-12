@@ -16,12 +16,12 @@ export default function PopUp({ onClose }: props) {
   useOutsideClick(modalRef, onClose);
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#5F5F5F80] flex items-center justify-center">
+    <div className="fixed inset-0 z-50 bg-[#5F5F5F80] flex items-center justify-center px-4 mobile:px-2">
       <div
-        className="relative min-w-[500px] bg-[#222222] p-8 grid gap-10 rounded-xl  shadow-[16px_16px_20px_5px_#00000033] animate-fadeIn"
+        className="relative min-w-[500px] mobile:min-w-full mobile:max-w-[95%] mobile:h-auto mobile:p-4 bg-[#222222] p-8 grid gap-10 rounded-xl shadow-[16px_16px_20px_5px_#00000033] animate-fadeIn"
         ref={modalRef}
       >
-        <div className="absolute bottom-0 right-0 opacity-75 z-1">
+        <div className="absolute bottom-0 right-0 opacity-75 z-1 mobile:hidden">
           <Image
             src="/popupGif.png"
             width={200}
@@ -29,69 +29,71 @@ export default function PopUp({ onClose }: props) {
             alt="Image Gif not found"
           />
         </div>
+
         <button
           onClick={onClose}
           className="absolute top-5 right-5 text-3xl text-[#CED6DE] hover:text-black"
         >
           ✕
         </button>
-        <h2 className="text-3xl font-bold text-[#DAC4FF80]  text-start">
+
+        <h2 className="text-3xl mobile:text-xl font-bold text-[#DAC4FF80] text-start">
           Contacte Us
         </h2>
 
-        <div className="text-2xl gap-4">
-          <div className="grid gap-1">
+        <div className="text-2xl gap-4 mobile:text-base">
+          <div className="grid gap-3">
             <div className="flex items-center gap-4">
               {React.cloneElement(telephone_black, {
-                className: "mobile:w-[40px]",
+                className: "w-[40px] mobile:w-[24px]",
               })}
-              <p className="font-medium text-xl text-[#A2AAB3]  mobile:text-base">
+              <p className="font-medium text-xl text-[#A2AAB3] mobile:text-base">
                 +374 12122112
               </p>
             </div>
             <div className="flex items-center gap-4">
               {React.cloneElement(mail_black, {
-                className: "mobile:w-[40px]",
+                className: "w-[40px] mobile:w-[24px]",
               })}
-              <p className="font-medium text-xl text-[#A2AAB3] mobile:text-base">
+              <p className="font-medium text-xl text-[#A2AAB3] mobile:text-base break-words">
                 Lawyerhelp@gmail.com
               </p>
             </div>
             <div className="flex items-center gap-4">
               {React.cloneElement(location_black, {
-                className: "mobile:w-[40px]",
+                className: "w-[40px] mobile:w-[24px]",
               })}
-              <p className="font-medium text-xl text-[#A2AAB3] mobile:text-base">
+              <p className="font-medium text-xl text-[#A2AAB3] mobile:text-base break-words">
                 {t("address")}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="flex items-center gap-6 ">
+        <div className="flex items-center gap-6 mobile:gap-4 mobile:justify-center">
           <a
             href="https://www.linkedin.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block p-4 bg-[#373639] rounded-4xl "
+            className="inline-block p-4 mobile:p-2 bg-[#373639] rounded-4xl"
           >
-            <FaLinkedin className="text-white  text-4xl hover:text-[#6A49A2]" />
+            <FaLinkedin className="text-white text-4xl mobile:text-2xl hover:text-[#6A49A2]" />
           </a>
           <a
             href="https://www.instagram.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block p-4 bg-[#373639] rounded-4xl "
+            className="inline-block p-4 mobile:p-2 bg-[#373639] rounded-4xl"
           >
-            <FaInstagram className="text-white text-4xl hover:text-[#6A49A2]" />
+            <FaInstagram className="text-white text-4xl mobile:text-2xl hover:text-[#6A49A2]" />
           </a>
           <a
             href="https://www.facebook.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block p-4 bg-[#373639] rounded-4xl "
+            className="inline-block p-4 mobile:p-2 bg-[#373639] rounded-4xl"
           >
-            <FaFacebook className="text-white text-4xl hover:text-[#6A49A2]" />
+            <FaFacebook className="text-white text-4xl mobile:text-2xl hover:text-[#6A49A2]" />
           </a>
         </div>
       </div>

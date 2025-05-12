@@ -47,13 +47,16 @@ export default function News() {
               </p>
             </div>
 
-            <div className="grid gap-2 mobile:m-5">
+            <div className="grid gap-2 mobile:m-5 sup-lg:p-4">
               <h3 className="text-2xl font-medium text-[#6A49A2]">
                 Recent News
               </h3>
-              <div className="grid lg:grid-cols-2 gap-15 mobile:grid-cols-1">
+              <div className="grid lg:grid-cols-2 gap-15 sup-lg:grid-cols-2  mobile:grid-cols-1">
                 {news[0] && (
-                  <Area variant="lower__shadow" className="grid gap-4">
+                  <Area
+                    variant="lower__shadow"
+                    className="grid gap-4  mobile:flex-col"
+                  >
                     <Image
                       src={news[0]?.image || "/uploads/news1.png"}
                       alt="GIF"
@@ -191,9 +194,9 @@ export default function News() {
       </section>
 
       <section className="max-w-[1024px] mx-auto mobile:w-full">
-        <div className="grid gap-15 mobile:m-5">
+        <div className="grid gap-15 mobile:m-5 p-4">
           <h3 className="text-2xl font-medium text-[#6A49A2]">All Posts</h3>
-          <div className="grid lg:grid-cols-3 gap-15 mobile:grid-cols-1">
+          <div className="grid  gap-15 lg:grid-cols-3 sup-lg:grid-cols-2  mobile:grid-cols-1">
             {news.slice(3, 3 + visibleCount).map((newss) => (
               <Area
                 key={newss._id}

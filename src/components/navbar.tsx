@@ -48,9 +48,9 @@ export const NavBar = () => {
   };
 
   return (
-    <nav className="p-4 border-muted flex items-center gap-15 text-[#D0D0D0]">
+    <nav className="p-4 border-muted flex items-center gap-15 text-[#D0D0D0] sup-lg:flex sup-lg:justify-between sup-lg:gap-6">
       {/* Desktop nav */}
-      <ul className="mobile:hidden flex flex-row gap-10 text-lg font-medium">
+      <ul className="mobile:hidden flex flex-row gap-6 text-lg font-medium sup-lg:grid sup-lg:grid-cols-2 sup-lg:gap-4">
         <li className={`${pathname === "/about" ? "text-[#6A49A2]" : ""}`}>
           <Link href="/about">{t("about")}</Link>
         </li>
